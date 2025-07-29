@@ -77,18 +77,20 @@ export const getCurrentUser = async (): Promise<User> => {
 			[Query.equal("accountId", currentAccount.$id)]
 		);
 
-		if (!currentUser || currentUser.documents.length === 0) throw Error;
-
-		const userDoc = currentUser.documents[0];
-
-		if (!userDoc.name || !userDoc.email || !userDoc.avatar) {
-			throw new Error("User document is missing required properties");
-		}
-
-		return userDoc as unknown as User;
+		return currentUser.documents[0] as any;
 	} catch (e) {
 		console.log(e);
 		throw new Error(e as string);
+	}
+};
+
+export const logout = async () => {
+	try {
+		const result = await account.deleteSession("current");
+		return result;
+	} catch (e) {
+		console.log("Logout error:", e);
+		throw new Error((e as string) || "Failed to logout");
 	}
 };
 
@@ -173,7 +175,7 @@ export const updateGoal = async (
 			{
 				progress,
 				state: newState,
-				updateDate, // Store as a custom field instead of $updatedAt
+				updateDate,
 			}
 		);
 
