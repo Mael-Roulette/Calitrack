@@ -32,7 +32,7 @@ const GoalItem = ({ $id, title, type, progress, total, state }: Goal) => {
 	// State labels
 	const stateLabels = {
 		"in-progress": "En cours",
-		finish: "validé",
+		"finish": "validé",
 	};
 
 	const handleUpdateProgress = async () => {

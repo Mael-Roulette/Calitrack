@@ -1,8 +1,8 @@
-import { Redirect, Tabs } from "expo-router";
+import { icons } from "@/constants/icons";
 import useAuthStore from "@/store/auth.store";
 import { TabBarIconProps } from "@/type";
+import { Redirect, Tabs } from "expo-router";
 import { Image, StatusBar, TouchableOpacity } from "react-native";
-import { icons } from "@/constants/icons";
 
 const TabIcon = ({ icon }: TabBarIconProps) => (
 	<Image source={icon} width={22} height={22} className='pl-5' />

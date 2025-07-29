@@ -14,7 +14,7 @@ const TrainingDay = ({
 	duration: number;
 }) => {
 	const goToTraining = ({ id }: { id: string }) => {
-		router.push(`./training/${id}`);
+		router.push(`/training/${id}`);
 	};
 
 	return (
