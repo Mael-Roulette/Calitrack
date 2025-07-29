@@ -1,42 +1,40 @@
 import { Models } from "react-native-appwrite";
 
 export interface User extends Models.Document {
-    name: string;
-    email: string;
-    avatar: string;
+	name: string;
+	email: string;
+	avatar: string;
 }
 
 interface TabBarIconProps {
-    focused: boolean;
-    icon: ImageSourcePropType;
-    title: string;
+	icon: ImageSourcePropType;
 }
 
 interface CustomButtonProps {
-    onPress?: () => void;
-    title?: string;
-    customStyles?: string;
-    textStyles?: string;
-    isLoading?: boolean;
-    variant?: "primary" | "secondary";
+	onPress?: () => void;
+	title?: string;
+	customStyles?: string;
+	textStyles?: string;
+	isLoading?: boolean;
+	variant?: "primary" | "secondary";
 }
 
 interface CustomInputProps {
-    placeholder?: string;
-    value?: string;
-    onChangeText?: (text: string) => void;
-    label: string;
-    secureTextEntry?: boolean;
-    keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
+	placeholder?: string;
+	value?: string;
+	onChangeText?: (text: string) => void;
+	label: string;
+	secureTextEntry?: boolean;
+	keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
 }
 
 interface CreateUserParams {
-    email: string;
-    password: string;
-    name: string;
+	email: string;
+	password: string;
+	name: string;
 }
 
 interface SignInParams {
-    email: string;
-    password: string;
+	email: string;
+	password: string;
 }

@@ -1,0 +1,63 @@
+import { Redirect, Slot, Tabs } from "expo-router";
+import useAuthStore from "@/store/auth.store";
+import { TabBarIconProps } from "@/type";
+import { Image, StatusBar, TouchableOpacity } from "react-native";
+import { icons } from "@/constants/icons";
+
+const TabIcon = ({ icon }: TabBarIconProps) => (
+	<Image source={icon} width={22} height={22} className='pl-5' />
+);
+
+const TabsLayout = () => {
+	const { isAuthenticated } = useAuthStore();
+
+	if (!isAuthenticated) return <Redirect href='/sign-in' />;
+	return (
+		<>
+			<StatusBar barStyle='dark-content' />
+			<Tabs
+				screenOptions={{
+					headerShown: false,
+					tabBarLabelPosition: "beside-icon",
+					tabBarButton: (props) => (
+						<TouchableOpacity
+							activeOpacity={1}
+							style={[
+								props.style,
+								{
+									flex: 1,
+									borderRadius: 44,
+									paddingHorizontal: 20,
+								},
+							]}
+						/>
+					),
+					tabBarStyle: {
+						backgroundColor: "#FFF9F7",
+						borderTopLeftRadius: 20,
+						borderTopRightRadius: 20,
+						paddingHorizontal: 8,
+						paddingTop: 8,
+						paddingBottom: 20,
+						height: 80,
+					},
+					tabBarActiveBackgroundColor: "#FC7942",
+					tabBarActiveTintColor: "#FFF9F7",
+					tabBarInactiveTintColor: "#132541",
+				}}
+			>
+				<Tabs.Screen
+					name='index'
+					options={{
+						title: "Accueil",
+						tabBarIcon: ({ focused }) => (
+							<TabIcon icon={focused ? icons.home_focus : icons.home} />
+						),
+					}}
+				/>
+			</Tabs>
+		</>
+	);
+};
+
+export default TabsLayout;

@@ -1,3 +1,4 @@
+import { CreateUserParams, SignInParams, User } from "@/type";
 import {
 	Account,
 	Avatars,
@@ -7,7 +8,6 @@ import {
 	Query,
 	Storage,
 } from "react-native-appwrite";
-import { CreateUserParams, SignInParams } from "@/type";
 
 export const appwriteConfig = {
 	endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
@@ -55,13 +55,13 @@ export const createUser = async ({
 
 export const signIn = async ({ email, password }: SignInParams) => {
 	try {
-		const session = await account.createEmailPasswordSession(email, password);
+		await account.createEmailPasswordSession(email, password);
 	} catch (e) {
 		throw new Error(e as string);
 	}
 };
 
-export const getCurrentUser = async () => {
+export const getCurrentUser = async (): Promise<User> => {
 	try {
 		const currentAccount = await account.get();
 		if (!currentAccount) throw Error;
@@ -72,9 +72,15 @@ export const getCurrentUser = async () => {
 			[Query.equal("accountId", currentAccount.$id)]
 		);
 
-		if (!currentUser) throw Error;
+		if (!currentUser || currentUser.documents.length === 0) throw Error;
 
-		return currentUser.documents[0];
+		const userDoc = currentUser.documents[0];
+
+		if (!userDoc.name || !userDoc.email || !userDoc.avatar) {
+			throw new Error("User document is missing required properties");
+		}
+
+		return userDoc as unknown as User;
 	} catch (e) {
 		console.log(e);
 		throw new Error(e as string);
