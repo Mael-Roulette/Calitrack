@@ -1,12 +1,13 @@
+import CustomButton from "@/components/CustomButton";
 import { useAuthStore, useGoalsStore } from "@/store/index";
+import { Goal } from "@/type";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Link, router } from "expo-router";
+import { Link } from "expo-router";
 import { useEffect, useMemo } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import CustomButton from "../../components/CustomButton";
-import { Goal } from "@/type";
+import GoalItem from "../goal/components/goalItem";
 
 export default function Index() {
 	const { user, isLoading } = useAuthStore();
@@ -42,7 +43,7 @@ export default function Index() {
 						<Text className='text-3xl text-primary font-calsans'>
 							Salut {user?.name || "utilisateur"} !
 						</Text>
-						<Link href="/notifications" className='mr-4'>
+						<Link href='/notifications' className='mr-4'>
 							<Ionicons
 								name='notifications-outline'
 								size={30}
@@ -79,12 +80,14 @@ export default function Index() {
 								{progressGoals.map((item: Goal) => (
 									<GoalItem
 										key={item.$id}
-										id={item.$id}
+										$id={item.$id}
 										title={item.title}
 										type={item.type}
 										progress={item.progress}
 										total={item.total}
 										state={item.state}
+										$createdAt={item.$createdAt}
+										$updatedAt={item.$updatedAt}
 									/>
 								))}
 								{progressGoals.length === 0 && (
