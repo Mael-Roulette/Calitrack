@@ -1,4 +1,4 @@
-import { Slot } from "expo-router";
+import { Slot, Redirect } from "expo-router";
 import {
 	Dimensions,
 	Image,
@@ -8,8 +8,12 @@ import {
 	View,
 } from "react-native";
 import Svg, { Path } from "react-native-svg";
+import useAuthStore from "@/store/auth.store";
 
 const AuthLayout = () => {
+	const { isAuthenticated } = useAuthStore();
+
+	if (isAuthenticated) return <Redirect href='/' />;
 	const { width } = Dimensions.get("screen");
 	const height = 35;
 
