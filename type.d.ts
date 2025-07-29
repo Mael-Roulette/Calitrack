@@ -42,10 +42,24 @@ interface SignInParams {
 interface Goal {
 	$createdAt: string;
 	$updatedAt: string;
-	$id: string;
+	$id?: string;
 	title: string;
 	type: "hold" | "reps";
 	progress: number;
 	total: number;
-	state: "in-progress" | "finish";
+	state?: "in-progress" | "finish";
+}
+
+interface GoalState {
+	title: string;
+	type: "hold" | "reps";
+	total: string;
+	progress: number;
+}
+
+interface updatedGoal {
+	$id?: string;
+	updateDate: string;
+	progress: number;
+	state?: "in-progress" | "finish";
 }

@@ -1,4 +1,10 @@
-import { CreateUserParams, SignInParams, User, Goal } from "@/type";
+import {
+	CreateUserParams,
+	SignInParams,
+	User,
+	Goal,
+	updatedGoal,
+} from "@/type";
 import {
 	Account,
 	Avatars,
@@ -147,31 +153,27 @@ export const getGoalsFromUser = async () => {
 	}
 };
 
-export const updateGoal = async ({
-	$id,
-	progress,
-	state,
-	$updatedAt,
-}: Goal) => {
+export const updateGoal = async (
+	id: string,
+	{ progress, state, updateDate }: updatedGoal
+) => {
 	try {
 		const currentGoal = await databases.getDocument(
 			appwriteConfig.databaseId,
 			appwriteConfig.goalCollectionId,
-			$id
+			id
 		);
 
-		const newState =
-			progress >= parseInt(currentGoal.total)
-				? "finish"
-				: state || "in-progress";
+		const newState = progress >= currentGoal.total ? "finish" : "in-progress";
 
 		const updatedGoal = await databases.updateDocument(
 			appwriteConfig.databaseId,
 			appwriteConfig.goalCollectionId,
-			$id,
+			id,
 			{
 				progress,
 				state: newState,
+				updateDate, // Store as a custom field instead of $updatedAt
 			}
 		);
 
