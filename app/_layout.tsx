@@ -3,6 +3,7 @@ import * as Sentry from "@sentry/react-native";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import "./globals.css";
+import { useAuthStore } from "@/store";
 
 Sentry.init({
 	dsn: "https://659bf5ca13cce02d2e0a6e42d57d1f9d@o4509674390683648.ingest.de.sentry.io/4509750754934864",
@@ -24,6 +25,8 @@ Sentry.init({
 });
 
 export default Sentry.wrap(function RootLayout() {
+	const { fetchAuthenticatedUser, isLoading } = useAuthStore();
+	
 	const [fontsLoaded, error] = useFonts({
 		"CalSans-Regular": require("../assets/fonts/CalSans-Regular.ttf"),
 		"Sora-Regular": require("../assets/fonts/Sora-Regular.ttf"),
@@ -34,7 +37,11 @@ export default Sentry.wrap(function RootLayout() {
 		if (fontsLoaded) SplashScreen.hideAsync();
 	}, [fontsLoaded, error]);
 
-	if (!fontsLoaded) return null;
+	useEffect( () => {
+		fetchAuthenticatedUser()
+	}, [] );
+
+	if ( !fontsLoaded || isLoading ) return null;
 
 	return <Stack screenOptions={{ headerShown: false }} />;
 });

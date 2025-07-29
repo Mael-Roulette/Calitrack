@@ -1,0 +1,120 @@
+import { MaterialIcons } from "@expo/vector-icons";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import { Link } from "expo-router";
+import { useEffect, useMemo } from "react";
+import { FlatList, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import GoalItem from "../goal/components/goalItem";
+import { useGoalsStore } from "@/store";
+import { Goal } from "@/type";
+
+const Goals = () => {
+	const { goals, isLoadingGoals, fetchUserGoals } = useGoalsStore();
+
+	useEffect(() => {
+		fetchUserGoals();
+	}, [fetchUserGoals]);
+
+	const { progressGoals, finishedGoals } = useMemo(
+		() => ({
+			progressGoals: goals.filter((goal) => goal.state === "in-progress"),
+			finishedGoals: goals.filter((goal) => goal.state === "finish"),
+		}),
+		[goals]
+	);
+
+	const renderGoalItem = ({ item }: { item: Goal }) => (
+		<GoalItem
+			$id={item.$id}
+			title={item.title}
+			type={item.type}
+			progress={item.progress}
+			total={item.total}
+			state={item.state}
+			$createdAt={item.$createdAt}
+			$updatedAt={item.$updatedAt}
+		/>
+	);
+
+	const ListHeaderComponent = ({ icon, title }: { icon: any, title: string }) => (
+		<View className='mb-5 mt-4'>
+			<View className='flex-row items-center gap-2'>
+				{icon}
+				<Text className='font-calsans text-2xl text-primary'>{title}</Text>
+			</View>
+		</View>
+	);
+
+	const sections = useMemo(() => {
+		const sectionsArray = [
+			{
+				icon: <></>,
+				title: "Objectifs en cours",
+				data: progressGoals,
+				showHeader: false,
+			},
+		];
+
+		if (finishedGoals.length > 0) {
+			sectionsArray.push({
+				icon: <FontAwesome6 name='medal' size={24} color='#FC7942' />,
+				title: "Mes objectifs réussis",
+				data: finishedGoals,
+				showHeader: true,
+			});
+		}
+
+		return sectionsArray;
+	}, [progressGoals, finishedGoals]);
+
+	return (
+		<SafeAreaView className='px-5 pt-10 bg-background flex-1'>
+			<View className='mb-8 flex-row items-center justify-between'>
+				<Text className='text-3xl text-primary font-calsans'>
+					Mes objectifs
+				</Text>
+				<Link href='/goal/add-goal' className='mr-4'>
+					<MaterialIcons name='add-task' size={30} color='#132541' />
+				</Link>
+			</View>
+
+			{isLoadingGoals ? (
+				<View className='flex-1 justify-center items-center'>
+					<Text className='text-primary-100 italic text-lg mt-5'>
+						Chargement des objectifs...
+					</Text>
+				</View>
+			) : (
+				<FlatList
+					data={sections}
+					keyExtractor={(item, index) => `section-${index}`}
+					showsVerticalScrollIndicator={false}
+					renderItem={({ item: section }) => (
+						<View>
+							{section.showHeader && (
+								<ListHeaderComponent
+									icon={section.icon}
+									title={section.title}
+								/>
+							)}
+							<FlatList
+								data={section.data}
+								renderItem={renderGoalItem}
+								keyExtractor={(item, index) => item.$id || `goal-${index}`}
+								scrollEnabled={false}
+								showsVerticalScrollIndicator={false}
+								ListEmptyComponent={
+									<Text className='text-primary-100 italic text-lg mt-5'>
+										Aucun objectif
+									</Text>
+								}
+							/>
+						</View>
+					)}
+				/>
+			)}
+		</SafeAreaView>
+	);
+};
+
+export default Goals;
