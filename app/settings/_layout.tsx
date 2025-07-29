@@ -22,7 +22,7 @@ export default function SettingsLayout() {
 				}}
 			/>
 			<Stack.Screen
-				name='account/index'
+				name='account'
 				options={{
 					title: "Compte",
 				}}

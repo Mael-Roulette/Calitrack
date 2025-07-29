@@ -1,5 +1,5 @@
 import CustomButton from "@/components/CustomButton";
-import { useAuthStore, useGoalsStore } from "@/store/index";
+import { useAuthStore, useGoalsStore } from "@/store";
 import { Goal } from "@/type";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -45,7 +45,7 @@ export default function Index() {
 						<Text className='text-3xl text-primary font-calsans'>
 							Salut {user?.name || "utilisateur"} !
 						</Text>
-						<Link href={'/notifications/index'} className='mr-4'>
+						<Link href={'/notifications'} className='mr-4'>
 							<Ionicons
 								name='notifications-outline'
 								size={30}
