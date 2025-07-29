@@ -7,14 +7,15 @@ import { Link } from "expo-router";
 import { useEffect, useMemo } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import GoalItem from "../goal/components/goalItem";
+import GoalItem from "../goal/components/GoalItem";
+import TrainingDay from "../training/components/TrainingDay";
 
 export default function Index() {
 	const { user, isLoading } = useAuthStore();
 	const { goals, isLoadingGoals, fetchUserGoals } = useGoalsStore();
 
 	const goToCalendar = () => {
-		// router.push("/calendar");
+		router.push("/calendar");
 	};
 
 	// Récupération des objectifs en cours
@@ -53,6 +54,7 @@ export default function Index() {
 					</View>
 
 					<View>
+						<TrainingDay title={'Planche + combo'} duration={45} />
 						<CustomButton
 							title='Voir mon planning'
 							variant='secondary'

@@ -4,16 +4,12 @@ import { Link } from "expo-router";
 import { useEffect, useMemo } from "react";
 import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import GoalItem from "../goal/components/goalItem";
+import GoalItem from "../goal/components/GoalItem";
 import { useGoalsStore } from "@/store";
 import { Goal } from "@/type";
 
 const Goals = () => {
-	const { goals, isLoadingGoals, fetchUserGoals } = useGoalsStore();
-
-	useEffect(() => {
-		fetchUserGoals();
-	}, [fetchUserGoals]);
+	const { goals } = useGoalsStore();
 
 	const { progressGoals, finishedGoals } = useMemo(
 		() => ({
@@ -36,7 +32,13 @@ const Goals = () => {
 		/>
 	);
 
-	const ListHeaderComponent = ({ icon, title }: { icon: any, title: string }) => (
+	const ListHeaderComponent = ({
+		icon,
+		title,
+	}: {
+		icon: any;
+		title: string;
+	}) => (
 		<View className='mb-5 mt-4'>
 			<View className='flex-row items-center gap-2'>
 				{icon}
@@ -77,42 +79,30 @@ const Goals = () => {
 					<MaterialIcons name='add-task' size={30} color='#132541' />
 				</Link>
 			</View>
-
-			{isLoadingGoals ? (
-				<View className='flex-1 justify-center items-center'>
-					<Text className='text-primary-100 italic text-lg mt-5'>
-						Chargement des objectifs...
-					</Text>
-				</View>
-			) : (
-				<FlatList
-					data={sections}
-					keyExtractor={(item, index) => `section-${index}`}
-					showsVerticalScrollIndicator={false}
-					renderItem={({ item: section }) => (
-						<View>
-							{section.showHeader && (
-								<ListHeaderComponent
-									icon={section.icon}
-									title={section.title}
-								/>
-							)}
-							<FlatList
-								data={section.data}
-								renderItem={renderGoalItem}
-								keyExtractor={(item, index) => item.$id || `goal-${index}`}
-								scrollEnabled={false}
-								showsVerticalScrollIndicator={false}
-								ListEmptyComponent={
-									<Text className='text-primary-100 italic text-lg mt-5'>
-										Aucun objectif
-									</Text>
-								}
-							/>
-						</View>
-					)}
-				/>
-			)}
+			<FlatList
+				data={sections}
+				keyExtractor={(item, index) => `section-${index}`}
+				showsVerticalScrollIndicator={false}
+				renderItem={({ item: section }) => (
+					<View>
+						{section.showHeader && (
+							<ListHeaderComponent icon={section.icon} title={section.title} />
+						)}
+						<FlatList
+							data={section.data}
+							renderItem={renderGoalItem}
+							keyExtractor={(item, index) => item.$id || `goal-${index}`}
+							scrollEnabled={false}
+							showsVerticalScrollIndicator={false}
+							ListEmptyComponent={
+								<Text className='text-primary-100 italic text-lg mt-5'>
+									Aucun objectif
+								</Text>
+							}
+						/>
+					</View>
+				)}
+			/>
 		</SafeAreaView>
 	);
 };
