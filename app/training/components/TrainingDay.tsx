@@ -4,13 +4,21 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 
-const TrainingDay = ({ id, title, duration }) => {
-	const goToTraining = (id) => {
-		router.push(`/training/${id}`);
+const TrainingDay = ({
+	id,
+	title,
+	duration,
+}: {
+	id: string;
+	title: string;
+	duration: number;
+}) => {
+	const goToTraining = ({ id }: { id: string }) => {
+		router.push(`./training/${id}`);
 	};
 
 	return (
-		<PrimaryGradient>
+		<PrimaryGradient style={{}}>
 			<View className='bg-primary-gradient px-5 py-4 gap-5'>
 				<Text className='text-background text-xl font-calsans'>
 					Entrainement du jour
