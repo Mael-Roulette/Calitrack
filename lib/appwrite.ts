@@ -3,7 +3,8 @@ import {
 	SignInParams,
 	User,
 	Goal,
-	updatedGoal,
+	updatedGoalParams,
+	createGoalParams,
 } from "@/type";
 import {
 	Account,
@@ -93,7 +94,7 @@ export const logout = async () => {
 	}
 };
 
-export const createGoal = async ({ title, type, progress, total }: Goal) => {
+export const createGoal = async ({ title, type, progress, total }: createGoalParams) => {
 	try {
 		const currentUser = await getCurrentUser();
 		if (!currentUser) throw Error;
@@ -117,6 +118,7 @@ export const createGoal = async ({ title, type, progress, total }: Goal) => {
 			appwriteConfig.goalCollectionId,
 			ID.unique(),
 			{
+				createdAt: new Date().toISOString(),
 				user: currentUser.$id,
 				title,
 				type,
@@ -156,7 +158,7 @@ export const getGoalsFromUser = async () => {
 
 export const updateGoal = async (
 	id: string,
-	{ progress, state, updateDate }: updatedGoal
+	{ progress, state, updateDate }: updatedGoalParams
 ) => {
 	try {
 		const currentGoal = await databases.getDocument(
@@ -167,18 +169,16 @@ export const updateGoal = async (
 
 		const newState = progress >= currentGoal.total ? "finish" : "in-progress";
 
-		const updatedGoal = await databases.updateDocument(
+		await databases.updateDocument(
 			appwriteConfig.databaseId,
 			appwriteConfig.goalCollectionId,
 			id,
 			{
 				progress,
 				state: newState,
-				updateDate,
+				updateAt: updateDate,
 			}
 		);
-
-		return updatedGoal;
 	} catch (e) {
 		throw new Error(e as string);
 	}

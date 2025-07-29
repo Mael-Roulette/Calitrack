@@ -27,7 +27,6 @@ const AddGoal = () => {
 			return;
 		}
 
-		const date = new Date().toISOString();
 		const { title, type, total, progress } = form;
 
 		setIsSubmitting(true);
@@ -38,8 +37,6 @@ const AddGoal = () => {
 				type: type,
 				progress: progress || 0,
 				total: parseInt(total),
-				$createdAt: date,
-				$updatedAt: date,
 			});
 
 			await fetchUserGoals();

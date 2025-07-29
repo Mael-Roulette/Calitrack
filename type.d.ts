@@ -57,7 +57,14 @@ interface GoalState {
 	progress: number;
 }
 
-interface updatedGoal {
+interface createGoalParams {
+	title: string;
+	type: "hold" | "reps";
+	progress?: number;
+	total: number;
+}
+
+interface updatedGoalParams {
 	$id?: string;
 	updateDate: string;
 	progress: number;
