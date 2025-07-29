@@ -1,4 +1,4 @@
-import { CreateUserParams, SignInParams, User } from "@/type";
+import { CreateUserParams, SignInParams, User, Goal } from "@/type";
 import {
 	Account,
 	Avatars,
@@ -14,6 +14,7 @@ export const appwriteConfig = {
 	platform: "com.calitrack.sportapp",
 	databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!,
 	userCollectionId: process.env.EXPO_PUBLIC_APPWRITE_USER_COLLECTION_ID!,
+	goalCollectionId: process.env.EXPO_PUBLIC_APPWRITE_GOAL_COLLECTION_ID!,
 };
 
 export const client = new Client();
@@ -81,6 +82,101 @@ export const getCurrentUser = async (): Promise<User> => {
 		return userDoc as unknown as User;
 	} catch (e) {
 		console.log(e);
+		throw new Error(e as string);
+	}
+};
+
+export const createGoal = async ({ title, type, progress, total }: Goal) => {
+	try {
+		const currentUser = await getCurrentUser();
+		if (!currentUser) throw Error;
+
+		const existingGoals = await getGoalsFromUser();
+		const progressGoals = existingGoals.filter(
+			(goal) => goal.state === "in-progress"
+		);
+
+		if (progressGoals.length >= 4) {
+			const message = {
+				title: "Nombre maximum d'objectifs atteint",
+				body: "Vous ne pouvez pas avoir plus de 4 objectifs en cours.",
+			};
+
+			return message;
+		}
+
+		const goal = await databases.createDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.goalCollectionId,
+			ID.unique(),
+			{
+				user: currentUser.$id,
+				title,
+				type,
+				progress: progress || 0,
+				total,
+				state: "in-progress",
+			}
+		);
+
+		const message = {
+			title: "Nouvel objectif créé",
+			body: `Votre objectif "${title}" a été créé avec succès.`,
+		};
+
+		return { goal, message };
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
+export const getGoalsFromUser = async () => {
+	try {
+		const currentUser = await getCurrentUser();
+		if (!currentUser) throw Error;
+
+		const goals = await databases.listDocuments(
+			appwriteConfig.databaseId,
+			appwriteConfig.goalCollectionId,
+			[Query.equal("user", currentUser.$id)]
+		);
+
+		return goals.documents;
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
+export const updateGoal = async ({
+	$id,
+	progress,
+	state,
+	$updatedAt,
+}: Goal) => {
+	try {
+		const currentGoal = await databases.getDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.goalCollectionId,
+			$id
+		);
+
+		const newState =
+			progress >= parseInt(currentGoal.total)
+				? "finish"
+				: state || "in-progress";
+
+		const updatedGoal = await databases.updateDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.goalCollectionId,
+			$id,
+			{
+				progress,
+				state: newState,
+			}
+		);
+
+		return updatedGoal;
+	} catch (e) {
 		throw new Error(e as string);
 	}
 };

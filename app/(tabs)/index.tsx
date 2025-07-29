@@ -1,4 +1,4 @@
-import { useAuthStore, useGoalsStore } from "@/store";
+import { useAuthStore, useGoalsStore } from "@/store/index";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Link, router } from "expo-router";
