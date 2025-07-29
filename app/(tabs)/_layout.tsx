@@ -5,13 +5,13 @@ import { Redirect, Tabs } from "expo-router";
 import { Image, StatusBar, TouchableOpacity } from "react-native";
 
 const TabIcon = ({ icon }: TabBarIconProps) => (
-	<Image source={icon} width={22} height={22} className='pl-5' />
+	<Image source={icon} width={20} height={20} />
 );
 
 const TabsLayout = () => {
 	const { isAuthenticated } = useAuthStore();
 
-	if (!isAuthenticated) return <Redirect href='/sign-in' />;
+	if (!isAuthenticated) return <Redirect href={'/(auth)/sign-in'} />;
 	return (
 		<>
 			<StatusBar barStyle='dark-content' />
@@ -63,6 +63,15 @@ const TabsLayout = () => {
 						title: "Objectifs",
 						tabBarIcon: ({ focused }) => (
 							<TabIcon icon={focused ? icons.goals_focus : icons.goals} />
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name='training'
+					options={{
+						title: "Entrainements",
+						tabBarIcon: ({ focused }) => (
+							<TabIcon icon={focused ? icons.training_focus : icons.training} />
 						),
 					}}
 				/>

@@ -75,7 +75,7 @@ const Goals = () => {
 				<Text className='text-3xl text-primary font-calsans'>
 					Mes objectifs
 				</Text>
-				<Link href='/goal/add-goal' className='mr-4'>
+				<Link href={'/goal/add-goal'} className='mr-4'>
 					<MaterialIcons name='add-task' size={30} color='#132541' />
 				</Link>
 			</View>

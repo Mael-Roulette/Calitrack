@@ -11,7 +11,7 @@ const Calendar = () => {
 			<ScrollView>
 				<View className='mb-8 flex-row items-center justify-between'>
 					<Text className='text-3xl text-primary font-calsans'>Calendrier</Text>
-					<Link href='/' className='mr-4'>
+					<Link href={'/'} className='mr-4'>
 						<Feather name='edit-3' size={30} color='#132541' />
 					</Link>
 				</View>
@@ -25,16 +25,23 @@ const Calendar = () => {
 				<View className='mt-5'>
 					<Text className='text-xl text-primary font-calsans mb-3'>Demain</Text>
 					<TrainingItem
+						id={"1"}
 						title={"front lever"}
 						level={"beginner"}
 						duration={30}
 					/>
-					<Text className='text-xl text-primary font-calsans mb-3'>Jeudi 31 Juillet</Text>
+					<Text className='text-xl text-primary font-calsans mb-3'>
+						Jeudi 31 Juillet
+					</Text>
 					<TrainingItem
+						id={"2"}
 						title={"Planche + combo"}
 						level={"advance"}
 						duration={80}
 					/>
+				</View>
+				<View className='mb-5'>
+					<Link href={"/training"} className='text-primary font-sregular underline underline-offset-2 text-center'>Voir tous les entrainements</Link>
 				</View>
 			</ScrollView>
 		</SafeAreaView>

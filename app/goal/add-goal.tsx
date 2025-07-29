@@ -63,7 +63,7 @@ const AddGoal = () => {
 	return (
 		<SafeAreaView className='px-5 pt-16 bg-background min-h-full'>
 			<View className='mb-8 flex-row items-center justify-start'>
-				<Link href='/goals' className='mr-4'>
+				<Link href={'/goals'} className='mr-4'>
 					<AntDesign name='caretleft' size={24} color='#132541' />
 				</Link>
 				<Text className='text-3xl text-primary font-calsans'>

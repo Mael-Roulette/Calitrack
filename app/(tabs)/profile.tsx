@@ -19,7 +19,7 @@ const Profile = () => {
 				<>
 					<View className='mb-8 flex-row items-center justify-between'>
 						<Text className='text-3xl text-primary font-calsans'>Profil</Text>
-						<Link href='../settings' className='mr-4'>
+						<Link href={'/settings/index'} className='mr-4'>
 							<Ionicons name='settings-outline' size={30} color='#132541' />
 						</Link>
 					</View>
@@ -40,7 +40,7 @@ const Profile = () => {
 						</View>
 						<View>
 							<Link
-								href='../settings/account'
+								href={"/settings/account/index"}
 								className='flex-row items-center h-8'
 							>
 								<Text className='text-2xl font-calsans text-primary'>
