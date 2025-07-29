@@ -1,4 +1,4 @@
-import { Redirect, Slot, Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import useAuthStore from "@/store/auth.store";
 import { TabBarIconProps } from "@/type";
 import { Image, StatusBar, TouchableOpacity } from "react-native";
@@ -18,9 +18,11 @@ const TabsLayout = () => {
 			<Tabs
 				screenOptions={{
 					headerShown: false,
+					tabBarShowLabel: false,
 					tabBarLabelPosition: "beside-icon",
 					tabBarButton: (props) => (
 						<TouchableOpacity
+							{...(props as any)}
 							activeOpacity={1}
 							style={[
 								props.style,
@@ -52,6 +54,24 @@ const TabsLayout = () => {
 						title: "Accueil",
 						tabBarIcon: ({ focused }) => (
 							<TabIcon icon={focused ? icons.home_focus : icons.home} />
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name='goals'
+					options={{
+						title: "Objectifs",
+						tabBarIcon: ({ focused }) => (
+							<TabIcon icon={focused ? icons.goals_focus : icons.goals} />
+						),
+					}}
+				/>
+				<Tabs.Screen
+					name='calendar'
+					options={{
+						title: "Calendrier",
+						tabBarIcon: ({ focused }) => (
+							<TabIcon icon={focused ? icons.calendar_focus : icons.calendar} />
 						),
 					}}
 				/>

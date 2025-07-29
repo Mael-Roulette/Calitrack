@@ -79,7 +79,6 @@ export const getCurrentUser = async (): Promise<User> => {
 
 		return currentUser.documents[0] as any;
 	} catch (e) {
-		console.log(e);
 		throw new Error(e as string);
 	}
 };

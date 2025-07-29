@@ -22,7 +22,7 @@ const AuthLayout = () => {
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
 		>
 			<ScrollView
-				className='bg-background h-screen'
+				className='bg-background h-full'
 				keyboardShouldPersistTaps='handled'
 			>
 				<View

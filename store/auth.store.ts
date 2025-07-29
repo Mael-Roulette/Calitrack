@@ -30,10 +30,12 @@ const useAuthStore = create<AuthState>((set) => ({
 		try {
 			const user = await getCurrentUser();
 
-			if (user) set({ isAuthenticated: true, user });
-			else set({ isAuthenticated: false, user: null });
-		} catch (e) {
-			console.log("fetchAuthenticatedUser error", e);
+			if (user) {
+				set({ isAuthenticated: true, user });
+			} else {
+				set({ isAuthenticated: false, user: null });
+			}
+		} catch {
 			set({ isAuthenticated: false, user: null });
 		} finally {
 			set({ isLoading: false });
@@ -41,13 +43,13 @@ const useAuthStore = create<AuthState>((set) => ({
 	},
 
 	logout: async () => {
-    try {
-      await appwriteLogout();
-      set( { isAuthenticated: false, user: null, isLoading: false } );
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
-  }
+		try {
+			await appwriteLogout();
+			set({ isAuthenticated: false, user: null, isLoading: false });
+		} catch (error) {
+			console.error("Logout error:", error);
+		}
+	},
 }));
 
 export default useAuthStore;

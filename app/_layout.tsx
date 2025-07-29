@@ -26,7 +26,7 @@ Sentry.init({
 
 export default Sentry.wrap(function RootLayout() {
 	const { fetchAuthenticatedUser, isLoading } = useAuthStore();
-	
+
 	const [fontsLoaded, error] = useFonts({
 		"CalSans-Regular": require("../assets/fonts/CalSans-Regular.ttf"),
 		"Sora-Regular": require("../assets/fonts/Sora-Regular.ttf"),
@@ -45,5 +45,3 @@ export default Sentry.wrap(function RootLayout() {
 
 	return <Stack screenOptions={{ headerShown: false }} />;
 });
-
-Sentry.showFeedbackWidget();
