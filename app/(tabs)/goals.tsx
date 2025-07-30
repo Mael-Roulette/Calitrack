@@ -71,13 +71,14 @@ const Goals = () => {
 
 	return (
 		<SafeAreaView className='px-5 pt-10 bg-background flex-1'>
-			<View className='mb-8 flex-row items-center justify-between'>
-				<Text className='title'>
-					Mes objectifs
-				</Text>
+			<View className='mb-5 flex-row items-center justify-between'>
+				<Text className='title'>Mes objectifs</Text>
 				<Link href={"/goal/add-goal"} className='mr-4'>
 					<MaterialIcons name='add-task' size={30} color='#132541' />
 				</Link>
+			</View>
+			<View className='mb-6'>
+				<Text className='text-primary-100 italic'>Vous pouvez ajouter une nouvelle progression en cliquant sur un objectif.</Text>
 			</View>
 			<FlatList
 				data={sections}
