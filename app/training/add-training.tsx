@@ -24,9 +24,13 @@ const AddTraining = () => {
 	const router = useRouter();
 
 	const submit = async (): Promise<void> => {
-		if (!form.name || !form.days || !form.hours || !form.minutes) {
+		if (!form.name || !form.days || !form.minutes) {
 			Alert.alert("Erreur", "Veuillez remplir tous les champs");
 			return;
+		}
+
+		if (form.hours === undefined) {
+			form.hours = 0;
 		}
 		const totalDuration = form.hours * 60 + form.minutes;
 
