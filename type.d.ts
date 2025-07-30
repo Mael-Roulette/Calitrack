@@ -83,3 +83,11 @@ interface updateTrainingParams {
 	name: string;
 	days?: string[];
 }
+
+interface Training {
+	$id: string;
+	user: string;
+	name: string;
+	days?: string[];
+	duration: number;
+}

@@ -1,12 +1,12 @@
+import { useGoalsStore } from "@/store";
+import { Goal } from "@/type";
 import { MaterialIcons } from "@expo/vector-icons";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { Link } from "expo-router";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { FlatList, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GoalItem from "../goal/components/GoalItem";
-import { useGoalsStore } from "@/store";
-import { Goal } from "@/type";
 
 const Goals = () => {
 	const { goals } = useGoalsStore();
@@ -75,7 +75,7 @@ const Goals = () => {
 				<Text className='text-3xl text-primary font-calsans'>
 					Mes objectifs
 				</Text>
-				<Link href={'/goal/add-goal'} className='mr-4'>
+				<Link href={"/goal/add-goal"} className='mr-4'>
 					<MaterialIcons name='add-task' size={30} color='#132541' />
 				</Link>
 			</View>

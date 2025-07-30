@@ -67,7 +67,7 @@ const TabsLayout = () => {
 					}}
 				/>
 				<Tabs.Screen
-					name='training'
+					name='trainings'
 					options={{
 						title: "Entrainements",
 						tabBarIcon: ({ focused }) => (

@@ -1,5 +1,5 @@
 import CustomButton from "@/components/CustomButton";
-import { useAuthStore, useGoalsStore } from "@/store";
+import { useAuthStore, useGoalsStore, useTrainingsStore } from "@/store";
 import { Goal } from "@/type";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -13,6 +13,7 @@ import TrainingDay from "../training/components/TrainingDay";
 export default function Index() {
 	const { user, isLoading } = useAuthStore();
 	const { goals, isLoadingGoals, fetchUserGoals } = useGoalsStore();
+	const { fetchUserTrainings } = useTrainingsStore();
 	const router = useRouter();
 
 	const goToCalendar = () => {
@@ -22,7 +23,8 @@ export default function Index() {
 	// Récupération des objectifs en cours
 	useEffect(() => {
 		fetchUserGoals();
-	}, [fetchUserGoals]);
+		fetchUserTrainings();
+	}, [fetchUserGoals, fetchUserTrainings]);
 
 	const { progressGoals } = useMemo(
 		() => ({
