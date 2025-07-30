@@ -5,6 +5,8 @@ import {
 	Goal,
 	updatedGoalParams,
 	createGoalParams,
+	createTrainingParams,
+	updateTrainingParams,
 } from "@/type";
 import {
 	Account,
@@ -22,6 +24,8 @@ export const appwriteConfig = {
 	databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!,
 	userCollectionId: process.env.EXPO_PUBLIC_APPWRITE_USER_COLLECTION_ID!,
 	goalCollectionId: process.env.EXPO_PUBLIC_APPWRITE_GOAL_COLLECTION_ID!,
+	trainingCollectionId:
+		process.env.EXPO_PUBLIC_APPRWITE_TRAINING_COLLECTION_ID!,
 };
 
 export const client = new Client();
@@ -94,7 +98,12 @@ export const logout = async () => {
 	}
 };
 
-export const createGoal = async ({ title, type, progress, total }: createGoalParams) => {
+export const createGoal = async ({
+	title,
+	type,
+	progress,
+	total,
+}: createGoalParams) => {
 	try {
 		const currentUser = await getCurrentUser();
 		if (!currentUser) throw Error;
@@ -177,6 +186,74 @@ export const updateGoal = async (
 				progress,
 				state: newState,
 				updateAt: updateDate,
+			}
+		);
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
+export const createTraining = async ({
+	name,
+	days,
+	duration,
+}: createTrainingParams) => {
+	try {
+		const currentUser = await getCurrentUser();
+		if (!currentUser) throw Error;
+
+		const training = await databases.createDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.trainingCollectionId,
+			ID.unique(),
+			{
+				user: currentUser.$id,
+				name,
+				days,
+				duration,
+			}
+		);
+
+		const message = {
+			title: "Nouveau training créé",
+			body: `Votre entrainement "${name}" a été créé avec succès.`,
+		};
+
+		return { training, message };
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
+export const getTrainingsFromUser = async () => {
+	try {
+		const currentUser = await getCurrentUser();
+		if (!currentUser) throw Error;
+
+		const trainings = await databases.listDocuments(
+			appwriteConfig.databaseId,
+			appwriteConfig.trainingCollectionId,
+			[Query.equal("user", currentUser.$id)]
+		);
+
+		return trainings.documents;
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
+export const updateTraining = async (
+	id: string,
+	{ name, days }: updateTrainingParams
+) => {
+	try {
+		await databases.updateDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.trainingCollectionId,
+			id,
+			{
+				name,
+				days
 			}
 		);
 	} catch (e) {

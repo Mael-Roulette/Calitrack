@@ -70,3 +70,16 @@ interface updatedGoalParams {
 	progress: number;
 	state?: "in-progress" | "finish";
 }
+
+interface createTrainingParams {
+	name: string;
+	days?: string[];
+	notes?: string;
+	duration: number;
+}
+
+interface updateTrainingParams {
+	id: string;
+	name: string;
+	days?: string[];
+}
