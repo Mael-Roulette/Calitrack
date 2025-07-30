@@ -31,7 +31,9 @@ const TrainingDay = ({
 					<View className='flex-row items-center gap-2'>
 						<Ionicons name='time-sharp' size={24} color='#FFF9F7' />
 						<Text className='text-background font-sregular text-base'>
-							{duration} minutes
+							{duration < 60
+								? `${duration} minutes`
+								: `${Math.floor(duration / 60)}h${duration % 60 === 0 ? "" : duration % 60}`}
 						</Text>
 					</View>
 				</View>
@@ -42,7 +44,7 @@ const TrainingDay = ({
 				>
 					<AntDesign name='caretright' size={22} color='#FC7942' />
 					<Text className='text-secondary font-sregular text-base'>
-						Voir ma séance
+						Lancer ma séance
 					</Text>
 				</TouchableOpacity>
 			</View>

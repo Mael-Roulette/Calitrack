@@ -241,6 +241,37 @@ export const getTrainingsFromUser = async () => {
 	}
 };
 
+export const getTrainingFromUserByDay = async (day: string) => {
+	try {
+		const currentUser = await getCurrentUser();
+		if (!currentUser) throw Error;
+
+		const trainings = await databases.listDocuments(
+			appwriteConfig.databaseId,
+			appwriteConfig.trainingCollectionId,
+			[Query.equal("user", currentUser.$id), Query.equal("Days", day)]
+		);
+
+		return trainings.documents;
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
+export const getTrainingById = async (id: string) => {
+	try {
+		const training = await databases.getDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.trainingCollectionId,
+			id
+		);
+
+		return training;
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
 export const updateTraining = async (
 	id: string,
 	{ name, days, duration }: updateTrainingParams

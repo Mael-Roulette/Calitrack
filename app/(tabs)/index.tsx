@@ -4,17 +4,37 @@ import { Goal } from "@/type";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Link, useRouter } from "expo-router";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GoalItem from "../goal/components/GoalItem";
 import TrainingDay from "../training/components/TrainingDay";
+import { getTrainingFromUserByDay } from "@/lib/appwrite";
 
 export default function Index() {
 	const { user, isLoading } = useAuthStore();
 	const { goals, isLoadingGoals, fetchUserGoals } = useGoalsStore();
 	const { fetchUserTrainings } = useTrainingsStore();
 	const router = useRouter();
+	const [todayTraining, setTodayTraining] = useState<any>([]);
+
+	// Récupérer le training du jour
+	useEffect(() => {
+		const fetchTodayTraining = async () => {
+			try {
+				const training = await getTrainingFromUserByDay("monday");
+				if (training.length > 0) {
+					setTodayTraining(training[0]);
+				}
+			} catch (error) {
+				console.error("Error fetching today's training:", error);
+			}
+		};
+
+		fetchTodayTraining();
+	}, []);
+
+	console.log("Today Training:", todayTraining);
 
 	const goToCalendar = () => {
 		router.push("/calendar");
@@ -37,17 +57,13 @@ export default function Index() {
 		<SafeAreaView className='pt-10 bg-background min-h-full'>
 			{isLoading ? (
 				<View>
-					<Text className='title'>
-						Chargement...
-					</Text>
+					<Text className='title'>Chargement...</Text>
 				</View>
 			) : (
 				<ScrollView showsVerticalScrollIndicator={true} className='flex-1 px-5'>
 					<View className='mb-8 flex-row items-center justify-between'>
-						<Text className='title'>
-							Salut {user?.name || "utilisateur"} !
-						</Text>
-						<Link href={'/notifications'} className='mr-4'>
+						<Text className='title'>Salut {user?.name || "utilisateur"} !</Text>
+						<Link href={"/notifications"} className='mr-4'>
 							<Ionicons
 								name='notifications-outline'
 								size={30}
@@ -57,7 +73,11 @@ export default function Index() {
 					</View>
 
 					<View>
-						<TrainingDay id={"1"} title={'Planche + combo'} duration={45} />
+						<TrainingDay
+							id={todayTraining.$id}
+							title={todayTraining.Name}
+							duration={todayTraining.Duration}
+						/>
 						<CustomButton
 							title='Voir mon planning'
 							variant='secondary'
