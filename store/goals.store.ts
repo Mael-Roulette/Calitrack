@@ -38,6 +38,7 @@ const useGoalsStore = create<GoalState>((set, get) => ({
 						title: doc.title,
 						type: doc.type,
 						progress: doc.progress,
+						progressHistory: JSON.parse(doc.progressHistory || "[]"),
 						total: doc.total,
 						state: doc.state,
 					}) as Goal

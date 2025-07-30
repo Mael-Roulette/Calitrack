@@ -1,13 +1,17 @@
+import GoalStats from "@/components/GoalStats";
 import ProgressOverview from "@/components/ProgressOverview";
 import { icons } from "@/constants/icons";
-import { useAuthStore } from "@/store";
+import { useAuthStore, useGoalsStore } from "@/store";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Link } from "expo-router";
-import { Image, SafeAreaView, Text, View } from "react-native";
+import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 
 const Profile = () => {
 	const { user, isLoading } = useAuthStore();
+	const { goals } = useGoalsStore();
+
+	console.log( goals );
 
 	return (
 		<SafeAreaView className='px-5 pt-16 bg-background flex-1'>
@@ -18,7 +22,7 @@ const Profile = () => {
 					</Text>
 				</View>
 			) : (
-				<>
+				<ScrollView>
 					<View className='mb-8 flex-row items-center justify-between'>
 						<Text className='title'>Profil</Text>
 						<Link href={"/settings"} className='mr-4'>
@@ -63,8 +67,10 @@ const Profile = () => {
 								Mes stats
 							</Text>
 						</View>
+
+						<GoalStats />
 					</View>
-				</>
+				</ScrollView>
 			)}
 		</SafeAreaView>
 	);

@@ -132,6 +132,7 @@ export const createGoal = async ({
 				progress: progress || 0,
 				total,
 				state: "in-progress",
+				progressHistory: JSON.stringify([progress || 0]),
 			}
 		);
 
@@ -165,7 +166,7 @@ export const getGoalsFromUser = async () => {
 
 export const updateGoal = async (
 	id: string,
-	{ progress, state, updateDate }: updatedGoalParams
+	{ progress, updateDate }: updatedGoalParams
 ) => {
 	try {
 		const currentGoal = await databases.getDocument(
@@ -176,12 +177,16 @@ export const updateGoal = async (
 
 		const newState = progress >= currentGoal.total ? "finish" : "in-progress";
 
+		const progressHistoryArray = JSON.parse(currentGoal.progressHistory);
+		progressHistoryArray.push(progress);
+
 		await databases.updateDocument(
 			appwriteConfig.databaseId,
 			appwriteConfig.goalCollectionId,
 			id,
 			{
 				progress,
+				progressHistory: JSON.stringify(progressHistoryArray),
 				state: newState,
 				updateAt: updateDate,
 			}

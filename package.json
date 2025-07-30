@@ -17,6 +17,7 @@
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
     "@sentry/react-native": "^6.18.1",
+    "@shopify/react-native-skia": "^2.1.1",
     "appwrite": "^18.2.0",
     "clsx": "^2.1.1",
     "expo": "~53.0.20",
@@ -53,6 +54,7 @@
     "react-native-webview": "13.13.5",
     "react-tag-input": "^6.10.6",
     "tailwindcss": "^3.4.17",
+    "victory-native": "^41.17.4",
     "zustand": "^5.0.6"
   },
   "devDependencies": {
