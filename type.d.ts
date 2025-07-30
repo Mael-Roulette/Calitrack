@@ -28,6 +28,21 @@ interface CustomInputProps {
 	keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
 }
 
+interface CustomTagsProps {
+	label: string;
+	placeholder: string;
+	suggestions?: TagOption[] | string[];
+	value?: string[];
+	onChangeText?: (values: string[]) => void;
+	maxTags?: number;
+	allowCustomTags?: boolean;
+}
+
+interface TagOption {
+	label: string;
+	value: string;
+}
+
 interface CreateUserParams {
 	email: string;
 	password: string;
@@ -74,14 +89,14 @@ interface updatedGoalParams {
 interface createTrainingParams {
 	name: string;
 	days?: string[];
-	notes?: string;
 	duration: number;
 }
 
 interface updateTrainingParams {
 	id: string;
-	name: string;
+	name?: string;
 	days?: string[];
+	duration?: number;
 }
 
 interface Training {
