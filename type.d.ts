@@ -105,6 +105,6 @@ interface Training {
 	$id: string;
 	user: string;
 	Name: string;
-	Days?: string[];
+	days?: string[];
 	Duration: number;
 }

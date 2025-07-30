@@ -1,4 +1,3 @@
-// npm install react-tag-input
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import CustomTags from "@/components/CustomTags";
@@ -19,8 +18,7 @@ const AddTraining = () => {
 		hours: 0,
 		minutes: 0,
 	});
-
-	const { fetchUserTrainings } = useTrainingsStore();
+	const { fetchUserTrainings, trainings } = useTrainingsStore();
 	const router = useRouter();
 
 	const submit = async (): Promise<void> => {
@@ -50,7 +48,12 @@ const AddTraining = () => {
 		}
 	};
 
-	const daysSuggestions = [
+	// Filtrer les jours déjà pris
+	const takenTrainingDays = trainings
+		.filter((training) => training.days)
+		.flatMap((training) => training.days);
+
+	const allDaysSuggestions = [
 		{ label: "Lundi", value: "monday" },
 		{ label: "Mardi", value: "tuesday" },
 		{ label: "Mercredi", value: "wednesday" },
@@ -59,6 +62,10 @@ const AddTraining = () => {
 		{ label: "Samedi", value: "saturday" },
 		{ label: "Dimanche", value: "sunday" },
 	];
+
+	const daysSuggestions = allDaysSuggestions.filter(
+		(day) => !takenTrainingDays.includes(day.value)
+	);
 
 	return (
 		<SafeAreaView className='bg-background min-h-full px-5 pt-16'>
