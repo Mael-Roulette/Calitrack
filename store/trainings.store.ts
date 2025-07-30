@@ -36,9 +36,10 @@ const useTrainingsStore = create<TrainingState>((set, get) => ({
 				(doc) =>
 					({
 						$id: doc.$id,
-						name: doc.name,
-						days: doc.days,
-						duration: doc.duration,
+						user: doc.user,
+						Name: doc.Name,
+						days: doc.Days,
+						Duration: doc.Duration,
 					}) as Training
 			);
 			set({ trainings });

@@ -90,6 +90,8 @@ interface createTrainingParams {
 	name: string;
 	days?: string[];
 	duration: number;
+	hours?: number;
+	minutes?: number;
 }
 
 interface updateTrainingParams {
@@ -102,7 +104,7 @@ interface updateTrainingParams {
 interface Training {
 	$id: string;
 	user: string;
-	name: string;
-	days?: string[];
-	duration: number;
+	Name: string;
+	Days?: string[];
+	Duration: number;
 }

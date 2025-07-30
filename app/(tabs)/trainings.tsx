@@ -9,7 +9,7 @@ const Trainings = () => {
 	const { trainings } = useTrainingsStore();
 
 	const renderTrainingItem = ({ item }: { item: Training }) => (
-		<TrainingItem id={item.$id} title={item.name} duration={item.duration} />
+		<TrainingItem id={item.$id} title={item.Name} duration={item.Duration} />
 	);
 
 	return (
@@ -27,7 +27,7 @@ const Trainings = () => {
 				<FlatList
 					data={trainings}
 					renderItem={renderTrainingItem}
-					keyExtractor={(item) => item.$id || item.name}
+					keyExtractor={(item) => item.$id || item.Name}
 					showsVerticalScrollIndicator={false}
 					ListEmptyComponent={
 						<Text className='text-primary-100 italic text-lg mt-5'>

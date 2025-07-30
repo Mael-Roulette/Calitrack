@@ -2,7 +2,6 @@ import {
 	CreateUserParams,
 	SignInParams,
 	User,
-	Goal,
 	updatedGoalParams,
 	createGoalParams,
 	createTrainingParams,
@@ -24,7 +23,8 @@ export const appwriteConfig = {
 	databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!,
 	userCollectionId: process.env.EXPO_PUBLIC_APPWRITE_USER_COLLECTION_ID!,
 	goalCollectionId: process.env.EXPO_PUBLIC_APPWRITE_GOAL_COLLECTION_ID!,
-	trainingCollectionId: process.env.EXPO_PUBLIC_APPRWITE_TRAINING_COLLECTION_ID!,
+	trainingCollectionId:
+		process.env.EXPO_PUBLIC_APPRWITE_TRAINING_COLLECTION_ID!,
 };
 
 export const client = new Client();
@@ -207,9 +207,9 @@ export const createTraining = async ({
 			ID.unique(),
 			{
 				user: currentUser.$id,
-				name,
-				days,
-				duration,
+				Name: name,
+				Days: days,
+				Duration: duration,
 			}
 		);
 
@@ -243,7 +243,7 @@ export const getTrainingsFromUser = async () => {
 
 export const updateTraining = async (
 	id: string,
-	{ name, days }: updateTrainingParams
+	{ name, days, duration }: updateTrainingParams
 ) => {
 	try {
 		await databases.updateDocument(
@@ -251,8 +251,9 @@ export const updateTraining = async (
 			appwriteConfig.trainingCollectionId,
 			id,
 			{
-				name,
-				days
+				Name: name,
+				Days: days,
+				Duration: duration,
 			}
 		);
 	} catch (e) {

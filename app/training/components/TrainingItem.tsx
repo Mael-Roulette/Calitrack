@@ -26,7 +26,9 @@ const TrainingItem = ({
 				<View className='flex-row items-center gap-2'>
 					<Ionicons name='time-sharp' size={24} color='#132541' />
 					<Text className='text-primary font-sregular text-base'>
-						{duration} minutes
+						{duration < 60
+							? `${duration} minutes`
+							: `${Math.floor(duration / 60)}h${duration % 60 === 0 ? '' : duration % 60}`}
 					</Text>
 				</View>
 			</View>

@@ -32,7 +32,7 @@ const AddGoal = () => {
 		setIsSubmitting(true);
 
 		try {
-			const result = await createGoal({
+			await createGoal({
 				title: title,
 				type: type,
 				progress: progress || 0,
@@ -41,17 +41,7 @@ const AddGoal = () => {
 
 			await fetchUserGoals();
 
-			const alertTitle = 'message' in result ? result.message.title : result.title;
-			const alertBody = 'message' in result ? result.message.body : result.body;
-
-			Alert.alert(alertTitle, alertBody, [
-				{
-					text: "OK",
-					onPress: () => {
-						router.push("/goals");
-					},
-				},
-			]);
+			router.push("/goals");
 		} catch (error) {
 			console.error(error);
 			Alert.alert("Erreur", "Échec de l'ajout. Veuillez réessayer.");
@@ -63,7 +53,7 @@ const AddGoal = () => {
 	return (
 		<SafeAreaView className='px-5 pt-16 bg-background min-h-full'>
 			<View className='mb-8 flex-row items-center justify-start'>
-				<Link href={'/goals'} className='mr-4'>
+				<Link href={"/goals"} className='mr-4'>
 					<AntDesign name='caretleft' size={24} color='#132541' />
 				</Link>
 				<Text className='text-3xl text-primary font-calsans'>
