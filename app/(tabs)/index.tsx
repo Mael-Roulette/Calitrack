@@ -34,8 +34,6 @@ export default function Index() {
 		fetchTodayTraining();
 	}, []);
 
-	console.log("Today Training:", todayTraining);
-
 	const goToCalendar = () => {
 		router.push("/calendar");
 	};

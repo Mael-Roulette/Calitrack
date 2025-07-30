@@ -5,13 +5,13 @@ import { Redirect, Tabs } from "expo-router";
 import { Image, StatusBar, TouchableOpacity } from "react-native";
 
 const TabIcon = ({ icon }: TabBarIconProps) => (
-	<Image source={icon} width={20} height={20} />
+	<Image source={icon} style={{ width: 24, height: 24 }} />
 );
 
 const TabsLayout = () => {
 	const { isAuthenticated } = useAuthStore();
 
-	if (!isAuthenticated) return <Redirect href={'/(auth)/sign-in'} />;
+	if (!isAuthenticated) return <Redirect href={"/(auth)/sign-in"} />;
 	return (
 		<>
 			<StatusBar barStyle='dark-content' />
