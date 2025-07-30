@@ -43,15 +43,17 @@ const CustomTags = ({
 		return option ? option.label : val;
 	};
 
-	useEffect(() => {
-		if (onChangeText) {
-			onChangeText(selectedValues);
-		}
-	}, [selectedValues, onChangeText]);
-
+	// Uniquement initialiser au montage, pas à chaque changement de value
 	useEffect(() => {
 		setSelectedValues(value);
-	}, [value]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const updateParent = (newValues: string[]) => {
+		if (onChangeText && JSON.stringify(newValues) !== JSON.stringify(value)) {
+			onChangeText(newValues);
+		}
+	};
 
 	useEffect(() => {
 		if (inputValue.trim()) {
@@ -97,7 +99,9 @@ const CustomTags = ({
 			(s) => s.value === tagValue
 		);
 		if (existsInSuggestions || allowCustomTags) {
-			setSelectedValues([...selectedValues, tagValue]);
+			const newValues = [...selectedValues, tagValue];
+			setSelectedValues(newValues);
+			updateParent(newValues); // Mettre à jour le parent explicitement
 			setInputValue("");
 			setShowSuggestions(false);
 			Keyboard.dismiss();
@@ -113,6 +117,7 @@ const CustomTags = ({
 		const newValues = [...selectedValues];
 		newValues.splice(index, 1);
 		setSelectedValues(newValues);
+		updateParent(newValues);
 	};
 
 	const handleSubmitEditing = (): void => {
@@ -137,7 +142,10 @@ const CustomTags = ({
 						key={`${tagValue}-${index}`}
 						className='bg-background border border-secondary rounded-full px-3 py-1 m-1 items-center justify-center'
 					>
-						<TouchableOpacity className="flex-row items-center" onPress={() => handleRemoveTag(index)}>
+						<TouchableOpacity
+							className='flex-row items-center'
+							onPress={() => handleRemoveTag(index)}
+						>
 							<Text className='mr-1 text-primary'>
 								{getLabelFromValue(tagValue)}
 							</Text>
@@ -157,7 +165,7 @@ const CustomTags = ({
 					}}
 					onSubmitEditing={handleSubmitEditing}
 					returnKeyType='done'
-					editable={ allowCustomTags}
+					editable={allowCustomTags}
 				/>
 			</View>
 
