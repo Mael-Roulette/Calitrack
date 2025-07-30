@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet } from 'react-native';
 
-export default function PrimaryGradient ( { children, style, ...props } ) {
+export default function PrimaryGradient ( { children, style, ...props }: { children: any, style?: any } ) {
   return (
     <LinearGradient
       colors={ [ '#132541', '#FC7942' ] }

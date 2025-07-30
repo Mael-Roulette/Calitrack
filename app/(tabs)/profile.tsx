@@ -1,3 +1,5 @@
+import ProgressOverview from "@/components/ProgressOverview";
+import { icons } from "@/constants/icons";
 import { useAuthStore } from "@/store";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -19,12 +21,12 @@ const Profile = () => {
 				<>
 					<View className='mb-8 flex-row items-center justify-between'>
 						<Text className='title'>Profil</Text>
-						<Link href={'/settings'} className='mr-4'>
+						<Link href={"/settings"} className='mr-4'>
 							<Ionicons name='settings-outline' size={30} color='#132541' />
 						</Link>
 					</View>
 
-					<View className=' flex-col items-center justify-center w-full mb-6'>
+					<View className=' flex-col items-center justify-center w-full mb-8'>
 						<View className='w-24 h-24 rounded-full bg-gray-200 mb-4 overflow-hidden'>
 							{user?.avatar ? (
 								<Image
@@ -49,6 +51,17 @@ const Profile = () => {
 								<View style={{ width: 10 }} />
 								<Feather name='edit-3' size={20} color='#132541' />
 							</Link>
+						</View>
+					</View>
+
+					<ProgressOverview />
+
+					<View className="mt-8">
+						<View className="flex-row items-center gap-4 mb-5">
+							<Image source={icons.stats} style={{ width: 30, height: 30 }} />
+							<Text className='text-2xl text-primary font-calsans'>
+								Mes stats
+							</Text>
 						</View>
 					</View>
 				</>

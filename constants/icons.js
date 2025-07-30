@@ -3,6 +3,7 @@ import goals from "@/assets/icons/goals.png";
 import home from "@/assets/icons/home.png";
 import profile from "@/assets/icons/profile.png";
 import training from "@/assets/icons/training.png";
+import stats from "@/assets/icons/stats.png";
 
 import calendar_focus from "@/assets/icons/calendar_focus.png";
 import goals_focus from "@/assets/icons/goals_focus.png";
@@ -20,5 +21,6 @@ export const icons = {
   calendar,
   calendar_focus,
   profile,
-  profile_focus
+  profile_focus,
+  stats
 }
