@@ -24,8 +24,7 @@ export const appwriteConfig = {
 	databaseId: process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!,
 	userCollectionId: process.env.EXPO_PUBLIC_APPWRITE_USER_COLLECTION_ID!,
 	goalCollectionId: process.env.EXPO_PUBLIC_APPWRITE_GOAL_COLLECTION_ID!,
-	trainingCollectionId:
-		process.env.EXPO_PUBLIC_APPRWITE_TRAINING_COLLECTION_ID!,
+	trainingCollectionId: process.env.EXPO_PUBLIC_APPRWITE_TRAINING_COLLECTION_ID!,
 };
 
 export const client = new Client();

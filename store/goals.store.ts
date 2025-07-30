@@ -1,7 +1,7 @@
 import { getGoalsFromUser } from "@/lib/appwrite";
+import { Goal } from "@/type";
 import { create } from "zustand";
 import useAuthStore from "./auth.store";
-import { Goal } from "@/type";
 
 type GoalState = {
 	goals: Goal[];
@@ -29,16 +29,19 @@ const useGoalsStore = create<GoalState>((set, get) => ({
 
 		try {
 			const documents = await getGoalsFromUser();
-			const goals = documents.map(doc => ({
-				$id: doc.$id,
-        $createdAt: doc.$createdAt,
-        $updatedAt: doc.$updatedAt,
-				title: doc.title,
-				type: doc.type,
-				progress: doc.progress,
-				total: doc.total,
-				state: doc.state,
-			} as Goal));
+			const goals = documents.map(
+				(doc) =>
+					({
+						$id: doc.$id,
+						$createdAt: doc.$createdAt,
+						$updatedAt: doc.$updatedAt,
+						title: doc.title,
+						type: doc.type,
+						progress: doc.progress,
+						total: doc.total,
+						state: doc.state,
+					}) as Goal
+			);
 			set({ goals });
 		} catch (error) {
 			console.error("Erreur lors de la récupération des objectifs:", error);
