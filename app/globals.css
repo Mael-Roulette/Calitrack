@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	.title {
+		@apply text-3xl text-primary font-calsans;
+	}
+}
+
 @layer components {
 	.custom-btn {
 		@apply flex-row items-center justify-center rounded-lg py-2.5 px-6;

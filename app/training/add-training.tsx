@@ -73,7 +73,7 @@ const AddTraining = () => {
 				<Link href='/trainings' className='mr-4'>
 					<AntDesign name='caretleft' size={24} color='#132541' />
 				</Link>
-				<Text className='text-3xl text-primary font-calsans'>
+				<Text className='title'>
 					Ajouter un entrainement
 				</Text>
 			</View>

@@ -10,7 +10,7 @@ const Calendar = () => {
 		<SafeAreaView className='px-5 pt-16 bg-background flex-1'>
 			<ScrollView>
 				<View className='mb-8 flex-row items-center justify-between'>
-					<Text className='text-3xl text-primary font-calsans'>Calendrier</Text>
+					<Text className='title'>Calendrier</Text>
 					<Link href={'/'} className='mr-4'>
 						<Feather name='edit-3' size={30} color='#132541' />
 					</Link>

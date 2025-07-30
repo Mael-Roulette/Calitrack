@@ -72,7 +72,7 @@ const Goals = () => {
 	return (
 		<SafeAreaView className='px-5 pt-10 bg-background flex-1'>
 			<View className='mb-8 flex-row items-center justify-between'>
-				<Text className='text-3xl text-primary font-calsans'>
+				<Text className='title'>
 					Mes objectifs
 				</Text>
 				<Link href={"/goal/add-goal"} className='mr-4'>

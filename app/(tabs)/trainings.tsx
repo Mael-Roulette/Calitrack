@@ -15,7 +15,7 @@ const Trainings = () => {
 	return (
 		<SafeAreaView className='px-5 pt-16 bg-background flex-1'>
 			<View className='mb-8 flex-row items-center justify-between'>
-				<Text className='text-3xl text-primary font-calsans'>
+				<Text className='title'>
 					Mes entrainements
 				</Text>
 				<Link href={"/training/add-training"} className='mr-4'>

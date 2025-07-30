@@ -18,7 +18,7 @@ const Profile = () => {
 			) : (
 				<>
 					<View className='mb-8 flex-row items-center justify-between'>
-						<Text className='text-3xl text-primary font-calsans'>Profil</Text>
+						<Text className='title'>Profil</Text>
 						<Link href={'/settings'} className='mr-4'>
 							<Ionicons name='settings-outline' size={30} color='#132541' />
 						</Link>

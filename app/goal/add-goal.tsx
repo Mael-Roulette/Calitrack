@@ -56,7 +56,7 @@ const AddGoal = () => {
 				<Link href={"/goals"} className='mr-4'>
 					<AntDesign name='caretleft' size={24} color='#132541' />
 				</Link>
-				<Text className='text-3xl text-primary font-calsans'>
+				<Text className='title'>
 					Ajouter un objectif
 				</Text>
 			</View>

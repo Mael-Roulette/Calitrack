@@ -37,14 +37,14 @@ export default function Index() {
 		<SafeAreaView className='pt-10 bg-background min-h-full'>
 			{isLoading ? (
 				<View>
-					<Text className='text-3xl font-calsans text-primary'>
+					<Text className='title'>
 						Chargement...
 					</Text>
 				</View>
 			) : (
 				<ScrollView showsVerticalScrollIndicator={true} className='flex-1 px-5'>
 					<View className='mb-8 flex-row items-center justify-between'>
-						<Text className='text-3xl text-primary font-calsans'>
+						<Text className='title'>
 							Salut {user?.name || "utilisateur"} !
 						</Text>
 						<Link href={'/notifications'} className='mr-4'>
