@@ -109,7 +109,10 @@ const AddTraining = () => {
 						placeholder="Sélectionnez vos jours d'entrainement..."
 						suggestions={daysSuggestions}
 						value={selectedDays}
-						onChangeText={setSelectedDays}
+						onChangeText={(days) => {
+							setSelectedDays(days);
+							setForm((prev) => ({ ...prev, days }));
+						}}
 						maxTags={7}
 						allowCustomTags={false}
 					/>
