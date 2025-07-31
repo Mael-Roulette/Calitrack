@@ -27,7 +27,7 @@ const CustomButton = ({
 			className={cn(
 				"custom-btn",
 				buttonVariants[variant],
-				isLoading ? "animate-pulse" : "",
+				isLoading ? "opacity-50" : "",
 				customStyles
 			)}
 			disabled={isLoading}
