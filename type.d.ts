@@ -62,6 +62,7 @@ interface Goal {
 	type: "hold" | "reps";
 	progress: number;
 	total: number;
+	progressHistory: [];
 	state?: "in-progress" | "finish";
 }
 

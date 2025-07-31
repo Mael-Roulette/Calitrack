@@ -1,4 +1,3 @@
-import GoalStats from "@/components/GoalStats";
 import ProgressOverview from "@/components/ProgressOverview";
 import { icons } from "@/constants/icons";
 import { useAuthStore, useGoalsStore } from "@/store";
@@ -6,12 +5,13 @@ import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Link } from "expo-router";
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
+import GoalStats from "../goal/components/GoalStats";
 
 const Profile = () => {
 	const { user, isLoading } = useAuthStore();
 	const { goals } = useGoalsStore();
 
-	console.log( goals );
+	console.log(goals);
 
 	return (
 		<SafeAreaView className='px-5 pt-16 bg-background flex-1'>
@@ -60,15 +60,25 @@ const Profile = () => {
 
 					<ProgressOverview />
 
-					<View className="mt-8">
-						<View className="flex-row items-center gap-4 mb-5">
+					<View className='mt-8'>
+						<View className='flex-row items-center gap-4 mb-5'>
 							<Image source={icons.stats} style={{ width: 30, height: 30 }} />
 							<Text className='text-2xl text-primary font-calsans'>
 								Mes stats
 							</Text>
 						</View>
 
-						<GoalStats />
+						{goals
+							.filter((goal) => goal.state === "in-progress")
+							.map((goal) => (
+								<GoalStats
+									key={goal.$id}
+									title={goal.title}
+									state={goal.state ?? ""}
+									progressHistory={goal.progressHistory}
+									total={goal.total}
+								/>
+							))}
 					</View>
 				</ScrollView>
 			)}
