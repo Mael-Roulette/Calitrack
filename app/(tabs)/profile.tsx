@@ -11,10 +11,8 @@ const Profile = () => {
 	const { user, isLoading } = useAuthStore();
 	const { goals } = useGoalsStore();
 
-	console.log(goals);
-
 	return (
-		<SafeAreaView className='px-5 pt-16 bg-background flex-1'>
+		<SafeAreaView className='pt-16 bg-background flex-1'>
 			{isLoading ? (
 				<View>
 					<Text className='text-xl font-calsans text-primary'>
@@ -22,7 +20,7 @@ const Profile = () => {
 					</Text>
 				</View>
 			) : (
-				<ScrollView>
+				<ScrollView className="px-5">
 					<View className='mb-8 flex-row items-center justify-between'>
 						<Text className='title'>Profil</Text>
 						<Link href={"/settings"} className='mr-4'>
@@ -61,7 +59,7 @@ const Profile = () => {
 					<ProgressOverview />
 
 					<View className='mt-8'>
-						<View className='flex-row items-center gap-4 mb-5'>
+						<View className='flex-row items-center gap-4 mb-3'>
 							<Image source={icons.stats} style={{ width: 30, height: 30 }} />
 							<Text className='text-2xl text-primary font-calsans'>
 								Mes stats

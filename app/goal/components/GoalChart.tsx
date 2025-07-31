@@ -1,13 +1,13 @@
 import React from "react";
-import { Dimensions, View } from "react-native";
+import { View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 
-const GoalChart = () => {
+const GoalChart = ({ progressHistory }: { progressHistory: number[] }) => {
 	const data = {
-		labels: ["January", "February", "March", "April", "May", "June"],
+		labels: [],
 		datasets: [
 			{
-				data: [20, 45, 28, 80, 99, 43],
+				data: progressHistory,
 				color: (opacity = 1) => `rgba(252, 121, 66, ${opacity})`,
 			},
 		],
@@ -24,10 +24,11 @@ const GoalChart = () => {
 			borderRadius: 16,
 		},
 		propsForDots: {
-			r: "6",
+			r: "4",
 			strokeWidth: "2",
 			stroke: "#FC7942",
 		},
+		fromZero: true,
 	};
 
 	return (
@@ -38,6 +39,7 @@ const GoalChart = () => {
 				height={220}
 				chartConfig={chartConfig}
 				bezier
+				yAxisInterval={1}
 				style={{
 					marginVertical: 8,
 					borderRadius: 16,

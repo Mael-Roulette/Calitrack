@@ -14,7 +14,7 @@ const GoalStats = ({
 	total: number;
 }) => {
 	const stateLabels = {
-		"in-progress": "En cours",  
+		"in-progress": "En cours",
 		finish: "validé",
 	};
 
@@ -23,10 +23,10 @@ const GoalStats = ({
 			? Math.max(...progressHistory)
 			: 0;
 
-	const progressPercentage = total > 0 ? (highestValue / total) * 100 : 0;
+	const progressPercentage = total > 0 ? ((highestValue / total) * 100).toFixed(2) : "0.00";
 
 	return (
-		<View className='px-5 py-4 border border-secondary rounded-lg mb-7'>
+		<View className='px-5 py-4 border border-secondary rounded-lg mb-3'>
 			<View className='flex-row items-center justify-between mb-2'>
 				<Text className='text-lg font-sregular text-primary'>{title}</Text>
 				<Text
@@ -35,13 +35,13 @@ const GoalStats = ({
 					{stateLabels[state as keyof typeof stateLabels] || state}
 				</Text>
 			</View>
-			<Text className='text-primary-100 font-sregular mb-2'>
+			<Text className='text-primary-100 font-sregular mb-7'>
 				Record actuel : {highestValue}
 			</Text>
 
-			<GoalChart />
+			<GoalChart progressHistory={progressHistory} />
 
-			<View className='flex-col justify-center items-center gap-2 mt-5'>
+			<View className='flex-col justify-center items-center gap-2 mt-3'>
 				<Text className='text-4xl font-calsans text-secondary text-center'>
 					{progressPercentage}%
 				</Text>
