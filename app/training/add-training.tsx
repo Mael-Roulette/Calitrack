@@ -11,6 +11,7 @@ import { Alert, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const AddTraining = () => {
+	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 	const [selectedDays, setSelectedDays] = useState<string[]>([]);
 	const [form, setForm] = useState<Partial<createTrainingParams>>({
 		name: "",
@@ -18,7 +19,7 @@ const AddTraining = () => {
 		hours: 0,
 		minutes: 0,
 	});
-	const { fetchUserTrainings, trainings } = useTrainingsStore();
+	const { fetchUserTrainings } = useTrainingsStore();
 	const router = useRouter();
 
 	const submit = async (): Promise<void> => {
@@ -39,21 +40,19 @@ const AddTraining = () => {
 		};
 
 		try {
+			setIsSubmitting(true);
 			await createTraining(trainingData);
 			await fetchUserTrainings();
 			router.push("/trainings");
 		} catch (err) {
 			console.error(err);
 			Alert.alert("Erreur", "Échec de l'ajout. Réessayez.");
+		} finally {
+			setIsSubmitting(false);
 		}
 	};
 
-	// Filtrer les jours déjà pris
-	const takenTrainingDays = trainings
-		.filter((training) => training.days)
-		.flatMap((training) => training.days);
-
-	const allDaysSuggestions = [
+	const daysSuggestions = [
 		{ label: "Lundi", value: "monday" },
 		{ label: "Mardi", value: "tuesday" },
 		{ label: "Mercredi", value: "wednesday" },
@@ -63,19 +62,13 @@ const AddTraining = () => {
 		{ label: "Dimanche", value: "sunday" },
 	];
 
-	const daysSuggestions = allDaysSuggestions.filter(
-		(day) => !takenTrainingDays.includes(day.value)
-	);
-
 	return (
 		<SafeAreaView className='bg-background min-h-full px-5 pt-16'>
 			<View className='mb-8 flex-row items-center'>
 				<Link href='/trainings' className='mr-4'>
 					<AntDesign name='caretleft' size={24} color='#132541' />
 				</Link>
-				<Text className='title'>
-					Ajouter un entrainement
-				</Text>
+				<Text className='title'>Ajouter un entrainement</Text>
 			</View>
 			<ScrollView>
 				<View className='flex-col gap-5'>
@@ -124,7 +117,11 @@ const AddTraining = () => {
 						allowCustomTags={false}
 					/>
 
-					<CustomButton title="Créer l'entrainement" onPress={() => submit()} />
+					<CustomButton
+						title="Créer l'entrainement"
+						onPress={() => submit()}
+						isLoading={isSubmitting}
+					/>
 				</View>
 			</ScrollView>
 		</SafeAreaView>

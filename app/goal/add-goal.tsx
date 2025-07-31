@@ -10,7 +10,7 @@ import { useGoalsStore } from "@/store";
 import { GoalState } from "@/type";
 
 const AddGoal = () => {
-	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
 	const [form, setForm] = useState<GoalState>({
 		title: "",
@@ -21,7 +21,7 @@ const AddGoal = () => {
 	const { fetchUserGoals } = useGoalsStore();
 	const router = useRouter();
 
-	const submit = async () => {
+	const submit = async (): Promise<void> => {
 		if (!form.title || !form.type || !form.total) {
 			Alert.alert("Erreur", "Veuillez remplir tous les champs");
 			return;
@@ -29,9 +29,9 @@ const AddGoal = () => {
 
 		const { title, type, total, progress } = form;
 
-		setIsSubmitting(true);
 
 		try {
+			setIsSubmitting(true);
 			await createGoal({
 				title: title,
 				type: type,
@@ -42,8 +42,8 @@ const AddGoal = () => {
 			await fetchUserGoals();
 
 			router.push("/goals");
-		} catch (error) {
-			console.error(error);
+		} catch (err) {
+			console.error(err);
 			Alert.alert("Erreur", "Échec de l'ajout. Veuillez réessayer.");
 		} finally {
 			setIsSubmitting(false);
