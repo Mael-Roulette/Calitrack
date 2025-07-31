@@ -4,10 +4,12 @@ import { Alert, Text, View } from "react-native";
 import CustomButton from "../../components/CustomButton";
 import CustomInput from "../../components/CustomInput";
 import { createUser } from "../../lib/appwrite";
+import { useAuthStore } from "@/store";
 
 const SignUp = () => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [form, setForm] = useState({ name: "", email: "", password: "" });
+	const { fetchAuthenticatedUser } = useAuthStore();
 
 	const submit = async () => {
 		const { name, email, password } = form;
@@ -22,6 +24,7 @@ const SignUp = () => {
 
 		try {
 			await createUser({ email, password, name });
+			await fetchAuthenticatedUser();
 
 			router.replace("/");
 		} catch (error: any) {

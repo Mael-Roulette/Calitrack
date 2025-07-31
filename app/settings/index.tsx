@@ -11,11 +11,13 @@ import {
 } from "react-native";
 
 const Index = () => {
-	const { logout } = useAuthStore();
+	const { logout, fetchAuthenticatedUser } = useAuthStore();
 	const router = useRouter();
 
-	const handleLogout = () => {
-		logout();
+	const handleLogout = async () => {
+		await logout();
+		await fetchAuthenticatedUser();
+
 		router.replace("/(auth)/home");
 	};
 
