@@ -20,7 +20,7 @@ const Profile = () => {
 					</Text>
 				</View>
 			) : (
-				<ScrollView className="px-5">
+				<ScrollView className='px-5'>
 					<View className='mb-8 flex-row items-center justify-between'>
 						<Text className='title'>Profil</Text>
 						<Link href={"/settings"} className='mr-4'>
@@ -78,6 +78,13 @@ const Profile = () => {
 								/>
 							))}
 					</View>
+
+					<Link
+						href={"/goal/stats"}
+						className='mt-2 mb-5'
+					>
+						<Text className='text-primary text-center font-sregular underline underline-offset-1'>Voir toutes mes statistiques</Text>
+					</Link>
 				</ScrollView>
 			)}
 		</SafeAreaView>

@@ -51,7 +51,7 @@ const AddGoal = () => {
 	};
 
 	return (
-		<SafeAreaView className='px-5 pt-16 bg-background min-h-full'>
+		<SafeAreaView className='pt-16 bg-background min-h-full'>
 			<View className='mb-8 flex-row items-center justify-start'>
 				<Link href={"/goals"} className='mr-4'>
 					<AntDesign name='caretleft' size={24} color='#132541' />
@@ -61,7 +61,7 @@ const AddGoal = () => {
 				</Text>
 			</View>
 
-			<ScrollView>
+			<ScrollView className='px-5'>
 				<View className='gap-5 h-full'>
 					<CustomInput
 						label="Nom de l'objectif"
