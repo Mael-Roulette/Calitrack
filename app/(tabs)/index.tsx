@@ -18,6 +18,10 @@ export default function Index() {
 	const router = useRouter();
 	const [todayTraining, setTodayTraining] = useState<any>([]);
 
+	if ( !user ) {
+		router.replace("/(auth)/home");
+	}
+
 	// Récupérer le training du jour
 	useEffect(() => {
 		const fetchTodayTraining = async () => {
@@ -107,6 +111,7 @@ export default function Index() {
 										title={item.title}
 										type={item.type}
 										progress={item.progress}
+										progressHistory={item.progressHistory}
 										total={item.total}
 										state={item.state}
 										$createdAt={item.$createdAt}

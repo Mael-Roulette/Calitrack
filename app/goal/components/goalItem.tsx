@@ -7,7 +7,15 @@ import CustomButton from "@/components/CustomButton";
 import { useGoalsStore } from "@/store";
 import { Goal } from "@/type";
 
-const GoalItem = ({ $id, title, type, progress, total, state }: Goal) => {
+const GoalItem = ({
+	$id,
+	title,
+	type,
+	progress,
+	progressHistory,
+	total,
+	state,
+}: Goal) => {
 	const [modalVisible, setModalVisible] = useState(false);
 	const [newProgress, setNewProgress] = useState<string>();
 	const [isUpdating, setIsUpdating] = useState(false);
@@ -21,10 +29,15 @@ const GoalItem = ({ $id, title, type, progress, total, state }: Goal) => {
 			color: "rgba(252, 121, 66, 1)",
 		},
 		reps: {
-			border: "border-green",
-			text: "text-green",
-			color: "rgba(52, 169, 47, 1)",
+			border: "border-secondary",
+			text: "text-secondary",
+			color: "rgba(252, 121, 66, 1)",
 		},
+		// reps: {
+		// 	border: "border-green",
+		// 	text: "text-green",
+		// 	color: "rgba(52, 169, 47, 1)",
+		// },
 	};
 
 	const theme = themes[type] || { border: type, text: type, color: type };
@@ -32,7 +45,7 @@ const GoalItem = ({ $id, title, type, progress, total, state }: Goal) => {
 	// State labels
 	const stateLabels = {
 		"in-progress": "En cours",
-		"finish": "validé",
+		finish: "validé",
 	};
 
 	const handleUpdateProgress = async () => {
@@ -51,6 +64,7 @@ const GoalItem = ({ $id, title, type, progress, total, state }: Goal) => {
 
 			await updateGoal($id, {
 				progress: progressValue,
+
 				state: progressValue >= total ? "finish" : "in-progress",
 				updateDate: new Date().toISOString(),
 			});
