@@ -205,6 +205,16 @@ export const createTraining = async ({
 		const currentUser = await getCurrentUser();
 		if (!currentUser) throw Error;
 
+		const existingTrainings = await getTrainingsFromUser();
+
+		if (existingTrainings.length >= 10) {
+			const message = {
+				title: "Nombre maximum d'entrainements atteint",
+				body: "Vous ne pouvez pas ajouter plus de 10 entrainements.",
+			};
+			return message;
+		}
+
 		const training = await databases.createDocument(
 			appwriteConfig.databaseId,
 			appwriteConfig.trainingCollectionId,

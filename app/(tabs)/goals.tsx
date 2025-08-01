@@ -2,14 +2,26 @@ import { useGoalsStore } from "@/store";
 import { Goal } from "@/type";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { useMemo } from "react";
-import { FlatList, Text, View } from "react-native";
+import { Alert, FlatList, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GoalItem from "../goal/components/GoalItem";
 
 const Goals = () => {
 	const { goals } = useGoalsStore();
+	const router = useRouter();
+
+	const handleAddGoalLink = () => {
+		if (goals.length >= 10) {
+			Alert.alert(
+				"Limite atteinte",
+				"Vous ne pouvez pas ajouter plus de 10 entrainements."
+			);
+		} else {
+			router.push("/goal/add-goal");
+		}
+	};
 
 	const { progressGoals, finishedGoals } = useMemo(
 		() => ({
@@ -74,9 +86,9 @@ const Goals = () => {
 		<SafeAreaView className='px-5 pt-10 bg-background flex-1'>
 			<View className='mb-5 flex-row items-center justify-between'>
 				<Text className='title'>Mes objectifs</Text>
-				<Link href={"/goal/add-goal"} className='mr-4'>
+				<TouchableOpacity onPress={handleAddGoalLink} className='mr-4'>
 					<Ionicons name='add-circle-outline' size={30} color='#132541' />
-				</Link>
+				</TouchableOpacity>
 			</View>
 			<View className='mb-6'>
 				<Text className='text-primary-100 italic'>
