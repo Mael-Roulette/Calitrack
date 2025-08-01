@@ -1,9 +1,11 @@
-import { SplashScreen, Stack } from "expo-router";
+import { useAuthStore } from "@/store";
 import * as Sentry from "@sentry/react-native";
 import { useFonts } from "expo-font";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { View } from "react-native";
 import "./globals.css";
-import { useAuthStore } from "@/store";
 
 Sentry.init({
 	dsn: "https://659bf5ca13cce02d2e0a6e42d57d1f9d@o4509674390683648.ingest.de.sentry.io/4509750754934864",
@@ -37,11 +39,17 @@ export default Sentry.wrap(function RootLayout() {
 		if (fontsLoaded) SplashScreen.hideAsync();
 	}, [fontsLoaded, error]);
 
-	useEffect( () => {
-		fetchAuthenticatedUser()
-	}, [] );
+	useEffect(() => {
+		fetchAuthenticatedUser();
+	}, []);
 
-	if ( !fontsLoaded || isLoading ) return null;
+	if (!fontsLoaded || isLoading) {
+		return null;
+	}
 
-	return <Stack screenOptions={{ headerShown: false }} />;
+	return (
+		<View className='bg-background flex-1'>
+			<Stack screenOptions={{ headerShown: false }} />
+		</View>
+	);
 });

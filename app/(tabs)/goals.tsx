@@ -1,7 +1,7 @@
 import { useGoalsStore } from "@/store";
 import { Goal } from "@/type";
-import { MaterialIcons } from "@expo/vector-icons";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Link } from "expo-router";
 import { useMemo } from "react";
 import { FlatList, Text, View } from "react-native";
@@ -25,6 +25,7 @@ const Goals = () => {
 			title={item.title}
 			type={item.type}
 			progress={item.progress}
+			progressHistory={item.progressHistory}
 			total={item.total}
 			state={item.state}
 			$createdAt={item.$createdAt}
@@ -74,11 +75,14 @@ const Goals = () => {
 			<View className='mb-5 flex-row items-center justify-between'>
 				<Text className='title'>Mes objectifs</Text>
 				<Link href={"/goal/add-goal"} className='mr-4'>
-					<MaterialIcons name='add-task' size={30} color='#132541' />
+					<Ionicons name='add-circle-outline' size={30} color='#132541' />
 				</Link>
 			</View>
 			<View className='mb-6'>
-				<Text className='text-primary-100 italic'>Vous pouvez ajouter une nouvelle progression en cliquant sur un objectif.</Text>
+				<Text className='text-primary-100 italic'>
+					Vous pouvez ajouter une nouvelle progression en cliquant sur un
+					objectif.
+				</Text>
 			</View>
 			<FlatList
 				data={sections}
