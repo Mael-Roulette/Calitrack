@@ -10,6 +10,7 @@ const CustomInput = ({
 	label,
 	secureTextEntry = false,
 	keyboardType = "default",
+	editable = true,
 }: CustomInputProps) => {
 	const [isFocused, setIsFocused] = useState(false);
 
@@ -28,6 +29,7 @@ const CustomInput = ({
 				onBlur={() => setIsFocused(false)}
 				placeholder={placeholder}
 				className={cn("custom-input")}
+				editable={editable}
 			/>
 		</View>
 	);

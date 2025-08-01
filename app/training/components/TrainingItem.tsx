@@ -53,7 +53,7 @@ const TrainingItem = ({
 			</View>
 			{isTrainingDay ? (
 				<TouchableOpacity
-					className='flex-row items-center justify-center rounded-lg py-3 px-6 gap-4 bg-background'
+					className='flex-row items-center justify-center rounded-md py-3 px-6 gap-4 bg-background'
 					onPress={goToTraining}
 				>
 					<AntDesign name='caretright' size={22} color='#FC7942' />

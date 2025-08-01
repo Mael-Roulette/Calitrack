@@ -26,7 +26,7 @@ const GoalStats = ({
 	const progressPercentage = total > 0 ? ((highestValue / total) * 100).toFixed(2) : "0.00";
 
 	return (
-		<View className='px-5 py-4 border border-secondary rounded-lg mb-3'>
+		<View className='px-5 py-4 border border-secondary rounded-md mb-3'>
 			<View className='flex-row items-center justify-between mb-2'>
 				<Text className='text-lg font-sregular text-primary'>{title}</Text>
 				<Text
