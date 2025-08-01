@@ -1,6 +1,6 @@
 import { View, Text, ActivityIndicator } from "react-native";
-import React, { useEffect, useState } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect, useState, useLayoutEffect } from "react";
+import { useLocalSearchParams, useRouter, useNavigation } from "expo-router";
 import { getTrainingById } from "@/lib/appwrite";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -9,6 +9,7 @@ const TrainingPage = () => {
 	const [training, setTraining] = useState<any>(null);
 	const [loading, setLoading] = useState(true);
 	const router = useRouter();
+	const navigation = useNavigation();
 
 	useEffect(() => {
 		const fetchTraining = async () => {
@@ -27,15 +28,19 @@ const TrainingPage = () => {
 			}
 		};
 
-		if (id) {
 			fetchTraining();
-		} else {
-      router.push("/trainings");
+	}, [id]);
+
+	useLayoutEffect(() => {
+		if (training) {
+			navigation.setOptions({
+				title: training.name,
+			});
 		}
-	}, [id, router]);
+	}, [navigation, training]);
 
 	return (
-		<SafeAreaView className='pt-10 bg-background min-h-full px-5'>
+		<SafeAreaView className='bg-background min-h-full px-5'>
 			{loading ? (
 				<View className='flex-1 justify-center items-center'>
 					<ActivityIndicator size='large' color='#FC7942' />
@@ -43,7 +48,7 @@ const TrainingPage = () => {
 				</View>
 			) : (
 				<View>
-					<Text className='title'>{training.Name}</Text>
+					<Text className='text-primary-100 italic'>Mon training</Text>
 				</View>
 			)}
 		</SafeAreaView>

@@ -1,6 +1,8 @@
+import CustomHeader from "@/components/CustomHeader";
 import { icons } from "@/constants/icons";
 import useAuthStore from "@/store/auth.store";
 import { TabBarIconProps } from "@/type";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { Redirect, Tabs } from "expo-router";
 import { Image, StatusBar, TouchableOpacity } from "react-native";
 
@@ -9,7 +11,7 @@ const TabIcon = ({ icon }: TabBarIconProps) => (
 );
 
 const TabsLayout = () => {
-	const { isAuthenticated } = useAuthStore();
+	const { isAuthenticated, user } = useAuthStore();
 
 	if (!isAuthenticated) return <Redirect href={"/(auth)/sign-in"} />;
 	return (
@@ -17,7 +19,10 @@ const TabsLayout = () => {
 			<StatusBar barStyle='dark-content' />
 			<Tabs
 				screenOptions={{
-					headerShown: false,
+					headerShadowVisible: false,
+					headerStyle: {
+						backgroundColor: "#FFF9F7",
+					},
 					tabBarShowLabel: false,
 					tabBarLabelPosition: "beside-icon",
 					tabBarButton: (props) => (
@@ -55,6 +60,19 @@ const TabsLayout = () => {
 						tabBarIcon: ({ focused }) => (
 							<TabIcon icon={focused ? icons.home_focus : icons.home} />
 						),
+						headerTitle: () => (
+							<CustomHeader
+								title={`Salut ${user?.name || "utilisateur"} !`}
+								link={"/notifications"}
+								icon={
+									<Ionicons
+										name='notifications-outline'
+										size={30}
+										color='#132541'
+									/>
+								}
+							/>
+						),
 					}}
 				/>
 				<Tabs.Screen
@@ -63,6 +81,11 @@ const TabsLayout = () => {
 						title: "Objectifs",
 						tabBarIcon: ({ focused }) => (
 							<TabIcon icon={focused ? icons.goals_focus : icons.goals} />
+						),
+						headerTitle: () => (
+							<CustomHeader
+								title={"Mes objectifs"}
+							/>
 						),
 					}}
 				/>
@@ -73,6 +96,11 @@ const TabsLayout = () => {
 						tabBarIcon: ({ focused }) => (
 							<TabIcon icon={focused ? icons.training_focus : icons.training} />
 						),
+						headerTitle: () => (
+							<CustomHeader
+								title={"Mes entrainements"}
+							/>
+						),
 					}}
 				/>
 				<Tabs.Screen
@@ -82,6 +110,7 @@ const TabsLayout = () => {
 						tabBarIcon: ({ focused }) => (
 							<TabIcon icon={focused ? icons.calendar_focus : icons.calendar} />
 						),
+						headerTitle: () => <CustomHeader title={"Calendrier"} />,
 					}}
 				/>
 				<Tabs.Screen
@@ -90,6 +119,15 @@ const TabsLayout = () => {
 						title: "Profil",
 						tabBarIcon: ({ focused }) => (
 							<TabIcon icon={focused ? icons.profile_focus : icons.profile} />
+						),
+						headerTitle: () => (
+							<CustomHeader
+								title={"Profil"}
+								link={"/settings"}
+								icon={
+									<Ionicons name='settings-outline' size={30} color='#132541' />
+								}
+							/>
 						),
 					}}
 				/>

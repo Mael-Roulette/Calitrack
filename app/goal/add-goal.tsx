@@ -8,6 +8,7 @@ import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
 import { createGoal } from "../../lib/appwrite";
 import { useGoalsStore } from "@/store";
 import { GoalState } from "@/type";
+import CustomHeader from "@/components/CustomHeader";
 
 const AddGoal = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -51,16 +52,7 @@ const AddGoal = () => {
 	};
 
 	return (
-		<SafeAreaView className='pt-16 bg-background min-h-full'>
-			<View className='mb-8 flex-row items-center justify-start'>
-				<Link href={"/goals"} className='mr-4'>
-					<AntDesign name='caretleft' size={24} color='#132541' />
-				</Link>
-				<Text className='title'>
-					Ajouter un objectif
-				</Text>
-			</View>
-
+		<SafeAreaView className='bg-background min-h-full'>
 			<ScrollView className='px-5'>
 				<View className='gap-5 h-full'>
 					<CustomInput

@@ -2,15 +2,22 @@ import { useGoalsStore } from "@/store";
 import { Goal } from "@/type";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useRouter } from "expo-router";
-import { useMemo } from "react";
-import { Alert, FlatList, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation, useRouter } from "expo-router";
+import { useLayoutEffect, useMemo } from "react";
+import {
+	Alert,
+	FlatList,
+	Text,
+	TouchableOpacity,
+	View,
+	SafeAreaView,
+} from "react-native";
 import GoalItem from "../goal/components/GoalItem";
 
 const Goals = () => {
 	const { goals } = useGoalsStore();
 	const router = useRouter();
+	const navigation = useNavigation();
 
 	const handleAddGoalLink = () => {
 		if (goals.length >= 10) {
@@ -22,6 +29,16 @@ const Goals = () => {
 			router.push("/goal/add-goal");
 		}
 	};
+
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			headerRight: () => (
+				<TouchableOpacity onPress={handleAddGoalLink} className='mr-4'>
+					<Ionicons name='add-circle-outline' size={30} color='#132541' />
+				</TouchableOpacity>
+			),
+		});
+	}, [navigation, goals.length]);
 
 	const { progressGoals, finishedGoals } = useMemo(
 		() => ({
@@ -83,13 +100,7 @@ const Goals = () => {
 	}, [progressGoals, finishedGoals]);
 
 	return (
-		<SafeAreaView className='px-5 pt-10 bg-background flex-1'>
-			<View className='mb-2 flex-row items-center justify-between'>
-				<Text className='title'>Mes objectifs</Text>
-				<TouchableOpacity onPress={handleAddGoalLink} className='mr-4'>
-					<Ionicons name='add-circle-outline' size={30} color='#132541' />
-				</TouchableOpacity>
-			</View>
+		<SafeAreaView className='px-5 bg-background flex-1'>
 			<View className='mb-6'>
 				<Text className='text-primary-100 italic'>
 					Nombre d&apos;objectifs : {goals.length}/4.

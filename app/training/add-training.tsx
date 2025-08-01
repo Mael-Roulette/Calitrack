@@ -4,11 +4,9 @@ import CustomTags from "@/components/CustomTags";
 import { createTraining } from "@/lib/appwrite";
 import { useTrainingsStore } from "@/store";
 import { createTrainingParams } from "@/type";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import { Alert, ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Alert, ScrollView, View, SafeAreaView } from "react-native";
 
 const AddTraining = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -63,13 +61,7 @@ const AddTraining = () => {
 	];
 
 	return (
-		<SafeAreaView className='bg-background min-h-full px-5 pt-16'>
-			<View className='mb-8 flex-row items-center'>
-				<Link href='/trainings' className='mr-4'>
-					<AntDesign name='caretleft' size={24} color='#132541' />
-				</Link>
-				<Text className='title'>Ajouter un entrainement</Text>
-			</View>
+		<SafeAreaView className='bg-background min-h-full px-5'>
 			<ScrollView>
 				<View className='flex-col gap-5'>
 					<CustomInput

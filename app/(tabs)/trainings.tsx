@@ -1,7 +1,7 @@
 import { useTrainingsStore } from "@/store";
 import { Training } from "@/type";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import {
 	Alert,
 	FlatList,
@@ -11,10 +11,12 @@ import {
 	View,
 } from "react-native";
 import TrainingItem from "../training/components/TrainingItem";
+import { useLayoutEffect } from "react";
 
 const Trainings = () => {
 	const { trainings } = useTrainingsStore();
 	const router = useRouter();
+	const navigation = useNavigation();
 
 	const renderTrainingItem = ({ item }: { item: Training }) => (
 		<TrainingItem id={item.$id} title={item.Name} duration={item.Duration} />
@@ -31,15 +33,18 @@ const Trainings = () => {
 		}
 	};
 
-	return (
-		<SafeAreaView className='px-5 pt-16 bg-background flex-1'>
-			<View className='mb-2 flex-row items-center justify-between'>
-				<Text className='title'>Mes entrainements</Text>
-				<TouchableOpacity onPress={handleAddTrainingLink} className='mr-4'>
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			headerRight: () => (
+				<TouchableOpacity onPress={handleAddTrainingLink} className="mr-4">
 					<Ionicons name='add-circle-outline' size={30} color='#132541' />
 				</TouchableOpacity>
-			</View>
+			),
+		});
+	}, [navigation, trainings.length]);
 
+	return (
+		<SafeAreaView className='px-5 bg-background flex-1'>
 			<View className='mb-6'>
 				<Text className='text-primary-100 italic'>
 					Nombre d&apos;entrainements : {trainings.length}/10.

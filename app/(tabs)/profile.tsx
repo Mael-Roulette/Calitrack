@@ -18,7 +18,7 @@ const Profile = () => {
 	};
 
 	return (
-		<SafeAreaView className='pt-16 bg-background flex-1'>
+		<SafeAreaView className='bg-background flex-1'>
 			{isLoading ? (
 				<View>
 					<Text className='text-xl font-calsans text-primary'>
@@ -27,12 +27,6 @@ const Profile = () => {
 				</View>
 			) : (
 				<ScrollView className='px-5'>
-					<View className='mb-8 flex-row items-center justify-between'>
-						<Text className='title'>Profil</Text>
-						<Link href={"/settings"} className='mr-4'>
-							<Ionicons name='settings-outline' size={30} color='#132541' />
-						</Link>
-					</View>
 
 					<View className=' flex-col items-center justify-center w-full mb-8'>
 						<View className='w-24 h-24 rounded-full bg-gray-200 mb-4 overflow-hidden'>

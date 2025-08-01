@@ -2,11 +2,9 @@ import CustomButton from "@/components/CustomButton";
 import { useAuthStore, useGoalsStore, useTrainingsStore } from "@/store";
 import { Goal } from "@/type";
 import Feather from "@expo/vector-icons/Feather";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { Link, useRouter } from "expo-router";
+import {  useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, Text, View, SafeAreaView } from "react-native";
 import GoalItem from "../goal/components/GoalItem";
 import { getTrainingFromUserByDay } from "@/lib/appwrite";
 import TrainingItem from "../training/components/TrainingItem";
@@ -61,24 +59,13 @@ export default function Index() {
 	);
 
 	return (
-		<SafeAreaView className='pt-10 bg-background min-h-full'>
+		<SafeAreaView className='bg-background min-h-full'>
 			{isLoading ? (
 				<View>
 					<Text className='title'>Chargement...</Text>
 				</View>
 			) : (
 				<ScrollView showsVerticalScrollIndicator={true} className='flex-1 px-5'>
-					<View className='mb-8 flex-row items-center justify-between'>
-						<Text className='title'>Salut {user?.name || "utilisateur"} !</Text>
-						<Link href={"/notifications"} className='mr-4'>
-							<Ionicons
-								name='notifications-outline'
-								size={30}
-								color='#132541'
-							/>
-						</Link>
-					</View>
-
 					<View>
 						<Text className='text-2xl text-primary font-calsans mb-3'>
 							Entrainement du jour

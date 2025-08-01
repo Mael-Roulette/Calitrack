@@ -69,11 +69,8 @@ const Calendar = () => {
 	}, []);
 
 	return (
-		<SafeAreaView className='px-5 pt-16 bg-background flex-1'>
+		<SafeAreaView className='px-5 bg-background flex-1'>
 			<ScrollView>
-				<View className='mb-8 flex-row items-center justify-between'>
-					<Text className='title'>Calendrier</Text>
-				</View>
 
 				<CustomCalendar />
 
