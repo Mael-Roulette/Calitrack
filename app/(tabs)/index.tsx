@@ -8,8 +8,8 @@ import { useEffect, useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GoalItem from "../goal/components/GoalItem";
-import TrainingDay from "../training/components/TrainingDay";
 import { getTrainingFromUserByDay } from "@/lib/appwrite";
+import TrainingItem from "../training/components/TrainingItem";
 
 export default function Index() {
 	const { user, isLoading } = useAuthStore();
@@ -80,11 +80,15 @@ export default function Index() {
 					</View>
 
 					<View>
+						<Text className='text-2xl text-primary font-calsans mb-3'>
+							Entrainement du jour
+						</Text>
 						{todayTraining !== null && todayTraining.$id ? (
-							<TrainingDay
+							<TrainingItem
 								id={todayTraining.$id}
-								name={todayTraining.Name}
+								title={todayTraining.Name}
 								duration={todayTraining.Duration}
+								isTrainingDay={true}
 							/>
 						) : (
 							<Text className='text-primary-100 text-lg mb-2 italic'>

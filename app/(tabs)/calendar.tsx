@@ -2,7 +2,6 @@ import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
 import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import CustomCalendar from "../calendar/components/CustomCalendar";
-import TrainingDay from "../training/components/TrainingDay";
 import TrainingItem from "../training/components/TrainingItem";
 import { useTrainingsStore } from "@/store";
 import { useEffect, useState } from "react";
@@ -103,7 +102,6 @@ const Calendar = () => {
 
 		fetchUpcomingTrainings();
 	}, []);
-
 	return (
 		<SafeAreaView className='px-5 pt-16 bg-background flex-1'>
 			<ScrollView>
@@ -114,7 +112,9 @@ const Calendar = () => {
 				<CustomCalendar />
 
 				<View className='mt-10'>
-					<Text className='text-2xl text-primary font-calsans mb-3'>Entrainement du jour</Text>
+					<Text className='text-2xl text-primary font-calsans mb-3'>
+						Entrainement du jour
+					</Text>
 					{todayTrainings.length > 0 ? (
 						<>
 							{todayTrainings.map((training, index) => (
@@ -122,10 +122,11 @@ const Calendar = () => {
 									key={`today-${training.$id}-${index}`}
 									className={index > 0 ? "mt-3" : ""}
 								>
-									<TrainingDay
+									<TrainingItem
 										id={training.$id}
-										name={training.Name}
+										title={training.Name}
 										duration={training.Duration}
+										isTrainingDay={true}
 									/>
 								</View>
 							))}
@@ -152,18 +153,20 @@ const Calendar = () => {
 								</Text>
 								{item.trainings.length > 0 ? (
 									<>
-										{item.trainings.map((training: Training, trainingIndex: number) => (
-											<View
-												key={`${item.date.getTime()}-${training.$id}-${trainingIndex}`}
-												className={trainingIndex > 0 ? "mt-3" : ""}
-											>
-												<TrainingItem
-													id={training.$id}
-													title={training.Name}
-													duration={training.Duration}
-												/>
-											</View>
-										))}
+										{item.trainings.map(
+											(training: Training, trainingIndex: number) => (
+												<View
+													key={`${item.date.getTime()}-${training.$id}-${trainingIndex}`}
+													className={trainingIndex > 0 ? "mt-3" : ""}
+												>
+													<TrainingItem
+														id={training.$id}
+														title={training.Name}
+														duration={training.Duration}
+													/>
+												</View>
+											)
+										)}
 									</>
 								) : (
 									<Text className='text-primary-100 text-lg italic mb-3'>

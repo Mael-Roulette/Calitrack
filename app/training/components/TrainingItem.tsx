@@ -1,42 +1,85 @@
-import { View, Text } from "react-native";
-import React from "react";
+import PrimaryGradient from "@/components/PrimaryGradient";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { router } from "expo-router";
+import { Text, TouchableOpacity, View } from "react-native";
 import CustomButton from "@/components/CustomButton";
-import { useRouter } from "expo-router";
 
 const TrainingItem = ({
 	id,
 	title,
 	duration,
+	isTrainingDay = false,
 }: {
 	id: string;
 	title: string;
 	duration: number;
+	isTrainingDay?: boolean;
 }) => {
-	const router = useRouter();
-	const goToTraining = ({ id }: { id: string }) => {
+	const goToTraining = () => {
 		router.push(`/training/${id}`);
 	};
 
-	return (
-		<View className='w-full px-5 py-4 mb-5 border-[1px] rounded-xl border-secondary'>
-			<View className='flex-row items-center justify-between mb-5'>
-				<Text className='font-sregular text-primary text-xl'>{title}</Text>
+	const formatDuration = (duration: number) => {
+		return duration < 60
+			? `${duration} minutes`
+			: `${Math.floor(duration / 60)}h${duration % 60 === 0 ? "" : duration % 60}`;
+	};
 
+	const TrainingContent = () => (
+		<>
+			<View className='flex-row justify-between items-center gap-12'>
+				<Text
+					className={`font-sregular text-xl flex-1 ${
+						isTrainingDay ? "text-background capitalize-first" : "text-primary"
+					}`}
+				>
+					{title}
+				</Text>
 				<View className='flex-row items-center gap-2'>
-					<Ionicons name='time-sharp' size={24} color='#132541' />
-					<Text className='text-primary font-sregular text-base'>
-						{duration < 60
-							? `${duration} minutes`
-							: `${Math.floor(duration / 60)}h${duration % 60 === 0 ? '' : duration % 60}`}
+					<Ionicons
+						name='time-sharp'
+						size={24}
+						color={isTrainingDay ? "#FFF9F7" : "#132541"}
+					/>
+					<Text
+						className={`font-sregular text-base ${
+							isTrainingDay ? "text-background" : "text-primary"
+						}`}
+					>
+						{formatDuration(duration)}
 					</Text>
 				</View>
 			</View>
+			{isTrainingDay ? (
+				<TouchableOpacity
+					className='flex-row items-center justify-center rounded-lg py-3 px-6 gap-4 bg-background'
+					onPress={goToTraining}
+				>
+					<AntDesign name='caretright' size={22} color='#FC7942' />
+					<Text className='text-secondary font-sregular text-base'>
+						Lancer ma séance
+					</Text>
+				</TouchableOpacity>
+			) : (
+				<CustomButton title="Voir l'entrainement" onPress={goToTraining} />
+			)}
+		</>
+	);
 
-			<CustomButton
-				title="Voir l'entrainement"
-				onPress={() => goToTraining({ id })}
-			/>
+	if (isTrainingDay) {
+		return (
+			<PrimaryGradient style={{}}>
+				<View className='px-5 py-4 gap-5'>
+					<TrainingContent />
+				</View>
+			</PrimaryGradient>
+		);
+	}
+
+	return (
+		<View className='w-full px-5 py-4 mb-5 gap-5 border-[1px] rounded-xl border-secondary'>
+			<TrainingContent />
 		</View>
 	);
 };
