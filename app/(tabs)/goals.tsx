@@ -84,7 +84,7 @@ const Goals = () => {
 
 	return (
 		<SafeAreaView className='px-5 pt-10 bg-background flex-1'>
-			<View className='mb-5 flex-row items-center justify-between'>
+			<View className='mb-2 flex-row items-center justify-between'>
 				<Text className='title'>Mes objectifs</Text>
 				<TouchableOpacity onPress={handleAddGoalLink} className='mr-4'>
 					<Ionicons name='add-circle-outline' size={30} color='#132541' />
@@ -92,10 +92,17 @@ const Goals = () => {
 			</View>
 			<View className='mb-6'>
 				<Text className='text-primary-100 italic'>
-					Vous pouvez ajouter une nouvelle progression en cliquant sur un
-					objectif.
+					Nombre d&apos;objectifs : {goals.length}/4.
 				</Text>
 			</View>
+			{goals.length !== 0 && (
+				<View className='mb-6 mt-5'>
+					<Text className='text-primary-100 italic'>
+						Vous pouvez ajouter une nouvelle progression en cliquant sur un
+						objectif.
+					</Text>
+				</View>
+			)}
 			<FlatList
 				data={sections}
 				keyExtractor={(item, index) => `section-${index}`}
@@ -113,7 +120,7 @@ const Goals = () => {
 							showsVerticalScrollIndicator={false}
 							ListEmptyComponent={
 								<Text className='text-primary-100 italic text-lg mt-5'>
-									Aucun objectif
+									Aucun objectif.
 								</Text>
 							}
 						/>

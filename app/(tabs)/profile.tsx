@@ -3,13 +3,19 @@ import { icons } from "@/constants/icons";
 import { useAuthStore, useGoalsStore } from "@/store";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 import GoalStats from "../goal/components/GoalStats";
+import CustomButton from "@/components/CustomButton";
 
 const Profile = () => {
 	const { user, isLoading } = useAuthStore();
 	const { goals } = useGoalsStore();
+	const router = useRouter();
+
+	const handleViewAllStats = () => {
+		router.push("/goal/stats");
+	};
 
 	return (
 		<SafeAreaView className='pt-16 bg-background flex-1'>
@@ -78,13 +84,19 @@ const Profile = () => {
 								/>
 							))}
 					</View>
-
-					<Link
-						href={"/goal/stats"}
-						className='mt-2 mb-5'
-					>
-						<Text className='text-primary text-center font-sregular underline underline-offset-1'>Voir toutes mes statistiques</Text>
-					</Link>
+					{goals.length === 0 ? (
+						<View className='mt-4'>
+							<Text className='text-lg text-primary-100 italic'>
+								Aucune stats sur les objectifs disponible.
+							</Text>
+						</View>
+					) : (
+						<CustomButton
+							title='Toutes mes stats'
+							onPress={handleViewAllStats}
+							variant='secondary'
+						/>
+					)}
 				</ScrollView>
 			)}
 		</SafeAreaView>

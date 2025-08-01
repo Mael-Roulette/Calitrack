@@ -136,7 +136,7 @@ export default function Index() {
 								))}
 								{progressGoals.length === 0 && (
 									<Text className='text-primary-100 italic text-lg mt-5'>
-										Aucun objectif
+										Aucun objectif en cours.
 									</Text>
 								)}
 							</View>
