@@ -39,7 +39,7 @@ const SignIn = () => {
 	return (
 		<View className='px-5 py-10'>
 			<View className='gap-8 flex-1'>
-				<Text className='text-3xl font-calsans text-primary'>Me Connecter</Text>
+				<Text className='text-3xl font-calsans text-primary'>Me connecter</Text>
 
 				<View className='gap-6'>
 					<CustomInput

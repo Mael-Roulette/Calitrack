@@ -6,11 +6,11 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 const TrainingDay = ({
 	id,
-	title,
+	name,
 	duration,
 }: {
 	id: string;
-	title: string;
+	name: string;
 	duration: number;
 }) => {
 	const goToTraining = ({ id }: { id: string }) => {
@@ -20,13 +20,9 @@ const TrainingDay = ({
 	return (
 		<PrimaryGradient style={{}}>
 			<View className='bg-primary-gradient px-5 py-4 gap-5'>
-				<Text className='text-background text-xl font-calsans'>
-					Entrainement du jour
-				</Text>
-
 				<View className='flex-row justify-between items-center gap-12'>
-					<Text className='text-background font-sregular text-lg flex-1'>
-						{title}
+					<Text className='text-background font-sregular text-xl flex-1 capitalize-first'>
+						{name}
 					</Text>
 					<View className='flex-row items-center gap-2'>
 						<Ionicons name='time-sharp' size={24} color='#FFF9F7' />

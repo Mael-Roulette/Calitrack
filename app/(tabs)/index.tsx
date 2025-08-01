@@ -17,8 +17,13 @@ export default function Index() {
 	const { fetchUserTrainings } = useTrainingsStore();
 	const router = useRouter();
 	const [todayTraining, setTodayTraining] = useState<any>([]);
+	const today = new Date()
+		.toLocaleDateString("en-EN", {
+			weekday: "long",
+		})
+		.toLowerCase();
 
-	if ( !user ) {
+	if (!user) {
 		router.replace("/(auth)/home");
 	}
 
@@ -26,7 +31,7 @@ export default function Index() {
 	useEffect(() => {
 		const fetchTodayTraining = async () => {
 			try {
-				const training = await getTrainingFromUserByDay("monday");
+				const training = await getTrainingFromUserByDay(today);
 				if (training.length > 0) {
 					setTodayTraining(training[0]);
 				}
@@ -36,7 +41,7 @@ export default function Index() {
 		};
 
 		fetchTodayTraining();
-	}, []);
+	}, [today]);
 
 	const goToCalendar = () => {
 		router.push("/calendar");
@@ -75,11 +80,18 @@ export default function Index() {
 					</View>
 
 					<View>
-						<TrainingDay
-							id={todayTraining.$id}
-							title={todayTraining.Name}
-							duration={todayTraining.Duration}
-						/>
+						{todayTraining !== null && todayTraining.$id ? (
+							<TrainingDay
+								id={todayTraining.$id}
+								name={todayTraining.Name}
+								duration={todayTraining.Duration}
+							/>
+						) : (
+							<Text className='text-primary-100 text-lg mb-2 italic'>
+								Aucun entraînement prévu pour aujourd&apos;hui.
+							</Text>
+						)}
+
 						<CustomButton
 							title='Voir mon planning'
 							variant='secondary'
