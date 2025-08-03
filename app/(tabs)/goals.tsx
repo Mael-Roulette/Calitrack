@@ -103,11 +103,11 @@ const Goals = () => {
 		<SafeAreaView className='px-5 bg-background flex-1'>
 			<View className='mb-6'>
 				<Text className='text-primary-100 italic'>
-					Nombre d&apos;objectifs : {goals.length}/4.
+					Nombre d&apos;objectifs en cours : {progressGoals.length}/4.
 				</Text>
 			</View>
 			{goals.length !== 0 && (
-				<View className='mb-6 mt-5'>
+				<View className='mb-6'>
 					<Text className='text-primary-100 italic'>
 						Vous pouvez ajouter une nouvelle progression en cliquant sur un
 						objectif.

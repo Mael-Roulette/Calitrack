@@ -1,12 +1,13 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from "react";
+import { SafeAreaView, ScrollView } from "react-native";
 
 const Index = () => {
-  return (
-    <View>
-      <Text>Index</Text>
-    </View>
-  )
-}
+	return (
+		<SafeAreaView className='bg-background min-h-full flex-1'>
+			<ScrollView className='px-5'>
+			</ScrollView>
+		</SafeAreaView>
+	);
+};
 
-export default Index
+export default Index;

@@ -1,14 +1,12 @@
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import { useGoalsStore } from "@/store";
+import { GoalState } from "@/type";
 import { Picker } from "@react-native-picker/picker";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
 import { createGoal } from "../../lib/appwrite";
-import { useGoalsStore } from "@/store";
-import { GoalState } from "@/type";
-import CustomHeader from "@/components/CustomHeader";
 
 const AddGoal = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);

@@ -1,7 +1,7 @@
-import { View, Text, ActivityIndicator } from "react-native";
-import React, { useEffect, useState, useLayoutEffect } from "react";
-import { useLocalSearchParams, useRouter, useNavigation } from "expo-router";
 import { getTrainingById } from "@/lib/appwrite";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const TrainingPage = () => {
@@ -9,7 +9,6 @@ const TrainingPage = () => {
 	const [training, setTraining] = useState<any>(null);
 	const [loading, setLoading] = useState(true);
 	const router = useRouter();
-	const navigation = useNavigation();
 
 	useEffect(() => {
 		const fetchTraining = async () => {
@@ -28,16 +27,8 @@ const TrainingPage = () => {
 			}
 		};
 
-			fetchTraining();
+		fetchTraining();
 	}, [id]);
-
-	useLayoutEffect(() => {
-		if (training) {
-			navigation.setOptions({
-				title: training.name,
-			});
-		}
-	}, [navigation, training]);
 
 	return (
 		<SafeAreaView className='bg-background min-h-full px-5'>
