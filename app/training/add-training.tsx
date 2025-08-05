@@ -5,9 +5,10 @@ import { createTraining } from "@/lib/appwrite";
 import { useTrainingsStore } from "@/store";
 import { createTrainingParams, Exercise } from "@/type";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
-import { Alert, SafeAreaView, ScrollView, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Alert, SafeAreaView, ScrollView, View, Text } from "react-native";
 import ExerciseSelectionModal from "./components/ExerciseSelectionModal";
+import ExerciseItem from "../exercise/components/ExerciseItem";
 
 const AddTraining = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -22,6 +23,18 @@ const AddTraining = () => {
 	});
 	const { fetchUserTrainings } = useTrainingsStore();
 	const router = useRouter();
+
+	// Log des exercices sélectionnés à chaque changement
+	useEffect(() => {
+		console.log("=== Exercices sélectionnés ===");
+		console.log(`Nombre d'exercices: ${selectedExercises.length}`);
+		selectedExercises.forEach((exercise, index) => {
+			console.log(
+				`${index + 1}. ${exercise.name} (${exercise.type} - ${exercise.difficulty})`
+			);
+		});
+		console.log("===============================");
+	}, [selectedExercises]);
 
 	const openExerciseModal = () => {
 		setIsModalVisible(true);
@@ -84,7 +97,7 @@ const AddTraining = () => {
 
 	return (
 		<SafeAreaView className='flex-1 bg-background min-h-full px-5'>
-			<ScrollView>
+			<ScrollView className='flex-1'>
 				<View className='flex-col gap-5'>
 					<CustomInput
 						label="Nom de l'entrainement"
@@ -105,7 +118,7 @@ const AddTraining = () => {
 								keyboardType='numeric'
 							/>
 						</View>
-						<View className='flex-1'>
+						<View className='h-full'>
 							<CustomInput
 								label='Minutes'
 								value={String(form.minutes)}
@@ -130,27 +143,43 @@ const AddTraining = () => {
 						maxTags={7}
 						allowCustomTags={false}
 					/>
+
+					{selectedExercises.length > 0 && (
+						<View className='mb-4'>
+							<Text className='text-primary font-calsans text-lg mb-2'>
+								Exercices sélectionnés ({selectedExercises.length})
+							</Text>
+							{selectedExercises.map((exercise, index) => (
+								<ExerciseItem
+									key={exercise.$id}
+									name={exercise.name}
+									type={exercise.type}
+									difficulty={exercise.difficulty}
+								/>
+							))}
+						</View>
+					)}
 				</View>
 
 				<CustomButton
-					title={`Ajouter des exercices${selectedExercises.length > 0 ? ` (${selectedExercises.length})` : ""}`}
+					title={`${selectedExercises.length > 0 ? "Modifier les" : "Ajouter des"} exercices${selectedExercises.length > 0 ? ` (${selectedExercises.length})` : ""}`}
 					variant='secondary'
 					onPress={openExerciseModal}
 				/>
 			</ScrollView>
 
-			<View className='absolute bottom-10 left-5 right-5 z-10'>
-				<CustomButton
-					title="Créer l'entrainement"
-					onPress={submit}
-					isLoading={isSubmitting}
-				/>
-			</View>
+			<CustomButton
+				title="Créer l'entrainement"
+				onPress={submit}
+				isLoading={isSubmitting}
+				customStyles='mt-5 mb-10'
+			/>
 
 			<ExerciseSelectionModal
 				isVisible={isModalVisible}
 				onClose={closeExerciseModal}
 				onExerciseSelected={handleExerciseSelection}
+				initialSelectedExercises={selectedExercises}
 			/>
 		</SafeAreaView>
 	);

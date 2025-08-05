@@ -8,11 +8,13 @@ import { ScrollView, Text, View, SafeAreaView } from "react-native";
 import GoalItem from "../goal/components/GoalItem";
 import { getTrainingFromUserByDay } from "@/lib/appwrite";
 import TrainingItem from "../training/components/TrainingItem";
+import useExercicesStore from "@/store/exercises.stores";
 
 export default function Index() {
 	const { user, isLoading } = useAuthStore();
 	const { goals, isLoadingGoals, fetchUserGoals } = useGoalsStore();
 	const { fetchUserTrainings } = useTrainingsStore();
+	const { fetchExercises } = useExercicesStore();
 	const router = useRouter();
 	const [todayTraining, setTodayTraining] = useState<any>([]);
 	const today = new Date()
@@ -45,11 +47,11 @@ export default function Index() {
 		router.push("/calendar");
 	};
 
-	// Récupération des objectifs en cours
 	useEffect(() => {
 		fetchUserGoals();
 		fetchUserTrainings();
-	}, [fetchUserGoals, fetchUserTrainings]);
+		fetchExercises();
+	}, [fetchUserGoals, fetchUserTrainings, fetchExercises]);
 
 	const { progressGoals } = useMemo(
 		() => ({

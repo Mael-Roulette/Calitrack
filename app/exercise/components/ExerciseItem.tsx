@@ -1,43 +1,69 @@
-import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
+// app/exercise/components/ExerciseItem.tsx
 import React from "react";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { TouchableOpacity, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const ExerciseItem = ({
-	image,
 	name,
 	type,
 	difficulty,
-  isSelected,
+	isSelected = false,
+	onPress,
 }: {
-	image?: string;
 	name: string;
 	type: string;
 	difficulty: string;
-  isSelected: boolean;
+	isSelected?: boolean;
+	onPress?: () => void;
 }) => {
+	const getDifficultyColor = (difficulty: string) => {
+		switch (difficulty.toLowerCase()) {
+			case "beginner":
+				return "text-green-500";
+			case "intermediate":
+				return "text-yellow-500";
+			case "advanced":
+				return "text-orange-500";
+			case "expert":
+				return "text-red-500";
+			default:
+				return "text-primary-100";
+		}
+	};
+
 	return (
-		<View className='flex-row items-center border border-secondary rounded-md py-2 px-4 mb-2'>
-			{image && (
-				<Image source={{ uri: image }} className='w-10 h-10 rounded-full mr-1' />
-			)}
-			<View className='flex-1 flex-col gap-1 mr-3'>
-				<Text className='text-lg font-calsans'>{name}</Text>
-				<View className='flex-row items-center gap-4 mb-1'>
-					<Text className='text-sm text-primary-100 font-sregular'>Type: {type}</Text>
-					<Text className='text-sm text-primary-100 font-sregular'>
-						Difficulté: {difficulty}
+		<TouchableOpacity
+			className={`flex-row items-center justify-between p-4 mb-3 rounded-xl border ${
+				isSelected
+					? "border-secondary bg-secondary/10"
+					: "border-primary-100 bg-background"
+			}`}
+			onPress={onPress}
+			disabled={!onPress}
+		>
+			<View className='flex-1'>
+				<Text className='text-primary font-sregular text-lg mb-1'>{name}</Text>
+				<View className='flex-row items-center gap-3'>
+					<Text className='text-primary-100 text-sm font-sregular'>Type : {type}</Text>
+					<Text className='text-sm font-medium text-primary-100 font-sregular'>
+						Difficulté :{" "}
+						<Text className={`${getDifficultyColor(difficulty)}`}>
+							{difficulty}
+						</Text>
 					</Text>
 				</View>
 			</View>
 
-			<TouchableWithoutFeedback onPress={() => console.log("Exercise selected")}>
-        {isSelected ? (
-          <Ionicons name='checkmark-circle' size={24} color='#132541' />
-        ) : (
-          <Ionicons name='add-circle-outline' size={24} color='#132541' />
-        )}
-			</TouchableWithoutFeedback>
-		</View>
+			{onPress && (
+				<View
+					className={`w-6 h-6 rounded-full border-2 items-center justify-center ${
+						isSelected ? "border-secondary bg-secondary" : "border-primary-100"
+					}`}
+				>
+					{isSelected && <Ionicons name='checkmark' size={16} color='white' />}
+				</View>
+			)}
+		</TouchableOpacity>
 	);
 };
 
