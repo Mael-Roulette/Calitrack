@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -7,11 +7,13 @@ const ExerciseItem = ({
 	name,
 	type,
 	difficulty,
+  isSelected,
 }: {
 	image?: string;
 	name: string;
 	type: string;
 	difficulty: string;
+  isSelected: boolean;
 }) => {
 	return (
 		<View className='flex-row items-center border border-secondary rounded-md py-2 px-4 mb-2'>
@@ -28,9 +30,13 @@ const ExerciseItem = ({
 				</View>
 			</View>
 
-			<View>
-				<Ionicons name='add-circle-outline' size={24} color='#132541' />
-			</View>
+			<TouchableWithoutFeedback onPress={() => console.log("Exercise selected")}>
+        {isSelected ? (
+          <Ionicons name='checkmark-circle' size={24} color='#132541' />
+        ) : (
+          <Ionicons name='add-circle-outline' size={24} color='#132541' />
+        )}
+			</TouchableWithoutFeedback>
 		</View>
 	);
 };

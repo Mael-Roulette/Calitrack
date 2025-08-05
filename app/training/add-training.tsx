@@ -3,12 +3,11 @@ import CustomInput from "@/components/CustomInput";
 import CustomTags from "@/components/CustomTags";
 import { createTraining } from "@/lib/appwrite";
 import { useTrainingsStore } from "@/store";
-import { createTrainingParams } from "@/type";
+import { createTrainingParams, Exercise } from "@/type";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Alert, SafeAreaView, ScrollView, View } from "react-native";
 import ExerciseSelectionModal from "./components/ExerciseSelectionModal";
-import { Exercise } from "@/type";
 
 const AddTraining = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -57,7 +56,7 @@ const AddTraining = () => {
 			name: form.name,
 			days: form.days,
 			duration: totalDuration,
-			exercises: selectedExercises, // Ajout des exercices sélectionnés
+			exercises: selectedExercises,
 		};
 
 		try {

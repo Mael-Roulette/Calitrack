@@ -113,6 +113,7 @@ const ExerciseSelectionModal = ({
 									name='Full planche'
 									type='Push'
 									difficulty='Avancée'
+                  isSelected={false}
 								/>
 							</View>
 						</Animated.View>
