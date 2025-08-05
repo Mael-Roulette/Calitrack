@@ -39,7 +39,7 @@ const GoalStats = ({
 				Record actuel : {highestValue}
 			</Text>
 
-			<GoalChart progressHistory={progressHistory} />
+			<GoalChart progressHistory={progressHistory} total={total} />
 
 			<View className='flex-col justify-center items-center gap-2 mt-3'>
 				<Text className='text-4xl font-calsans text-secondary text-center'>
