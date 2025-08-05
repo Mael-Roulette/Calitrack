@@ -25,6 +25,8 @@ export const appwriteConfig = {
 	goalCollectionId: process.env.EXPO_PUBLIC_APPWRITE_GOAL_COLLECTION_ID!,
 	trainingCollectionId:
 		process.env.EXPO_PUBLIC_APPRWITE_TRAINING_COLLECTION_ID!,
+	exerciseCollectionId:
+		process.env.EXPO_PUBLIC_APPWRITE_EXERCISE_COLLECTION_ID!,
 };
 
 export const client = new Client();
@@ -38,6 +40,12 @@ export const account = new Account(client);
 export const databases = new Databases(client);
 const avatars = new Avatars(client);
 
+/**
+ * Permet de créer un nouvel utilisateur
+ * @param param0 - email, password, name
+ * @returns {Promise<Document>} - Document de l'utilisateur créé
+ * @throws {Error} - Si l'utilisateur n'a pas pu être créé
+ */
 export const createUser = async ({
 	email,
 	password,
@@ -62,6 +70,12 @@ export const createUser = async ({
 	}
 };
 
+/**
+ * Permet de se connecter avec un email et un mot de passe
+ * @param param0 - email, password
+ * @returns {Promise<void>} - Si la connexion a réussi
+ * @throws {Error} - Si la connexion a échoué
+ */
 export const signIn = async ({ email, password }: SignInParams) => {
 	try {
 		await account.createEmailPasswordSession(email, password);
@@ -70,6 +84,11 @@ export const signIn = async ({ email, password }: SignInParams) => {
 	}
 };
 
+/**
+ * Permet de récupérer l'utilisateur actuellement connecté
+ * @returns {Promise<User>} - L'utilisateur actuellement connecté
+ * @throws {Error} - Si l'utilisateur n'a pas pu être récupéré
+ */
 export const getCurrentUser = async (): Promise<User> => {
 	try {
 		const currentAccount = await account.get();
@@ -87,6 +106,11 @@ export const getCurrentUser = async (): Promise<User> => {
 	}
 };
 
+/**
+ * Permet de se déconnecter de la session actuelle
+ * @returns {Promise<void>} - Si la déconnexion a réussi
+ * @throws {Error} - Si la déconnexion a échoué
+ */
 export const logout = async () => {
 	try {
 		const result = await account.deleteSession("current");
@@ -96,6 +120,12 @@ export const logout = async () => {
 	}
 };
 
+/**
+ * Permet de créer un nouvel objectif
+ * @param param0 - title, type, progress, total
+ * @returns {Promise<{goal: Document, message: {title: string, body: string}}>} - L'objectif créé et un message de succès
+ * @throws {Error} - Si l'objectif n'a pas pu être créé
+ */
 export const createGoal = async ({
 	title,
 	type,
@@ -147,6 +177,11 @@ export const createGoal = async ({
 	}
 };
 
+/**
+ * Permet de récupérer les objectifs de l'utilisateur actuellement connecté
+ * @returns {Promise<Document[]>} - Liste des objectifs de l'utilisateur
+ * @throws {Error} - Si les objectifs n'ont pas pu être récupérés
+ */
 export const getGoalsFromUser = async () => {
 	try {
 		const currentUser = await getCurrentUser();
@@ -164,6 +199,13 @@ export const getGoalsFromUser = async () => {
 	}
 };
 
+/**
+ * Permet de modifier un objectif existant
+ * @param id - ID de l'objectif à modifier
+ * @param param1 - progress, updateDate
+ * @returns {Promise<void>} - Si la mise à jour a réussi
+ * @throws {Error} - Si la mise à jour a échoué
+ */
 export const updateGoal = async (
 	id: string,
 	{ progress, updateDate }: updatedGoalParams
@@ -196,6 +238,12 @@ export const updateGoal = async (
 	}
 };
 
+/**
+ * Permet de créer un nouvel entrainement
+ * @param param0 - name, days, duration
+ * @returns {Promise<{training: Document, message: {title: string, body: string}}>} - L'entrainement créé et un message de succès
+ * @throws {Error} - Si l'entrainement n'a pas pu être créé
+ */
 export const createTraining = async ({
 	name,
 	days,
@@ -238,6 +286,11 @@ export const createTraining = async ({
 	}
 };
 
+/**
+ * Permet de récupérer les entrainements de l'utilisateur actuellement connecté
+ * @returns {Promise<Document[]>} - Liste des entrainements de l'utilisateur
+ * @throws {Error} - Si les entrainements n'ont pas pu être récupérés
+ */
 export const getTrainingsFromUser = async () => {
 	try {
 		const currentUser = await getCurrentUser();
@@ -255,6 +308,12 @@ export const getTrainingsFromUser = async () => {
 	}
 };
 
+/**
+ * Permet de récupérer les entrainements de l'utilisateur avec un jour spécifique
+ * @param day - Le jour pour lequel récupérer les entrainements
+ * @returns {Promise<Document[]>} - Liste des entrainements de l'utilisateur pour le jour spécifié
+ * @throws {Error} - Si les entrainements n'ont pas pu être récupérés
+ */
 export const getTrainingFromUserByDay = async (day: string) => {
 	try {
 		const currentUser = await getCurrentUser();
@@ -272,6 +331,12 @@ export const getTrainingFromUserByDay = async (day: string) => {
 	}
 };
 
+/**
+ * Permet de récupérer un entrainement par son ID
+ * @param id - ID de l'entrainement à récupérer
+ * @returns {Promise<Document>} - L'entrainement récupéré
+ * @throws {Error} - Si l'entrainement n'a pas pu être récupéré
+ */
 export const getTrainingById = async (id: string) => {
 	try {
 		const training = await databases.getDocument(
@@ -286,6 +351,13 @@ export const getTrainingById = async (id: string) => {
 	}
 };
 
+/**
+ * Permet de mettre à jour un entrainement existant
+ * @param id - ID de l'entrainement à modifier
+ * @param param1 - name, days, duration
+ * @returns {Promise<void>} - Si la mise à jour a réussi
+ * @throws {Error} - Si la mise à jour a échoué
+ */
 export const updateTraining = async (
 	id: string,
 	{ name, days, duration }: updateTrainingParams
@@ -301,6 +373,24 @@ export const updateTraining = async (
 				Duration: duration,
 			}
 		);
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
+/**
+ * Permet de récupérer tous les exercices disponibles
+ * @returns {Promise<Document[]>} - Liste des exercices disponibles
+ * @throws {Error} - Si les exercices n'ont pas pu être récupérés
+ */
+export const getAllExercises = async () => {
+	try {
+		const exercises = await databases.listDocuments(
+			appwriteConfig.databaseId,
+			appwriteConfig.exerciseCollectionId
+		);
+
+		return exercises.documents;
 	} catch (e) {
 		throw new Error(e as string);
 	}
