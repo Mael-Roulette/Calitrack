@@ -1,25 +1,15 @@
-import CustomButton from "@/components/CustomButton";
-import CustomInput from "@/components/CustomInput";
-import CustomTags from "@/components/CustomTags";
-import { createTraining } from "@/lib/appwrite";
-import { useTrainingsStore } from "@/store";
-import { createTrainingParams } from "@/type";
-import { useRouter } from "expo-router";
-import React, { useState, useRef, useEffect } from "react";
-import {
-	Alert,
-	ScrollView,
-	View,
-	SafeAreaView,
-	Modal,
-	Text,
-	TouchableWithoutFeedback,
-	Animated,
-	PanResponder,
-	Dimensions,
-} from "react-native";
 import ExerciseItem from "@/app/exercise/components/ExerciseItem";
 import { Exercise } from "@/type";
+import React, { useEffect, useRef } from "react";
+import {
+  Animated,
+  Dimensions,
+  Modal,
+  PanResponder,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
 const ExerciseSelectionModal = ({
 	isVisible,
@@ -28,11 +18,8 @@ const ExerciseSelectionModal = ({
 }: {
 	isVisible: boolean;
 	onClose: () => void;
-	onExerciseSelected: (exercises: Exercise[]) => void;
+	onExerciseSelected?: (exercises: Exercise[]) => void;
 }) => {
-  const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(isVisible);
-
 	const panY = useRef(new Animated.Value(0)).current;
 	const screenHeight = Dimensions.get("screen").height;
 
@@ -68,21 +55,26 @@ const ExerciseSelectionModal = ({
 	).current;
 
 	useEffect(() => {
-		if (isModalVisible) {
+		if (isVisible) {
+			panY.setValue(0);
 			resetPositionAnim.start();
 		}
-	}, [isModalVisible]);
+	}, [isVisible]);
 
 	const closeModal = () => {
 		closeAnim.start(() => {
-			setIsModalVisible(false);
+			onClose();
 		});
 	};
+
+	// Ne pas rendre si pas visible
+	if (!isVisible) return null;
+
 	return (
 		<Modal
 			animationType='slide'
 			transparent={true}
-			visible={isModalVisible}
+			visible={isVisible}
 			onRequestClose={closeModal}
 		>
 			<TouchableWithoutFeedback onPress={closeModal}>

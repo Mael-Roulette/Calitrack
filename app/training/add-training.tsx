@@ -6,17 +6,15 @@ import { useTrainingsStore } from "@/store";
 import { createTrainingParams } from "@/type";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import {
-	Alert,
-	SafeAreaView,
-	ScrollView,
-	View
-} from "react-native";
+import { Alert, SafeAreaView, ScrollView, View } from "react-native";
+import ExerciseSelectionModal from "./components/ExerciseSelectionModal";
+import { Exercise } from "@/type";
 
 const AddTraining = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 	const [selectedDays, setSelectedDays] = useState<string[]>([]);
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+	const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
 	const [form, setForm] = useState<Partial<createTrainingParams>>({
 		name: "",
 		days: [],
@@ -26,8 +24,17 @@ const AddTraining = () => {
 	const { fetchUserTrainings } = useTrainingsStore();
 	const router = useRouter();
 
-	const addExercise = () => {
+	const openExerciseModal = () => {
 		setIsModalVisible(true);
+	};
+
+	const closeExerciseModal = () => {
+		setIsModalVisible(false);
+	};
+
+	const handleExerciseSelection = (exercises: Exercise[]) => {
+		setSelectedExercises(exercises);
+		setIsModalVisible(false);
 	};
 
 	const submit = async (): Promise<void> => {
@@ -50,6 +57,7 @@ const AddTraining = () => {
 			name: form.name,
 			days: form.days,
 			duration: totalDuration,
+			exercises: selectedExercises, // Ajout des exercices sélectionnés
 		};
 
 		try {
@@ -126,19 +134,25 @@ const AddTraining = () => {
 				</View>
 
 				<CustomButton
-					title='Ajouter des exercice'
+					title={`Ajouter des exercices${selectedExercises.length > 0 ? ` (${selectedExercises.length})` : ""}`}
 					variant='secondary'
-					onPress={() => addExercise()}
+					onPress={openExerciseModal}
 				/>
 			</ScrollView>
 
 			<View className='absolute bottom-10 left-5 right-5 z-10'>
 				<CustomButton
 					title="Créer l'entrainement"
-					onPress={() => submit()}
+					onPress={submit}
 					isLoading={isSubmitting}
 				/>
 			</View>
+
+			<ExerciseSelectionModal
+				isVisible={isModalVisible}
+				onClose={closeExerciseModal}
+				onExerciseSelected={handleExerciseSelection}
+			/>
 		</SafeAreaView>
 	);
 };
