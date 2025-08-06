@@ -9,16 +9,28 @@ const TrainingItem = ({
 	id,
 	title,
 	duration,
+	days = [],
 	isTrainingDay = false,
 }: {
 	id: string;
 	title: string;
 	duration: number;
+	days?: string[];
 	isTrainingDay?: boolean;
 }) => {
 	const goToTraining = () => {
 		router.push(`/training/${id}`);
 	};
+
+	const daysTranslation = [
+		{ label: "Lundi", value: "monday" },
+		{ label: "Mardi", value: "tuesday" },
+		{ label: "Mercredi", value: "wednesday" },
+		{ label: "Jeudi", value: "thursday" },
+		{ label: "Vendredi", value: "friday" },
+		{ label: "Samedi", value: "saturday" },
+		{ label: "Dimanche", value: "sunday" },
+	];
 
 	const formatDuration = (duration: number) => {
 		return duration < 60
@@ -51,6 +63,15 @@ const TrainingItem = ({
 					</Text>
 				</View>
 			</View>
+			{days.length > 0 && (
+				<View className='flex-row items-center gap-2'>
+					{days.map((day, index) => (
+						<Text key={index} className="py-1 px-3 bg-background rounded-full border border-secondary text-secondary font-sregular text-xs">
+							{daysTranslation.find((d) => d.value === day)?.label || day}
+						</Text>
+					))}
+				</View>
+			)}
 			{isTrainingDay ? (
 				<TouchableOpacity
 					className='flex-row items-center justify-center rounded-md py-3 px-6 gap-4 bg-background'
@@ -70,7 +91,7 @@ const TrainingItem = ({
 	if (isTrainingDay) {
 		return (
 			<PrimaryGradient style={{}}>
-				<View className='px-5 py-4 gap-5'>
+				<View className='px-5 py-4 gap-3'>
 					<TrainingContent />
 				</View>
 			</PrimaryGradient>
@@ -78,7 +99,7 @@ const TrainingItem = ({
 	}
 
 	return (
-		<View className='w-full px-5 py-4 mb-5 gap-5 border-[1px] rounded-xl border-secondary'>
+		<View className='w-full px-5 py-4 mb-5 gap-3 border-[1px] rounded-xl border-secondary'>
 			<TrainingContent />
 		</View>
 	);

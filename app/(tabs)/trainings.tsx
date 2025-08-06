@@ -19,7 +19,7 @@ const Trainings = () => {
 	const navigation = useNavigation();
 
 	const renderTrainingItem = ({ item }: { item: Training }) => (
-		<TrainingItem id={item.$id} title={item.Name} duration={item.Duration} />
+		<TrainingItem id={item.$id} title={item.Name} duration={item.Duration} days={item.days} />
 	);
 
 	const handleAddTrainingLink = () => {
