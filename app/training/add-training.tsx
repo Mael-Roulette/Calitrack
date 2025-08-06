@@ -136,9 +136,16 @@ const AddTraining = () => {
 
 					{selectedExercises.length > 0 && (
 						<View className='mb-4'>
-							<Text className='text-primary font-calsans text-lg mb-2'>
+							<Text className='text-primary font-calsans text-lg mb-1'>
 								Exercices sélectionnés ({selectedExercises.length})
 							</Text>
+							{selectedExercises.length > 4 && (
+								<Text className="text-primary-100 italic font-sregular mb-2">
+									Avoir trop d&apos;exercices dans son entrainement n&apos;est
+									pas forcément une bonne chose
+								</Text>
+							)}
+
 							{selectedExercises.map((exercise, index) => (
 								<ExerciseItem
 									key={exercise.$id}

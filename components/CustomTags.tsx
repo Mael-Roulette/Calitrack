@@ -127,7 +127,7 @@ const CustomTags = ({
 	};
 
 	return (
-		<View className='w-full gap-1 mb-4'>
+		<View className='w-full gap-1 mb-2'>
 			<View className='flex-row justify-between items-center'>
 				<Text className='font-sregular text-xl text-primary'>{label}</Text>
 				<Text className='text-sm font-sregular text-primary-100'>
