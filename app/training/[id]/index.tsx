@@ -95,7 +95,7 @@ const TrainingPage = () => {
 										className='flex-row items-center px-4 py-3 border-b border-gray-200'
 									>
 										<Feather name='edit' size={18} color='#132541' />
-										<Text className='ml-3 text-base text-primary'>
+										<Text className='ml-3 text-base font-sregular text-primary'>
 											Modifier
 										</Text>
 									</TouchableOpacity>
@@ -105,7 +105,7 @@ const TrainingPage = () => {
 										className='flex-row items-center px-4 py-3'
 									>
 										<Feather name='trash-2' size={18} color='#ef4444' />
-										<Text className='ml-3 text-base text-red-500'>
+										<Text className='ml-3 text-base text-red-500 font-sregular'>
 											Supprimer
 										</Text>
 									</TouchableOpacity>

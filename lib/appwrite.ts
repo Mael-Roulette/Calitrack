@@ -366,10 +366,13 @@ export const getTrainingById = async (id: string) => {
  * @returns {Promise<void>} - Si la mise à jour a réussi
  * @throws {Error} - Si la mise à jour a échoué
  */
-export const updateTraining = async (
-	id: string,
-	{ name, days, duration }: updateTrainingParams
-) => {
+export const updateTraining = async ({
+	id,
+	name,
+	days,
+	duration,
+	exercises
+}: updateTrainingParams) => {
 	try {
 		await databases.updateDocument(
 			appwriteConfig.databaseId,
@@ -379,6 +382,7 @@ export const updateTraining = async (
 				Name: name,
 				Days: days,
 				Duration: duration,
+				exercise: exercises,
 			}
 		);
 	} catch (e) {
