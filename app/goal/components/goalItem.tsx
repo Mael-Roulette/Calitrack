@@ -1,5 +1,5 @@
 import CustomInput from "@/components/CustomInput";
-import { updateGoal } from "@/lib/appwrite";
+import { updateGoal } from "@/lib/goal.appwrite";
 import { useState } from "react";
 import { Alert, Modal, Text, TouchableOpacity, View } from "react-native";
 import * as Progress from "react-native-progress";

@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
-import { getTrainingFromUserByDay } from "@/lib/appwrite";
+import { getTrainingFromUserByDay } from "@/lib/training.appwrite";
 import TrainingItem from "../training/components/TrainingItem";
 import CustomButton from "@/components/CustomButton";
 

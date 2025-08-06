@@ -1,4 +1,4 @@
-import { getAllExercises } from "@/lib/appwrite";
+import { getAllExercises } from "@/lib/exercise.appwrite";
 import { Exercise } from "@/type";
 import { create } from "zustand";
 import useAuthStore from "./auth.store";

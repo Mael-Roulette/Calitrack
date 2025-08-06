@@ -1,7 +1,7 @@
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import CustomTags from "@/components/CustomTags";
-import { createTraining } from "@/lib/appwrite";
+import { createTraining } from "@/lib/training.appwrite";
 import { useTrainingsStore } from "@/store";
 import { createTrainingParams, Exercise } from "@/type";
 import { useRouter } from "expo-router";

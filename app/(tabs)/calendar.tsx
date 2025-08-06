@@ -2,7 +2,7 @@ import { SafeAreaView, ScrollView, Text, View } from "react-native";
 import CustomCalendar from "../calendar/components/CustomCalendar";
 import TrainingItem from "../training/components/TrainingItem";
 import { useEffect, useState } from "react";
-import { getTrainingFromUserByDay } from "@/lib/appwrite";
+import { getTrainingFromUserByDay } from "@/lib/training.appwrite";
 import { Training } from "@/type";
 import cn from 'clsx';
 

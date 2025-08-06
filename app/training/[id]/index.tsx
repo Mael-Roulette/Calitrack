@@ -1,6 +1,6 @@
 import ExerciseItem from "@/app/exercise/components/ExerciseItem";
 import { DAYS_TRANSLATION } from "@/constants/value";
-import { deleteTraining, getTrainingById } from "@/lib/appwrite";
+import { deleteTraining, getTrainingById } from "@/lib/training.appwrite";
 import { useTrainingsStore } from "@/store";
 import { Exercise } from "@/type";
 import Feather from "@expo/vector-icons/Feather";

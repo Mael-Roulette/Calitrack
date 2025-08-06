@@ -1,4 +1,4 @@
-import { getCurrentUser, logout as appwriteLogout } from "@/lib/appwrite";
+import { getCurrentUser, logout as appwriteLogout } from "@/lib/user.appwrite";
 import { User } from "@/type";
 import { create } from "zustand";
 

@@ -1,4 +1,4 @@
-import { getTrainingsFromUser } from "@/lib/appwrite";
+import { getTrainingsFromUser } from "@/lib/training.appwrite";
 import { Training } from "@/type";
 import { create } from "zustand";
 import useAuthStore from "./auth.store";

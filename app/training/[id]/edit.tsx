@@ -3,7 +3,7 @@ import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import CustomTags from "@/components/CustomTags";
 import { DAYS_TRANSLATION } from "@/constants/value";
-import { getTrainingById, updateTraining } from "@/lib/appwrite";
+import { getTrainingById, updateTraining } from "@/lib/training.appwrite";
 import { useTrainingsStore } from "@/store";
 import { createTrainingParams, Exercise } from "@/type";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";

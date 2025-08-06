@@ -1,7 +1,7 @@
 import ExerciseItem from "@/app/exercise/components/ExerciseItem";
 import CustomButton from "@/components/CustomButton";
 import { DAYS_TRANSLATION } from "@/constants/value";
-import { getTrainingById, incrementUserTrainings } from "@/lib/appwrite";
+import { getTrainingById, incrementUserTrainings } from "@/lib/training.appwrite";
 import { useAuthStore } from "@/store";
 import { Exercise } from "@/type";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";

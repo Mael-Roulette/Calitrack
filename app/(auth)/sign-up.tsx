@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Alert, Text, View } from "react-native";
 import CustomButton from "../../components/CustomButton";
 import CustomInput from "../../components/CustomInput";
-import { createUser } from "../../lib/appwrite";
+import { createUser } from "@/lib/user.appwrite";
 import { useAuthStore } from "@/store";
 
 const SignUp = () => {

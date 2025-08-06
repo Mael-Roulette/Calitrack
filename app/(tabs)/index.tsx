@@ -6,7 +6,7 @@ import {  useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { ScrollView, Text, View, SafeAreaView } from "react-native";
 import GoalItem from "../goal/components/GoalItem";
-import { getTrainingFromUserByDay } from "@/lib/appwrite";
+import { getTrainingFromUserByDay } from "@/lib/training.appwrite";
 import TrainingItem from "../training/components/TrainingItem";
 import useExercicesStore from "@/store/exercises.stores";
 

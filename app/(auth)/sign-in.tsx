@@ -1,6 +1,6 @@
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
-import { signIn } from "@/lib/appwrite";
+import { signIn } from "@/lib/user.appwrite";
 import { useAuthStore } from "@/store";
 import * as Sentry from "@sentry/react-native";
 import { Link, router } from "expo-router";
