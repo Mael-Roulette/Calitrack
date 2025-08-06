@@ -23,7 +23,7 @@ const Trainings = () => {
 	);
 
 	const handleAddTrainingLink = () => {
-		if (trainings.length >= 10) {
+		if (trainings.length >= 6) {
 			Alert.alert(
 				"Limite atteinte",
 				"Vous ne pouvez pas ajouter plus de 10 entrainements."

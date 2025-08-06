@@ -256,7 +256,7 @@ export const createTraining = async ({
 
 		const existingTrainings = await getTrainingsFromUser();
 
-		if (existingTrainings.length >= 10) {
+		if (existingTrainings.length >= 6) {
 			const message = {
 				title: "Nombre maximum d'entrainements atteint",
 				body: "Vous ne pouvez pas ajouter plus de 10 entrainements.",
