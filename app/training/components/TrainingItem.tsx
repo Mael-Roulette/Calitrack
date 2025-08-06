@@ -20,7 +20,11 @@ const TrainingItem = ({
 	isTrainingDay?: boolean;
 }) => {
 	const goToTraining = () => {
-		router.push(`/training/${id}/`);
+		if ( isTrainingDay ) {
+			router.push(`/training/${id}/session`);
+		} else {
+			router.push(`/training/${id}/`);
+		}
 	};
 
 	const formatDuration = (duration: number) => {

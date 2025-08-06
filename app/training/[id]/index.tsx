@@ -16,7 +16,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const TrainingPage = () => {
+const Index = () => {
 	const { id } = useLocalSearchParams();
 	const [training, setTraining] = useState<any>(null);
 	const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ const TrainingPage = () => {
 	const [showMenu, setShowMenu] = useState(false);
 	const router = useRouter();
 	const navigation = useNavigation();
-  const { fetchUserTrainings } = useTrainingsStore();
+	const { fetchUserTrainings } = useTrainingsStore();
 
 	useEffect(() => {
 		const fetchTraining = async () => {
@@ -48,9 +48,9 @@ const TrainingPage = () => {
 	const handleDelete = () => {
 		setShowMenu(false);
 		console.log("Supprimer l'entrainement");
-    deleteTraining(training.$id)
-      .then(() => fetchUserTrainings())
-      .then(() => router.push("/trainings"));
+		deleteTraining(training.$id)
+			.then(() => fetchUserTrainings())
+			.then(() => router.push("/trainings"));
 	};
 
 	const handleEdit = () => {
@@ -141,42 +141,39 @@ const TrainingPage = () => {
 				</View>
 			) : (
 				<View>
-					<View>
-						<Text className='text-lg font-sregular text-primary mb-2'>
-							Durée:{" "}
-							{training?.Duration < 60
-								? `${training?.Duration} minutes`
-								: `${Math.floor((training?.Duration ?? 0) / 60)}h${(training?.Duration ?? 0) % 60 === 0 ? "" : (training?.Duration ?? 0) % 60}`}
-						</Text>
-						{training.Days.length > 0 && (
-							<View className='flex-row items-center gap-2 mb-4'>
-								{training.Days.map((day: string, index: number) => (
-									<Text
-										key={index}
-										className='py-1 px-3 bg-background rounded-full border border-secondary text-secondary font-sregular text-xs'
-									>
-										{DAYS_TRANSLATION.find((d) => d.value === day)?.label ||
-											day}
-									</Text>
-								))}
-							</View>
-						)}
-						<FlatList
-							data={trainingExercises}
-							renderItem={renderExerciseItem}
-							keyExtractor={(item) => item.Name}
-							showsVerticalScrollIndicator={false}
-							ListEmptyComponent={
-								<Text className='text-primary-100 italic text-lg mt-5'>
-									Aucun exercice
+					<Text className='text-lg font-sregular text-primary mb-2'>
+						Durée:{" "}
+						{training?.Duration < 60
+							? `${training?.Duration} minutes`
+							: `${Math.floor((training?.Duration ?? 0) / 60)}h${(training?.Duration ?? 0) % 60 === 0 ? "" : (training?.Duration ?? 0) % 60}`}
+					</Text>
+					{training.Days.length > 0 && (
+						<View className='flex-row items-center gap-2 mb-4'>
+							{training.Days.map((day: string, index: number) => (
+								<Text
+									key={index}
+									className='py-1 px-3 bg-background rounded-full border border-secondary text-secondary font-sregular text-xs'
+								>
+									{DAYS_TRANSLATION.find((d) => d.value === day)?.label || day}
 								</Text>
-							}
-						/>
-					</View>
+							))}
+						</View>
+					)}
+					<FlatList
+						data={trainingExercises}
+						renderItem={renderExerciseItem}
+						keyExtractor={(item) => item.Name}
+						showsVerticalScrollIndicator={false}
+						ListEmptyComponent={
+							<Text className='text-primary-100 italic text-lg mt-5'>
+								Aucun exercice
+							</Text>
+						}
+					/>
 				</View>
 			)}
 		</SafeAreaView>
 	);
 };
 
-export default TrainingPage;
+export default Index;
