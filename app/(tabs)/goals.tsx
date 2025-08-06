@@ -13,6 +13,7 @@ import {
 	SafeAreaView,
 } from "react-native";
 import GoalItem from "../goal/components/GoalItem";
+import { MAX_GOALS } from "@/constants/value";
 
 const Goals = () => {
 	const { goals } = useGoalsStore();
@@ -20,10 +21,10 @@ const Goals = () => {
 	const navigation = useNavigation();
 
 	const handleAddGoalLink = () => {
-		if (goals.length >= 10) {
+		if (goals.length >= MAX_GOALS) {
 			Alert.alert(
 				"Limite atteinte",
-				"Vous ne pouvez pas ajouter plus de 10 entrainements."
+				"Vous ne pouvez pas ajouter plus de 4 objectifs."
 			);
 		} else {
 			router.push("/goal/add-goal");

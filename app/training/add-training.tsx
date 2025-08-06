@@ -5,10 +5,10 @@ import { createTraining } from "@/lib/appwrite";
 import { useTrainingsStore } from "@/store";
 import { createTrainingParams, Exercise } from "@/type";
 import { useRouter } from "expo-router";
-import React, { useState, useEffect } from "react";
-import { Alert, SafeAreaView, ScrollView, View, Text } from "react-native";
-import ExerciseSelectionModal from "./components/ExerciseSelectionModal";
+import React, { useState } from "react";
+import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
 import ExerciseItem from "../exercise/components/ExerciseItem";
+import ExerciseSelectionModal from "./components/ExerciseSelectionModal";
 
 const AddTraining = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -140,7 +140,7 @@ const AddTraining = () => {
 								Exercices sélectionnés ({selectedExercises.length})
 							</Text>
 							{selectedExercises.length > 4 && (
-								<Text className="text-primary-100 italic font-sregular mb-2">
+								<Text className='text-primary-100 italic font-sregular mb-2'>
 									Avoir trop d&apos;exercices dans son entrainement n&apos;est
 									pas forcément une bonne chose
 								</Text>

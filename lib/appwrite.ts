@@ -15,6 +15,7 @@ import {
 	ID,
 	Query,
 } from "react-native-appwrite";
+import { MAX_TRAININGS, MAX_GOALS } from "@/constants/value";
 
 export const appwriteConfig = {
 	endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
@@ -141,7 +142,7 @@ export const createGoal = async ({
 			(goal) => goal.state === "in-progress"
 		);
 
-		if (progressGoals.length >= 4) {
+		if (progressGoals.length >= MAX_GOALS) {
 			const message = {
 				title: "Nombre maximum d'objectifs atteint",
 				body: "Vous ne pouvez pas avoir plus de 4 objectifs en cours.",
@@ -256,7 +257,7 @@ export const createTraining = async ({
 
 		const existingTrainings = await getTrainingsFromUser();
 
-		if (existingTrainings.length >= 6) {
+		if (existingTrainings.length >= MAX_TRAININGS) {
 			const message = {
 				title: "Nombre maximum d'entrainements atteint",
 				body: "Vous ne pouvez pas ajouter plus de 10 entrainements.",

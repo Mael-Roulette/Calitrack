@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import TrainingItem from "../training/components/TrainingItem";
 import { useLayoutEffect } from "react";
+import { MAX_TRAININGS } from "@/constants/value";
 
 const Trainings = () => {
 	const { trainings } = useTrainingsStore();
@@ -23,7 +24,7 @@ const Trainings = () => {
 	);
 
 	const handleAddTrainingLink = () => {
-		if (trainings.length >= 6) {
+		if (trainings.length >= MAX_TRAININGS) {
 			Alert.alert(
 				"Limite atteinte",
 				"Vous ne pouvez pas ajouter plus de 10 entrainements."
