@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
 import ExerciseItem from "../exercise/components/ExerciseItem";
 import ExerciseSelectionModal from "./components/ExerciseSelectionModal";
+import { DAYS_TRANSLATION } from "@/constants/value";
 
 const AddTraining = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -75,16 +76,6 @@ const AddTraining = () => {
 		}
 	};
 
-	const daysSuggestions = [
-		{ label: "Lundi", value: "monday" },
-		{ label: "Mardi", value: "tuesday" },
-		{ label: "Mercredi", value: "wednesday" },
-		{ label: "Jeudi", value: "thursday" },
-		{ label: "Vendredi", value: "friday" },
-		{ label: "Samedi", value: "saturday" },
-		{ label: "Dimanche", value: "sunday" },
-	];
-
 	return (
 		<SafeAreaView className='flex-1 bg-background min-h-full px-5'>
 			<ScrollView className='flex-1'>
@@ -124,7 +115,7 @@ const AddTraining = () => {
 					<CustomTags
 						label='Jours de disponibilité'
 						placeholder="Sélectionnez vos jours d'entrainement..."
-						suggestions={daysSuggestions}
+						suggestions={DAYS_TRANSLATION}
 						value={selectedDays}
 						onChangeText={(days) => {
 							setSelectedDays(days);
@@ -149,9 +140,9 @@ const AddTraining = () => {
 							{selectedExercises.map((exercise, index) => (
 								<ExerciseItem
 									key={exercise.$id}
-									name={exercise.name}
-									type={exercise.type}
-									difficulty={exercise.difficulty}
+									name={exercise.Name}
+									type={exercise.Type}
+									difficulty={exercise.Difficulty}
 								/>
 							))}
 						</View>

@@ -34,7 +34,7 @@ const Goals = () => {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerRight: () => (
-				<TouchableOpacity onPress={handleAddGoalLink} className='mr-4'>
+				<TouchableOpacity onPress={handleAddGoalLink} className='mr-4' accessibilityLabel="Ajouter un objectif">
 					<Ionicons name='add-circle-outline' size={30} color='#132541' />
 				</TouchableOpacity>
 			),

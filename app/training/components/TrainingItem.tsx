@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
 import CustomButton from "@/components/CustomButton";
+import { DAYS_TRANSLATION } from "@/constants/value";
 
 const TrainingItem = ({
 	id,
@@ -19,18 +20,8 @@ const TrainingItem = ({
 	isTrainingDay?: boolean;
 }) => {
 	const goToTraining = () => {
-		router.push(`/training/${id}`);
+		router.push(`/training/${id}/`);
 	};
-
-	const daysTranslation = [
-		{ label: "Lundi", value: "monday" },
-		{ label: "Mardi", value: "tuesday" },
-		{ label: "Mercredi", value: "wednesday" },
-		{ label: "Jeudi", value: "thursday" },
-		{ label: "Vendredi", value: "friday" },
-		{ label: "Samedi", value: "saturday" },
-		{ label: "Dimanche", value: "sunday" },
-	];
 
 	const formatDuration = (duration: number) => {
 		return duration < 60
@@ -67,7 +58,7 @@ const TrainingItem = ({
 				<View className='flex-row items-center gap-2'>
 					{days.map((day, index) => (
 						<Text key={index} className="py-1 px-3 bg-background rounded-full border border-secondary text-secondary font-sregular text-xs">
-							{daysTranslation.find((d) => d.value === day)?.label || day}
+							{DAYS_TRANSLATION.find((d) => d.value === day)?.label || day}
 						</Text>
 					))}
 				</View>

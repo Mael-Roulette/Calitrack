@@ -37,7 +37,7 @@ const Trainings = () => {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerRight: () => (
-				<TouchableOpacity onPress={handleAddTrainingLink} className="mr-4">
+				<TouchableOpacity onPress={handleAddTrainingLink} className="mr-4" accessibilityLabel="Ajouter un entrainement">
 					<Ionicons name='add-circle-outline' size={30} color='#132541' />
 				</TouchableOpacity>
 			),

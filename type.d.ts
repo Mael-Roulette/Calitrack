@@ -116,8 +116,8 @@ interface Training {
 
 interface Exercise {
 	$id: string;
-	name: string;
-	type: string;
-	difficulty: string;
-	image?: string;
+	Name: string;
+	Type: string;
+	Difficulty: string;
+	Image?: string;
 }
