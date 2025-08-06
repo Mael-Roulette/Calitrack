@@ -387,6 +387,22 @@ export const updateTraining = async (
 };
 
 /**
+ * Permet de supprimer un entrainement en fonction de son id
+ * @param id - id de l'entrainement
+ */
+export const deleteTraining = async (id: string) => {
+	try {
+		await databases.deleteDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.trainingCollectionId,
+			id
+		);
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
+/**
  * Permet de récupérer tous les exercices disponibles
  * @returns {Promise<Document[]>} - Liste des exercices disponibles
  * @throws {Error} - Si les exercices n'ont pas pu être récupérés
