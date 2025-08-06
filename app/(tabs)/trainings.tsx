@@ -48,7 +48,7 @@ const Trainings = () => {
 		<SafeAreaView className='px-5 bg-background flex-1'>
 			<View className='mb-6'>
 				<Text className='text-primary-100 italic'>
-					Nombre d&apos;entrainements : {trainings.length}/10.
+					Nombre d&apos;entrainements : {trainings.length}/{MAX_TRAININGS}.
 				</Text>
 			</View>
 
