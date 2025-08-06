@@ -122,3 +122,11 @@ interface Exercise {
 	Difficulty: string;
 	Image?: string;
 }
+
+interface CalendarDay {
+	dateString: string;
+	day: number;
+	month: number;
+	year: number;
+	timestamp: number;
+}
