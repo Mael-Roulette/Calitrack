@@ -100,7 +100,7 @@ const AddTraining = () => {
 						<View className='flex-1'>
 							<CustomInput
 								label='Heure'
-								value={String(form.hours)}
+								value={form.hours !== 0 ? String(form.hours) : ''}
 								placeholder='1'
 								onChangeText={(t: string) =>
 									setForm((p) => ({ ...p, hours: parseInt(t) || 0 }))
@@ -108,10 +108,10 @@ const AddTraining = () => {
 								keyboardType='numeric'
 							/>
 						</View>
-						<View className='h-full'>
+						<View className='flex-1'>
 							<CustomInput
 								label='Minutes'
-								value={String(form.minutes)}
+								value={form.minutes !== 0 ? String(form.minutes) : ''}
 								placeholder='30'
 								onChangeText={(t: string) =>
 									setForm((p) => ({ ...p, minutes: parseInt(t) || 0 }))

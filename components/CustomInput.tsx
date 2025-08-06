@@ -17,7 +17,7 @@ const CustomInput = ({
 
 	return (
 		<View className='w-full gap-1'>
-			<Text className='font-sregular text-xl'>{label}</Text>
+			<Text className='font-sregular text-lg text-primary'>{label}</Text>
 
 			<TextInput
 				autoCapitalize='none'
