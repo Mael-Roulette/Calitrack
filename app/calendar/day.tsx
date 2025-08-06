@@ -1,12 +1,14 @@
 import { View, Text, SafeAreaView } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import { getTrainingFromUserByDay } from "@/lib/appwrite";
 import TrainingItem from "../training/components/TrainingItem";
+import CustomButton from "@/components/CustomButton";
 
 const Day = () => {
 	const { day, month, year } = useLocalSearchParams();
 	const navigation = useNavigation();
+	const router = useRouter();
 	const [dayTrainings, setDayTrainings] = useState<any[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -83,7 +85,7 @@ const Day = () => {
 
 	return (
 		<SafeAreaView className='flex-1 bg-background px-5'>
-			<View>
+			<View className='flex-1'>
 				{isLoading ? (
 					<Text>Chargement des entraînements...</Text>
 				) : dayTrainings.length > 0 ? (
@@ -92,12 +94,29 @@ const Day = () => {
 							id={training.$id}
 							key={`${training.$id}-${index}`}
 							title={training.Name}
-              days={training.Days}
-              duration={training.Duration}
+							days={training.Days}
+							duration={training.Duration}
 						/>
 					))
 				) : (
-					<Text>Aucun entraînement prévu pour cette journée</Text>
+					<>
+						<View className='flex-1 items-center justify-center'>
+							<Text className='text-primary-100 italic text-center text-lg'>
+								Aucun entraînement prévu pour cette journée
+							</Text>
+						</View>
+						<View className="flex-col gap-5 mb-10">
+							<CustomButton
+								title='Modifier un entraînement'
+								variant='secondary'
+								onPress={() => router.push("/trainings")}
+							/>
+							<CustomButton
+								title='Créer un entraînement'
+								onPress={() => router.push("/training/add-training")}
+							/>
+						</View>
+					</>
 				)}
 			</View>
 		</SafeAreaView>
