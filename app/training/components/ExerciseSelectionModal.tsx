@@ -1,5 +1,6 @@
 import ExerciseItem from "@/app/exercise/components/ExerciseItem";
 import CustomButton from "@/components/CustomButton";
+import CustomInput from "@/components/CustomInput";
 import useExercicesStore from "@/store/exercises.stores";
 import { Exercise } from "@/type";
 import React, { useEffect, useRef, useState, useCallback } from "react";
@@ -29,6 +30,16 @@ const ExerciseSelectionModal = ({
 	const [selectedExercises, setSelectedExercises] = useState<Exercise[]>(
 		initialSelectedExercises
 	);
+	const [searchQuery, setSearchQuery] = useState("");
+	const [filteredExercises, setFilteredExercises] =
+		useState<Exercise[]>(exercices);
+
+	useEffect(() => {
+		setFilteredExercises(exercices);
+	}, [exercices]);
+
+	/* -------------------------------------------------- */
+	/* ---------- Gestion de la modal ---------- */
 	const panY = useRef(new Animated.Value(0)).current;
 	const screenHeight = Dimensions.get("screen").height;
 
@@ -80,6 +91,27 @@ const ExerciseSelectionModal = ({
 		});
 	}, [closeAnim, onClose]);
 
+	/* ----- Recherche d'exercice ----- */
+	const handleSearch = (text: string) => {
+		setSearchQuery(text);
+
+		if (!text.trim()) {
+			setFilteredExercises(exercices);
+			return;
+		}
+
+		const query = text.toLowerCase();
+		const filtered = exercices.filter(
+			(exercise) =>
+				exercise.name.toLowerCase().includes(query) ||
+				exercise.type.toLowerCase().includes(query)
+		);
+
+		setFilteredExercises(filtered);
+	};
+
+	/* -------------------------------------------------- */
+	/* ---------- Sélection des exercices ---------- */
 	const handleExerciseToggle = useCallback((exercise: Exercise) => {
 		setSelectedExercises((prev) => {
 			const isAlreadySelected = prev.some((ex) => ex.$id === exercise.$id);
@@ -101,8 +133,8 @@ const ExerciseSelectionModal = ({
 		[selectedExercises]
 	);
 
+	/* ----- Confirmer la sélection ----- */
 	const handleConfirmSelection = useCallback(() => {
-		// Éviter les mises à jour synchrones en utilisant setTimeout
 		setTimeout(() => {
 			if (onExerciseSelected) {
 				onExerciseSelected(selectedExercises);
@@ -144,21 +176,28 @@ const ExerciseSelectionModal = ({
 							</View>
 
 							<View className='flex-1'>
-								<Text className='text-center text-primary font-calsans text-lg mb-2'>
+								<Text className='text-center text-primary font-calsans text-2xl'>
 									Choisis tes exercices
 								</Text>
 
-								<Text className='text-center text-primary-100 text-sm mb-4'>
+								<Text className='text-center text-primary-100 font-sregular mb-4'>
 									{selectedExercises.length} exercice
 									{selectedExercises.length > 1 ? "s" : ""} sélectionné
 									{selectedExercises.length > 1 ? "s" : ""}
 								</Text>
 
+								<CustomInput
+									label='Rechercher un exercice'
+									placeholder='Ex : Front, planche, ...'
+									onChangeText={handleSearch}
+									customStyles="mb-4"
+								/>
+
 								<ScrollView
 									className='flex-1 mb-4'
 									showsVerticalScrollIndicator={false}
 								>
-									{exercices.map((exercise) => (
+									{filteredExercises.map((exercise) => (
 										<ExerciseItem
 											key={exercise.$id}
 											name={exercise.name}

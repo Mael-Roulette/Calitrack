@@ -33,7 +33,7 @@ const ExerciseItem = ({
 
 	return (
 		<TouchableOpacity
-			className={`flex-row items-center justify-between p-4 mb-3 rounded-xl border ${
+			className={`flex-row items-center justify-between p-4 mb-3 rounded-md border ${
 				isSelected
 					? "border-secondary bg-secondary/10"
 					: "border-primary-100 bg-background"

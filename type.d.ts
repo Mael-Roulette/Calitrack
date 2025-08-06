@@ -27,6 +27,7 @@ interface CustomInputProps {
 	secureTextEntry?: boolean;
 	keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
 	editable?: boolean;
+	customStyles?: string;
 }
 
 interface CustomTagsProps {
