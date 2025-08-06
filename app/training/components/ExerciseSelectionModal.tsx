@@ -2,7 +2,7 @@ import ExerciseItem from "@/app/exercise/components/ExerciseItem";
 import CustomButton from "@/components/CustomButton";
 import useExercicesStore from "@/store/exercises.stores";
 import { Exercise } from "@/type";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import {
 	Animated,
 	Dimensions,
@@ -71,13 +71,16 @@ const ExerciseSelectionModal = ({
 		}
 	}, [isVisible, initialSelectedExercises]);
 
-	const closeModal = () => {
+	const closeModal = useCallback(() => {
 		closeAnim.start(() => {
-			onClose();
+			// Utiliser setTimeout pour éviter les mises à jour synchrones
+			setTimeout(() => {
+				onClose();
+			}, 0);
 		});
-	};
+	}, [closeAnim, onClose]);
 
-	const handleExerciseToggle = (exercise: Exercise) => {
+	const handleExerciseToggle = useCallback((exercise: Exercise) => {
 		setSelectedExercises((prev) => {
 			const isAlreadySelected = prev.some((ex) => ex.$id === exercise.$id);
 
@@ -89,18 +92,25 @@ const ExerciseSelectionModal = ({
 				return [...prev, exercise];
 			}
 		});
-	};
+	}, []);
 
-	const isExerciseSelected = (exerciseId: string) => {
-		return selectedExercises.some((ex) => ex.$id === exerciseId);
-	};
+	const isExerciseSelected = useCallback(
+		(exerciseId: string) => {
+			return selectedExercises.some((ex) => ex.$id === exerciseId);
+		},
+		[selectedExercises]
+	);
 
-	const handleConfirmSelection = () => {
-		if (onExerciseSelected) {
-			onExerciseSelected(selectedExercises);
-		}
-		closeModal();
-	};
+	const handleConfirmSelection = useCallback(() => {
+		// Éviter les mises à jour synchrones en utilisant setTimeout
+		setTimeout(() => {
+			if (onExerciseSelected) {
+				onExerciseSelected(selectedExercises);
+			}
+			closeModal();
+		}, 0);
+	}, [selectedExercises, onExerciseSelected, closeModal]);
+
 	if (!isVisible) return null;
 
 	return (

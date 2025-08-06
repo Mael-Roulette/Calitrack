@@ -248,6 +248,7 @@ export const createTraining = async ({
 	name,
 	days,
 	duration,
+	exercises,
 }: createTrainingParams) => {
 	try {
 		const currentUser = await getCurrentUser();
@@ -263,6 +264,11 @@ export const createTraining = async ({
 			return message;
 		}
 
+		let exercisesTab: any = [];
+		if (exercises && exercises.length !== 0) {
+			exercisesTab = exercises;
+		}
+
 		const training = await databases.createDocument(
 			appwriteConfig.databaseId,
 			appwriteConfig.trainingCollectionId,
@@ -272,6 +278,7 @@ export const createTraining = async ({
 				Name: name,
 				Days: days,
 				Duration: duration,
+				exercise: exercisesTab,
 			}
 		);
 

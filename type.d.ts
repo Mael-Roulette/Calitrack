@@ -92,6 +92,7 @@ interface createTrainingParams {
 	name: string;
 	days?: string[];
 	duration: number;
+	exercises?: string[];
 	hours?: number;
 	minutes?: number;
 }
@@ -101,6 +102,7 @@ interface updateTrainingParams {
 	name?: string;
 	days?: string[];
 	duration?: number;
+	exercises?: string[];
 }
 
 interface Training {

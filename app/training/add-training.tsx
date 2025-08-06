@@ -24,18 +24,6 @@ const AddTraining = () => {
 	const { fetchUserTrainings } = useTrainingsStore();
 	const router = useRouter();
 
-	// Log des exercices sélectionnés à chaque changement
-	useEffect(() => {
-		console.log("=== Exercices sélectionnés ===");
-		console.log(`Nombre d'exercices: ${selectedExercises.length}`);
-		selectedExercises.forEach((exercise, index) => {
-			console.log(
-				`${index + 1}. ${exercise.name} (${exercise.type} - ${exercise.difficulty})`
-			);
-		});
-		console.log("===============================");
-	}, [selectedExercises]);
-
 	const openExerciseModal = () => {
 		setIsModalVisible(true);
 	};
@@ -65,11 +53,13 @@ const AddTraining = () => {
 
 		const totalDuration = form.hours * 60 + form.minutes;
 
+		const exerciseIds = selectedExercises.map((exercise) => exercise.$id);
+
 		const trainingData = {
 			name: form.name,
 			days: form.days,
 			duration: totalDuration,
-			exercises: selectedExercises,
+			exercises: exerciseIds,
 		};
 
 		try {
