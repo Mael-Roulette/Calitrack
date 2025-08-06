@@ -1,7 +1,8 @@
 import ExerciseItem from "@/app/exercise/components/ExerciseItem";
 import CustomButton from "@/components/CustomButton";
 import { DAYS_TRANSLATION } from "@/constants/value";
-import { getTrainingById } from "@/lib/appwrite";
+import { getTrainingById, incrementUserTrainings } from "@/lib/appwrite";
+import { useAuthStore } from "@/store";
 import { Exercise } from "@/type";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
@@ -10,9 +11,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Session = () => {
 	const { id } = useLocalSearchParams();
+	const { user, refreshUser } = useAuthStore();
 	const [training, setTraining] = useState<any>(null);
 	const [loading, setLoading] = useState(true);
 	const [trainingExercises, setTrainingExercises] = useState<Exercise[]>([]);
+	const [isFinishing, setIsFinishing] = useState(false);
 	const router = useRouter();
 	const navigation = useNavigation();
 
@@ -67,8 +70,24 @@ const Session = () => {
 	);
 
 	/* ----- Méthode pour gérer la fin de l'entrainement ----- */
-	const handleEndTraining = () => {
-		router.push("/trainings");
+	const handleEndTraining = async () => {
+		if (!user?.$id) {
+			console.error("Utilisateur non connecté");
+			router.push("/trainings");
+			return;
+		}
+
+		setIsFinishing(true);
+
+		try {
+			await incrementUserTrainings(user.$id);
+			await refreshUser();
+		} catch (error) {
+			console.error("Erreur lors de la sauvegarde:", error);
+		} finally {
+			setIsFinishing(false);
+			router.push("/trainings");
+		}
 	};
 
 	return (
@@ -116,6 +135,7 @@ const Session = () => {
 						<CustomButton
 							title='Entrainement terminé !'
 							onPress={handleEndTraining}
+							isLoading={isFinishing}
 						/>
 					</View>
 				</>

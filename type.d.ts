@@ -4,6 +4,7 @@ export interface User extends Models.Document {
 	name: string;
 	email: string;
 	avatar: string;
+	completedTrainings?: number;
 }
 
 interface TabBarIconProps {

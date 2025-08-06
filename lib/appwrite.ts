@@ -391,6 +391,34 @@ export const updateTraining = async ({
 };
 
 /**
+ * Permet d'incrémenter le nombre d'entrainements terminés pour un utilisateur
+ * @param userId - id de l'utilisateur
+ */
+export const incrementUserTrainings = async (userId: string) => {
+	try {
+		const userDoc = await databases.getDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.userCollectionId,
+			userId
+		);
+
+		const currentCompletedTrainings = userDoc.completedTrainings || 0;
+
+		await databases.updateDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.userCollectionId,
+			userId,
+			{
+				completedTrainings: currentCompletedTrainings + 1,
+			}
+		);
+	}
+	catch (e) {
+		throw new Error(e as string);
+	}
+}
+
+/**
  * Permet de supprimer un entrainement en fonction de son id
  * @param id - id de l'entrainement
  */

@@ -12,6 +12,7 @@ type AuthState = {
 	setLoading: (loading: boolean) => void;
 
 	fetchAuthenticatedUser: () => Promise<void>;
+	refreshUser: () => Promise<void>;
 	logout: () => Promise<void>;
 };
 
@@ -40,6 +41,11 @@ const useAuthStore = create<AuthState>((set) => ({
 		} finally {
 			set({ isLoading: false });
 		}
+	},
+
+	refreshUser: async () => {
+		const currentUser = await getCurrentUser();
+		set({ user: currentUser });
 	},
 
 	logout: async () => {
