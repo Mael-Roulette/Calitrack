@@ -33,11 +33,11 @@ const Home = () => {
 				/>
 			</View>
 
-			<View>
+			{/* <View>
 				<Text className='text-center text-primary font-sregular'>
 					Ou continuer avec :
 				</Text>
-			</View>
+			</View> */}
 		</View>
 	);
 };

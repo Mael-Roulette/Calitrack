@@ -1,6 +1,7 @@
 import { Stack } from "expo-router";
+import React from "react";
 
-export default function SettingsLayout() {
+const AboutLayout = () => {
 	return (
 		<Stack
 			screenOptions={{
@@ -18,28 +19,11 @@ export default function SettingsLayout() {
 			<Stack.Screen
 				name='index'
 				options={{
-					title: "Paramètres",
-				}}
-			/>
-			<Stack.Screen
-				name='account/index'
-				options={{
-					title: "Compte",
-				}}
-			/>
-			<Stack.Screen
-				name='notifications/index'
-				options={{
-					title: "Notifications",
-				}}
-			/>
-			<Stack.Screen
-				name='about'
-				options={{
 					title: "À propos",
-					headerShown: false,
 				}}
 			/>
 		</Stack>
 	);
-}
+};
+
+export default AboutLayout;

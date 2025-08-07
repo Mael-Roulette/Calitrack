@@ -1,7 +1,6 @@
-import { useAuthStore } from "@/store";
+import { Ionicons } from "@expo/vector-icons";
 import Entypo from "@expo/vector-icons/Entypo";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { Link, useRouter } from "expo-router";
+import { Link } from "expo-router";
 import {
 	SafeAreaView,
 	ScrollView,
@@ -9,26 +8,29 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
+import { APP_VERSION } from "@/constants/value";
 
 const Index = () => {
-	const { logout, fetchAuthenticatedUser } = useAuthStore();
-	const router = useRouter();
-
-	const handleLogout = async () => {
-		await logout();
-		await fetchAuthenticatedUser();
-
-		router.replace("/(auth)/home");
-	};
+	const handleDeleteAccount = async () => {};
 
 	return (
 		<SafeAreaView className='bg-background flex-1'>
 			<ScrollView>
+				<View className='px-5 py-4'>
+					<Text className='text-lg font-calsans text-primary-100'>
+						Version : {APP_VERSION}
+					</Text>
+				</View>
 				<View className='flex-col gap-6 mb-4 pt-5 first:border-t-[1px] first:border-gray-200'>
 					{[
-						{ title: "Compte", screen: "account" },
-						{ title: "Notifications", screen: "notifications" },
-						{ title: "À propos", screen: "about" },
+						{ title: "Mentions légales", screen: "account" },
+						{ title: "Politique de confidentialité", screen: "notifications" },
+						{
+							title: "Conditions générales d'utilisation",
+							screen: "notifications",
+						},
+						{ title: "Licences", screen: "notifications" },
+						{ title: "Support", screen: "notifications" },
 					].map((item, index) => (
 						<View
 							key={index}
@@ -54,12 +56,12 @@ const Index = () => {
 				</View>
 				<View className='px-5'>
 					<TouchableOpacity
-						onPress={handleLogout}
+						onPress={handleDeleteAccount}
 						className='flex-row items-center py-3'
 					>
 						<Ionicons name='log-out-outline' size={24} color='#F43F5E' />
 						<Text className='ml-3 text-lg text-rose-500 font-medium'>
-							Déconnexion
+							Supprimer mon compte
 						</Text>
 					</TouchableOpacity>
 				</View>
