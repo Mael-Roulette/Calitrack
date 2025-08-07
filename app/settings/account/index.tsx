@@ -1,11 +1,54 @@
 import CustomInput from "@/components/CustomInput";
+import { updateUser } from "@/lib/user.appwrite";
 import { useAuthStore } from "@/store";
-import React, { useState } from "react";
-import { SafeAreaView, Switch, Text, View } from "react-native";
+import React, { use, useState } from "react";
+import {
+	Alert,
+	SafeAreaView,
+	Switch,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
+import Feather from "@expo/vector-icons/Feather";
+import { useRouter } from "expo-router";
 
 const Index = () => {
-	const { user, isLoading } = useAuthStore();
+	const { user, isLoading, refreshUser } = useAuthStore();
 	const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
+	const [newPseudo, setNewPseudo] = useState(user?.name || "");
+	const [newMail, setNewMail] = useState(user?.email || "");
+	const router = useRouter();
+
+	const handleUpdateUser = async (newPseudo?: string, newMail?: string) => {
+		try {
+			if (!user) return;
+			await updateUser({
+				name: newPseudo || user.name,
+				email: newMail || user.email,
+			});
+			await refreshUser();
+
+			router.push("/profile");
+		} catch (error) {
+			const errorMessage =
+				error instanceof Error ? error.message : String(error);
+
+			if (errorMessage.toLowerCase().includes("email")) {
+				Alert.alert(
+					"Email déjà utilisé",
+					"Cette adresse email est déjà utilisée. Veuillez en choisir une autre.",
+					[{ text: "OK" }]
+				);
+			} else {
+				Alert.alert(
+					"Erreur",
+					"Une erreur est survenue lors de la mise à jour de votre profil.",
+					[{ text: "OK" }]
+				);
+			}
+		}
+	};
 
 	return (
 		<SafeAreaView className='flex-1 px-5 bg-background'>
@@ -15,19 +58,43 @@ const Index = () => {
 				</View>
 			) : (
 				<View className='gap-4 mb-8'>
-					<CustomInput
-						label='Pseudo'
-						value={user?.name || ""}
-						onChangeText={() => {}}
-						placeholder='Entrer votre pseudo'
-					/>
+					<View className='flex-row items-end justify-between gap-4 w-full'>
+						<View className='flex-1'>
+							<CustomInput
+								label='Pseudo'
+								value={newPseudo}
+								onChangeText={(text) => setNewPseudo(text)}
+								placeholder='Entrer votre pseudo'
+							/>
+						</View>
+						<TouchableOpacity
+							className='self-end aspect-square h-[50px] justify-center items-center bg-secondary rounded-md'
+							accessibilityLabel='Modifier le pseudo'
+							onPress={() => handleUpdateUser(newPseudo)}
+							disabled={isLoading}
+						>
+							<Feather name='check' size={24} color='#FFF9F7' />
+						</TouchableOpacity>
+					</View>
 
-					<CustomInput
-						label='Email'
-						value={user?.email || ""}
-						onChangeText={() => {}}
-						placeholder='Entrer votre email'
-					/>
+					<View className='flex-row items-end justify-between gap-4 w-full'>
+						<View className='flex-1'>
+							<CustomInput
+								label='Email'
+								value={newMail}
+								onChangeText={(text) => setNewMail(text)}
+								placeholder='Entrer votre email'
+							/>
+						</View>
+						<TouchableOpacity
+							className='self-end aspect-square h-[50px] justify-center items-center bg-secondary rounded-md'
+							accessibilityLabel='Modifier le mail'
+							onPress={() => handleUpdateUser(undefined, newMail)}
+							disabled={isLoading}
+						>
+							<Feather name='check' size={24} color='#FFF9F7' />
+						</TouchableOpacity>
+					</View>
 
 					<CustomInput
 						label='Mot de passe'
@@ -36,16 +103,6 @@ const Index = () => {
 						secureTextEntry={true}
 						editable={false}
 					/>
-
-					<View className='flex-row items-center justify-between'>
-						<Text className='text-lg'>
-							Authentification à deux facteurs (A2F)
-						</Text>
-						<Switch
-							value={isTwoFactorEnabled}
-							onValueChange={setIsTwoFactorEnabled}
-						/>
-					</View>
 
 					{isTwoFactorEnabled && (
 						<View className='border border-secondary gap-4 p-4 rounded-md'>

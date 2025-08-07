@@ -1,9 +1,7 @@
 import { CreateUserParams, SignInParams, User } from "@/type";
-import {
-  ID,
-  Query
-} from "react-native-appwrite";
+import { ID, Query } from "react-native-appwrite";
 import { account, appwriteConfig, avatars, databases } from "./appwrite";
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 /**
  * Permet de créer un nouvel utilisateur
@@ -66,6 +64,45 @@ export const getCurrentUser = async (): Promise<User> => {
 		);
 
 		return currentUser.documents[0] as any;
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
+
+/**
+ * Permet de mettre à jour les données d'un utilisateur
+ * @param data - Les données à mettre à jour
+ * @returns {Promise<Document>} - L'utilisateur mis à jour
+ * @throws {Error} - Si la mise à jour a échoué ou si l'email est déjà utilisé
+ */
+export const updateUser = async (data: Partial<User>) => {
+	try {
+		const currentUser = await getCurrentUser();
+
+		// Vérifie si l'email est déjà utilisé par un autre utilisateur
+		if (data.email) {
+			const usersWithEmail = await databases.listDocuments(
+				appwriteConfig.databaseId,
+				appwriteConfig.userCollectionId,
+				[Query.equal("email", data.email)]
+			);
+
+			const emailUsedByOther = usersWithEmail.documents.some(
+				(user: any) => user.$id !== currentUser.$id
+			);
+
+			if (emailUsedByOther) {
+				throw new Error("Cet email est déjà utilisé par un autre utilisateur.");
+			}
+		}
+
+		const updatedUser = await databases.updateDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.userCollectionId,
+			currentUser.$id,
+			data
+		);
+		return updatedUser;
 	} catch (e) {
 		throw new Error(e as string);
 	}
