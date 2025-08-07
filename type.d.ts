@@ -130,3 +130,30 @@ interface CalendarDay {
 	year: number;
 	timestamp: number;
 }
+
+interface PricingPlan {
+	id: string;
+	name: string;
+	price: number;
+	currency: string;
+	interval: string;
+	popular?: boolean;
+	description?: string;
+	features: {
+		maxGoals: number;
+		maxTrainings: number;
+		advancedStats: boolean;
+		customExercises: boolean;
+		exportData: boolean;
+		prioritySupport: boolean;
+	};
+	highlights: string[];
+}
+
+interface PricingCardProps {
+	plan: PricingPlan;
+	currentPlan?: string;
+	onSelect: (planId: string) => void;
+	isLoading?: boolean;
+	disabled?: boolean;
+}
