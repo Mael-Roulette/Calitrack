@@ -1,7 +1,6 @@
 import { CreateUserParams, SignInParams, User } from "@/type";
 import { ID, Query } from "react-native-appwrite";
 import { account, appwriteConfig, avatars, databases } from "./appwrite";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 /**
  * Permet de créer un nouvel utilisateur

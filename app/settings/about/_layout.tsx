@@ -22,6 +22,36 @@ const AboutLayout = () => {
 					title: "À propos",
 				}}
 			/>
+			<Stack.Screen
+				name='legal-notices'
+				options={{
+					title: "Mentions légales",
+				}}
+			/>
+			<Stack.Screen
+				name='licences'
+				options={{
+					title: "Licences",
+				}}
+			/>
+			<Stack.Screen
+				name='privacy-policy'
+				options={{
+					title: "Politique de confidentialité",
+				}}
+			/>
+			<Stack.Screen
+				name='support'
+				options={{
+					title: "Support",
+				}}
+			/>
+			<Stack.Screen
+				name='terms-conditions'
+				options={{
+					title: "Conditions générales d'utilisation",
+				}}
+			/>
 		</Stack>
 	);
 };

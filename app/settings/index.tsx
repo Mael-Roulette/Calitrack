@@ -28,6 +28,7 @@ const Index = () => {
 					{[
 						{ title: "Compte", screen: "account" },
 						{ title: "Notifications", screen: "notifications" },
+						{ title: "Abonnement", screen: "subscription" },
 						{ title: "À propos", screen: "about" },
 					].map((item, index) => (
 						<View

@@ -1,7 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import Entypo from "@expo/vector-icons/Entypo";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import {
+	Alert,
 	SafeAreaView,
 	ScrollView,
 	Text,
@@ -11,7 +12,27 @@ import {
 import { APP_VERSION } from "@/constants/value";
 
 const Index = () => {
-	const handleDeleteAccount = async () => {};
+  const router = useRouter();
+
+	const handleDeleteAccount = async () => {
+		Alert.alert(
+			"Suppression de compte",
+			"La suppression de votre compte n'est actuellement pas disponible dans l'application. Veuillez contacter le support pour qu'il le supprime.",
+			[
+				{
+					text: "Annuler",
+					style: "cancel",
+				},
+				{
+					text: "Contacter le support",
+					onPress: async () => {
+            router.push("./about/support");
+					},
+					style: "destructive",
+				},
+			]
+		);
+	};
 
 	return (
 		<SafeAreaView className='bg-background flex-1'>
@@ -23,23 +44,23 @@ const Index = () => {
 				</View>
 				<View className='flex-col gap-6 mb-4 pt-5 first:border-t-[1px] first:border-gray-200'>
 					{[
-						{ title: "Mentions légales", screen: "account" },
-						{ title: "Politique de confidentialité", screen: "notifications" },
+						{ title: "Mentions légales", screen: "about/legal-notices" },
+						{
+							title: "Politique de confidentialité",
+							screen: "about/privacy-policy",
+						},
 						{
 							title: "Conditions générales d'utilisation",
-							screen: "notifications",
+							screen: "about/terms-conditions",
 						},
-						{ title: "Licences", screen: "notifications" },
-						{ title: "Support", screen: "notifications" },
+						{ title: "Licences", screen: "about/licences" },
+						{ title: "Support", screen: "about/support" },
 					].map((item, index) => (
 						<View
 							key={index}
 							className='flex-row items-center justify-between pb-4 border-b-[1px] border-gray-200'
 						>
-							<Link
-								href={`./settings/${item.screen}`}
-								style={{ paddingHorizontal: 20 }}
-							>
+							<Link href={`./${item.screen}`} style={{ paddingHorizontal: 20 }}>
 								<View className='flex-row items-center justify-between w-full'>
 									<Text className='text-lg font-calsans text-primary'>
 										{item.title}
