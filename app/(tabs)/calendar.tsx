@@ -76,7 +76,7 @@ const Calendar = () => {
 
 				<View className='mt-10'>
 					{ isLoading ? (
-						<Text className='text-primary-100 text-lg italic'>Chargement des entraînements...</Text>
+						<Text className='indicator-text'>Chargement des entraînements...</Text>
 					) : (
 						upcomingTrainings.map((item: any, index: number) => {
 							const isFirstDay = index === 0;
@@ -109,7 +109,7 @@ const Calendar = () => {
 											)}
 										</>
 									) : (
-										<Text className='text-primary-100 text-lg italic mb-3'>
+										<Text className='indicator-text mb-3'>
 											Aucun entraînement prévu.
 										</Text>
 									)}

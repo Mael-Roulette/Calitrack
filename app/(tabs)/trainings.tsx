@@ -47,7 +47,7 @@ const Trainings = () => {
 	return (
 		<SafeAreaView className='px-5 bg-background flex-1'>
 			<View className='mb-6'>
-				<Text className='text-primary-100 italic'>
+				<Text className='indicator-text'>
 					Nombre d&apos;entrainements : {trainings.length}/{MAX_TRAININGS}.
 				</Text>
 			</View>
@@ -59,7 +59,7 @@ const Trainings = () => {
 					keyExtractor={(item) => item.$id || item.Name}
 					showsVerticalScrollIndicator={false}
 					ListEmptyComponent={
-						<Text className='text-primary-100 italic text-lg mt-5'>
+						<Text className='indicator-text'>
 							Aucun entrainement
 						</Text>
 					}

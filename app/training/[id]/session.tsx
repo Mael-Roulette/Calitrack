@@ -125,7 +125,7 @@ const Session = () => {
 							keyExtractor={(item) => item.Name}
 							showsVerticalScrollIndicator={false}
 							ListEmptyComponent={
-								<Text className='text-primary-100 italic text-lg mt-5'>
+								<Text className='indicator-text'>
 									Aucun exercice
 								</Text>
 							}

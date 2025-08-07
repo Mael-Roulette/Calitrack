@@ -80,7 +80,7 @@ const Profile = () => {
 					</View>
 					{goals.length === 0 ? (
 						<View className='mt-4'>
-							<Text className='text-lg text-primary-100 italic'>
+							<Text className='indicator-text'>
 								Aucune stats sur les objectifs disponible.
 							</Text>
 						</View>

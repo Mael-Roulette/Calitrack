@@ -103,13 +103,13 @@ const Goals = () => {
 	return (
 		<SafeAreaView className='px-5 bg-background flex-1'>
 			<View className='mb-6'>
-				<Text className='text-primary-100 italic'>
+				<Text className='indicator-text'>
 					Nombre d&apos;objectifs en cours : {progressGoals.length}/{MAX_GOALS}.
 				</Text>
 			</View>
 			{goals.length !== 0 && (
 				<View className='mb-6'>
-					<Text className='text-primary-100 italic'>
+					<Text className='indicator-text'>
 						Vous pouvez ajouter une nouvelle progression en cliquant sur un
 						objectif.
 					</Text>
@@ -131,7 +131,7 @@ const Goals = () => {
 							scrollEnabled={false}
 							showsVerticalScrollIndicator={false}
 							ListEmptyComponent={
-								<Text className='text-primary-100 italic text-lg mt-5'>
+								<Text className='indicator-text'>
 									Aucun objectif.
 								</Text>
 							}

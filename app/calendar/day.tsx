@@ -101,7 +101,7 @@ const Day = () => {
 				) : (
 					<>
 						<View className='flex-1 items-center justify-center'>
-							<Text className='text-primary-100 italic text-center text-lg'>
+							<Text className='indicator-text text-center'>
 								Aucun entraînement prévu pour cette journée
 							</Text>
 						</View>

@@ -202,7 +202,7 @@ const Edit = () => {
 										Exercices sélectionnés ({selectedExercises.length})
 									</Text>
 									{selectedExercises.length > 4 && (
-										<Text className='text-primary-100 italic font-sregular mb-2'>
+										<Text className='indicator-text'>
 											Avoir trop d&apos;exercices dans son entrainement
 											n&apos;est pas forcément une bonne chose
 										</Text>

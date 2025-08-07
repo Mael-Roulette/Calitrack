@@ -36,7 +36,7 @@ export default function Index() {
 					setTodayTraining(training[0]);
 				}
 			} catch (error) {
-				console.error("Error fetching today's training:", error);
+				console.error("Erreur lors de la récupération de l'entrainement du jour :", error);
 			}
 		};
 
@@ -80,7 +80,7 @@ export default function Index() {
 								isTrainingDay={true}
 							/>
 						) : (
-							<Text className='text-primary-100 text-lg mb-2 italic'>
+							<Text className='indicator-text'>
 								Aucun entraînement prévu pour aujourd&apos;hui.
 							</Text>
 						)}
@@ -103,7 +103,7 @@ export default function Index() {
 
 						{isLoadingGoals ? (
 							<View>
-								<Text className='text-primary-100 italic text-lg mt-5'>
+								<Text className='indicator-text'>
 									Chargement...
 								</Text>
 							</View>
@@ -124,7 +124,7 @@ export default function Index() {
 									/>
 								))}
 								{progressGoals.length === 0 && (
-									<Text className='text-primary-100 italic text-lg mt-5'>
+									<Text className='indicator-text'>
 										Aucun objectif en cours.
 									</Text>
 								)}
