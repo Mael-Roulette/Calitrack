@@ -1,21 +1,20 @@
+import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
-import { updateUser } from "@/lib/user.appwrite";
+import { updatePassword, updateUser } from "@/lib/user.appwrite";
 import { useAuthStore } from "@/store";
-import React, { use, useState } from "react";
+import Feather from "@expo/vector-icons/Feather";
+import { useRouter } from "expo-router";
+import React, { useState } from "react";
 import {
 	Alert,
 	SafeAreaView,
-	Switch,
 	Text,
 	TouchableOpacity,
 	View,
 } from "react-native";
-import Feather from "@expo/vector-icons/Feather";
-import { useRouter } from "expo-router";
 
 const Index = () => {
 	const { user, isLoading, refreshUser } = useAuthStore();
-	const [isTwoFactorEnabled, setIsTwoFactorEnabled] = useState(false);
 	const [newPseudo, setNewPseudo] = useState(user?.name || "");
 	const [newMail, setNewMail] = useState(user?.email || "");
 	const router = useRouter();
@@ -47,6 +46,24 @@ const Index = () => {
 					[{ text: "OK" }]
 				);
 			}
+		}
+	};
+
+	const handleRecoverPassword = async () => {
+		try {
+			await updatePassword();
+
+			Alert.alert(
+				"Réinitialisation de mot de passe",
+				"Un email de réinitialisation a été envoyé sur votre mail.",
+				[{ text: "OK" }]
+			);
+		} catch {
+			Alert.alert(
+				"Erreur",
+				"Une erreur est survenue lors de l'envoi de l'email de réinitialisation.",
+				[{ text: "OK" }]
+			);
 		}
 	};
 
@@ -96,22 +113,21 @@ const Index = () => {
 						</TouchableOpacity>
 					</View>
 
-					<CustomInput
-						label='Mot de passe'
-						onChangeText={() => {}}
-						placeholder='************'
-						secureTextEntry={true}
-						editable={false}
-					/>
+					<View className="gap-3">
+						<CustomInput
+							label='Mot de passe'
+							onChangeText={() => {}}
+							placeholder='************'
+							secureTextEntry={true}
+							editable={false}
+						/>
 
-					{isTwoFactorEnabled && (
-						<View className='border border-secondary gap-4 p-4 rounded-md'>
-							<Text className='text-lg text-muted'>
-								Authentification à deux facteurs (A2F) est activée pour votre
-								compte.
-							</Text>
-						</View>
-					)}
+						<CustomButton
+							title='Mail de réinitialisation'
+							variant='secondary'
+							onPress={() => handleRecoverPassword()}
+						/>
+					</View>
 				</View>
 			)}
 		</SafeAreaView>

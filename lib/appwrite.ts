@@ -1,21 +1,9 @@
 import {
-	CreateUserParams,
-	SignInParams,
-	User,
-	updatedGoalParams,
-	createGoalParams,
-	createTrainingParams,
-	updateTrainingParams,
-} from "@/type";
-import {
 	Account,
 	Avatars,
 	Client,
-	Databases,
-	ID,
-	Query,
+	Databases
 } from "react-native-appwrite";
-import { MAX_TRAININGS, MAX_GOALS } from "@/constants/value";
 
 export const appwriteConfig = {
 	endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
@@ -28,6 +16,7 @@ export const appwriteConfig = {
 		process.env.EXPO_PUBLIC_APPRWITE_TRAINING_COLLECTION_ID!,
 	exerciseCollectionId:
 		process.env.EXPO_PUBLIC_APPWRITE_EXERCISE_COLLECTION_ID!,
+	passwordRedirectUrl: process.env.EXPO_PUBLIC_APPWRITE_PASSWORD_REDIRECT_URL!,
 };
 
 export const client = new Client();

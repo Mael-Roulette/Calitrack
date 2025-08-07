@@ -107,6 +107,22 @@ export const updateUser = async (data: Partial<User>) => {
 	}
 };
 
+export const updatePassword = async () => {
+	try {
+		const currentUser = await getCurrentUser();
+		if (!currentUser.email) {
+			throw new Error("Aucun email associé à cet utilisateur");
+		}
+
+		const redirectUrl = appwriteConfig.passwordRedirectUrl;
+
+		await account.createRecovery(currentUser.email, redirectUrl);
+		return { success: true };
+	} catch (e) {
+		console.error("Password recovery error:", e);
+	}
+};
+
 /**
  * Permet de se déconnecter de la session actuelle
  * @returns {Promise<void>} - Si la déconnexion a réussi
