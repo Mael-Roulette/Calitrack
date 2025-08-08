@@ -13,6 +13,7 @@ import {
 import TrainingItem from "../training/components/TrainingItem";
 import { useLayoutEffect } from "react";
 import { MAX_TRAININGS } from "@/constants/value";
+import CustomButton from "@/components/CustomButton";
 
 const Trainings = () => {
 	const { trainings } = useTrainingsStore();
@@ -27,7 +28,7 @@ const Trainings = () => {
 		if (trainings.length >= MAX_TRAININGS) {
 			Alert.alert(
 				"Limite atteinte",
-				"Vous ne pouvez pas ajouter plus de 10 entrainements."
+				`Vous ne pouvez pas ajouter plus de ${MAX_TRAININGS} entrainements.`
 			);
 		} else {
 			router.push("/training/add-training");
@@ -63,6 +64,14 @@ const Trainings = () => {
 							Aucun entrainement
 						</Text>
 					}
+				/>
+			</View>
+
+			<View className="mt-4 mb-5">
+				<CustomButton
+					title="Voir les exercices"
+					variant="secondary"
+					onPress={() => router.push("/exercise/exercise-list")}
 				/>
 			</View>
 		</SafeAreaView>

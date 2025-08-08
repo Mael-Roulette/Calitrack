@@ -1,0 +1,39 @@
+import { View, Text, SafeAreaView, FlatList } from "react-native";
+import React from "react";
+import useExercicesStore from "@/store/exercises.stores";
+import ExerciseItem from "./components/ExerciseItem";
+import { useRouter } from "expo-router";
+
+const ExerciseList = () => {
+	const { exercices } = useExercicesStore();
+	const router = useRouter();
+
+	const goToExerciseDetails = (id: string) => {
+		router.push({
+			pathname: "/exercise/[id]",
+			params: { id },
+		});
+	};
+
+	return (
+		<SafeAreaView className='px-5 bg-background flex-1'>
+			<View className='py-5'>
+				<FlatList
+					data={exercices}
+					renderItem={({ item }) => (
+						<ExerciseItem
+							name={item.Name}
+							type={item.Type}
+							difficulty={item.Difficulty}
+							onPress={() => goToExerciseDetails(item.$id)}
+						/>
+					)}
+					keyExtractor={(item) => item.$id}
+					showsVerticalScrollIndicator={false}
+				/>
+			</View>
+		</SafeAreaView>
+	);
+};
+
+export default ExerciseList;

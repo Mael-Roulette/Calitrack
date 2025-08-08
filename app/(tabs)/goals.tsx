@@ -24,7 +24,7 @@ const Goals = () => {
 		if (goals.length >= MAX_GOALS) {
 			Alert.alert(
 				"Limite atteinte",
-				"Vous ne pouvez pas ajouter plus de 4 objectifs."
+				`Vous ne pouvez pas ajouter plus de ${MAX_GOALS} objectifs.`
 			);
 		} else {
 			router.push("/goal/add-goal");

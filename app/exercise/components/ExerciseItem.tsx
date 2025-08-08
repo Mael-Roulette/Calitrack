@@ -7,27 +7,31 @@ const ExerciseItem = ({
 	name,
 	type,
 	difficulty,
+	selectable = false,
 	isSelected = false,
 	onPress,
 }: {
 	name: string;
 	type: string;
 	difficulty: string;
+	selectable?: boolean;
 	isSelected?: boolean;
 	onPress?: () => void;
 }) => {
 	const getDifficultyColor = (difficulty: string) => {
-		switch (difficulty.toLowerCase()) {
+		switch (difficulty) {
 			case "beginner":
-				return "text-green-500";
+				return "#3b82f6";
+			case "novice":
+				return "#22c55e";
 			case "intermediate":
-				return "text-yellow-500";
+				return "#eab308";
 			case "advanced":
-				return "text-orange-500";
+				return "#f97316";
 			case "expert":
-				return "text-red-500";
+				return "#ef4444";
 			default:
-				return "text-primary-100";
+				return "#f1f5f9";
 		}
 	};
 
@@ -44,17 +48,19 @@ const ExerciseItem = ({
 			<View className='flex-1'>
 				<Text className='text-primary font-sregular text-lg mb-1'>{name}</Text>
 				<View className='flex-row items-center gap-3'>
-					<Text className='text-primary-100 text-sm font-sregular'>Type : {type}</Text>
+					<Text className='text-primary-100 text-sm font-sregular'>
+						Type : {type}
+					</Text>
 					<Text className='text-sm font-medium text-primary-100 font-sregular'>
 						Difficulté :{" "}
-						<Text className={`${getDifficultyColor(difficulty)}`}>
+						<Text style={{ color: getDifficultyColor(difficulty) }}>
 							{difficulty}
 						</Text>
 					</Text>
 				</View>
 			</View>
 
-			{onPress && (
+			{onPress && selectable && (
 				<View
 					className={`w-6 h-6 rounded-full border-2 items-center justify-center ${
 						isSelected ? "border-secondary bg-secondary" : "border-primary-100"

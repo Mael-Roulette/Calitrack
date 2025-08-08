@@ -203,6 +203,7 @@ const ExerciseSelectionModal = ({
 											name={exercise.Name}
 											type={exercise.Type}
 											difficulty={exercise.Difficulty}
+											selectable={true}
 											isSelected={isExerciseSelected(exercise.$id)}
 											onPress={() => handleExerciseToggle(exercise)}
 										/>
