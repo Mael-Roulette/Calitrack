@@ -131,6 +131,9 @@ const Session = () => {
 							}
 						/>
 					</View>
+
+					{/* TODO : Ajouter les objectifs en lien avec l'entrainement de la session */}
+
 					<View className='my-5'>
 						<CustomButton
 							title='Entrainement terminé !'
