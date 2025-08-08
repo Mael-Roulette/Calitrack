@@ -8,13 +8,11 @@ export const PRICING_PLANS = {
 		features: {
 			maxGoals: 4,
 			maxTrainings: 6,
-			advancedStats: false,
-			customExercises: false,
-			exportData: false,
-			prioritySupport: false,
+			importExportData: false,
+			offlineAccess: false,
+			earlyAccess: false,
 		},
 		highlights: ["4 objectifs", "6 entraînements"],
-		popular: false,
 	},
 	premium: {
 		id: "premium",
@@ -25,12 +23,10 @@ export const PRICING_PLANS = {
 		features: {
 			maxGoals: 12,
 			maxTrainings: 20,
-			advancedStats: true,
-			customExercises: true,
-			exportData: true,
-			prioritySupport: true,
+			importExportData: true,
+			offlineAccess: true,
+			earlyAccess: true,
 		},
 		highlights: ["12 objectifs", "20 entraînements"],
-		popular: true,
 	},
 };

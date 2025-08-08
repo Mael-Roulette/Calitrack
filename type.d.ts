@@ -137,15 +137,13 @@ interface PricingPlan {
 	price: number;
 	currency: string;
 	interval: string;
-	popular?: boolean;
 	description?: string;
 	features: {
 		maxGoals: number;
 		maxTrainings: number;
-		advancedStats: boolean;
-		customExercises: boolean;
-		exportData: boolean;
-		prioritySupport: boolean;
+		importExportData: boolean;
+		offlineAccess: boolean;
+		earlyAccess: boolean;
 	};
 	highlights: string[];
 }

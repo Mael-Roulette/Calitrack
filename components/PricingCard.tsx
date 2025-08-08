@@ -50,20 +50,16 @@ const PricingCard: React.FC<PricingCardProps> = ({
 					plan.features.maxTrainings > 0 || plan.features.maxTrainings === -1,
 			},
 			{
-				label: "Statistiques avancées",
-				value: plan.features.advancedStats,
+				label: "Import / Export des données",
+				value: plan.features.importExportData,
 			},
 			{
-				label: "Exercices personnalisés",
-				value: plan.features.customExercises,
+				label: "Accès hors ligne",
+				value: plan.features.offlineAccess,
 			},
 			{
-				label: "Export des données",
-				value: plan.features.exportData,
-			},
-			{
-				label: "Support prioritaire",
-				value: plan.features.prioritySupport,
+				label: "Accès anticipé aux nouvelles fonctionnalités",
+				value: plan.features.earlyAccess,
 			},
 		];
 
@@ -163,7 +159,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
 			</TouchableOpacity>
 		</View>
 	);
-  
+
 	return <CardContent />;
 };
 
