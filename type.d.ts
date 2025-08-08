@@ -5,6 +5,10 @@ export interface User extends Models.Document {
 	email: string;
 	avatar: string;
 	completedTrainings?: number;
+	isPremium?: boolean;
+	subscriptionStart?: DateTime;
+	subscriptionEnd?: DateTime;
+	subscriptionProvider?: "stripe" | "apple" | "google";
 }
 
 interface TabBarIconProps {

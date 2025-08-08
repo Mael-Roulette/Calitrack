@@ -1,22 +1,16 @@
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
-import React, { useState } from "react";
 import PricingCard from "@/components/PricingCard";
 import { PRICING_PLANS } from "@/constants/premiumPlan";
+import { useAuthStore } from "@/store";
+import { useRouter } from "expo-router";
+import React from "react";
+import { SafeAreaView, ScrollView, Text, View } from "react-native";
 
 const Index = () => {
-	const [currentPlan, setCurrentPlan] = useState("free");
-	const [isLoading, setIsLoading] = useState(false);
+	const { user } = useAuthStore();
+	const router = useRouter();
 
 	const handleSelectPlan = async (planId: string) => {
-		try {
-			setIsLoading(true);
-			console.log(`Selected plan: ${planId}`);
-			setCurrentPlan(planId);
-		} catch (error) {
-			console.error("Error selecting plan:", error);
-		} finally {
-			setIsLoading(false);
-		}
+		
 	};
 
 	return (
@@ -32,9 +26,8 @@ const Index = () => {
 						<PricingCard
 							key={plan.id}
 							plan={plan}
-							currentPlan={currentPlan}
+							currentPlan={user?.isPremium ? "premium" : "free"}
 							onSelect={handleSelectPlan}
-							isLoading={isLoading && currentPlan !== plan.id}
 						/>
 					))}
 				</View>
