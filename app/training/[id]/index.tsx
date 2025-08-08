@@ -62,7 +62,7 @@ const Index = () => {
 		navigation.setOptions({
 			headerTitle: () => (
 				<Text
-					className='title text-ellipsis overflow-hidden max-w-60'
+					className='title-2 text-ellipsis overflow-hidden max-w-60'
 					numberOfLines={1}
 				>
 					{training?.Name || "Entrainement"}

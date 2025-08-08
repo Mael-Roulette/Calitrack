@@ -17,3 +17,23 @@ export const getAllExercises = async () => {
 		throw new Error(e as string);
 	}
 };
+
+/**
+ * Permet de récupérer un exercice par son ID
+ * @param id - id de l'exercice à récupérer
+ * @returns {Promise<Document>} - L'exercice correspondant à l'id
+ * @throws {Error} - Si l'exercice n'a pas pu être récupéré
+ */
+export const getExericseById = async (id: string) => {
+	try {
+		const exercise = await databases.getDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.exerciseCollectionId,
+			id
+		);
+
+		return exercise;
+	} catch (e) {
+		throw new Error(e as string);
+	}
+};
