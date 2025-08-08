@@ -27,7 +27,7 @@ const Index = () => {
 					objectifs.
 				</Text>
 
-				<View className='space-y-8'>
+				<View className='gap-5 my-5'>
 					{Object.values(PRICING_PLANS).map((plan) => (
 						<PricingCard
 							key={plan.id}
