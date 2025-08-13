@@ -13,7 +13,7 @@ const AddGoal = () => {
 
 	const [form, setForm] = useState<GoalState>({
 		title: "",
-		type: "hold",
+		type: "push",
 		total: "",
 		progress: 0,
 	});
@@ -78,13 +78,13 @@ const AddGoal = () => {
 								onValueChange={(itemValue) =>
 									setForm((prev) => ({
 										...prev,
-										type: itemValue as "hold" | "reps",
+										type: itemValue as "push" | "pull",
 									}))
 								}
 								style={{ backgroundColor: "#FFF9F7", paddingLeft: 16 }}
 							>
-								<Picker.Item label='Statique' value='hold' />
-								<Picker.Item label='Dynamique' value='reps' />
+								<Picker.Item label='Push' value='push' />
+								<Picker.Item label='Pull' value='pull' />
 							</Picker>
 						</View>
 					</View>

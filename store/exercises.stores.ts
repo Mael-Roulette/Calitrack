@@ -31,10 +31,10 @@ const useExercicesStore = create<ExerciseState>((set, get) => ({
 				(doc) =>
 					({
 						$id: doc.$id,
-						Name: doc.Name,
-						Description: doc.Description,
-						Type: doc.Type,
-						Difficulty: doc.Difficulty,
+						name: doc.name,
+						description: doc.description,
+						type: doc.type,
+						difficulty: doc.difficulty,
 					}) as Exercise
 			);
 			set({ exercices });

@@ -140,9 +140,9 @@ const AddTraining = () => {
 							{selectedExercises.map((exercise, index) => (
 								<ExerciseItem
 									key={exercise.$id}
-									name={exercise.Name}
-									type={exercise.Type}
-									difficulty={exercise.Difficulty}
+									name={exercise.name}
+									type={exercise.type}
+									difficulty={exercise.difficulty}
 								/>
 							))}
 						</View>

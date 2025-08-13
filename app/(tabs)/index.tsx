@@ -75,8 +75,8 @@ export default function Index() {
 						{todayTraining !== null && todayTraining.$id ? (
 							<TrainingItem
 								id={todayTraining.$id}
-								title={todayTraining.Name}
-								duration={todayTraining.Duration}
+								title={todayTraining.name}
+								duration={todayTraining.duration}
 								isTrainingDay={true}
 							/>
 						) : (

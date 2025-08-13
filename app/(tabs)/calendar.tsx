@@ -100,8 +100,8 @@ const Calendar = () => {
 													>
 														<TrainingItem
 															id={training.$id}
-															title={training.Name}
-															duration={training.Duration}
+															title={training.name}
+															duration={training.duration}
 															isTrainingDay={isFirstDay}
 														/>
 													</View>

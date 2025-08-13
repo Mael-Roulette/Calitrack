@@ -103,8 +103,8 @@ const ExerciseSelectionModal = ({
 		const query = text.toLowerCase();
 		const filtered = exercices.filter(
 			(exercise) =>
-				exercise.Name.toLowerCase().includes(query) ||
-				exercise.Type.toLowerCase().includes(query)
+				exercise.name.toLowerCase().includes(query) ||
+				exercise.type.name.toLowerCase().includes(query)
 		);
 
 		setFilteredExercises(filtered);
@@ -200,9 +200,9 @@ const ExerciseSelectionModal = ({
 									{filteredExercises.map((exercise) => (
 										<ExerciseItem
 											key={exercise.$id}
-											name={exercise.Name}
-											type={exercise.Type}
-											difficulty={exercise.Difficulty}
+											name={exercise.name}
+											type={exercise.type.name}
+											difficulty={exercise.difficulty}
 											selectable={true}
 											isSelected={isExerciseSelected(exercise.$id)}
 											onPress={() => handleExerciseToggle(exercise)}

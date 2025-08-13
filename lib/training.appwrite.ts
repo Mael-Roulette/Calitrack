@@ -44,9 +44,9 @@ export const createTraining = async ({
 			ID.unique(),
 			{
 				user: currentUser.$id,
-				Name: name,
-				Days: days,
-				Duration: duration,
+				name: name,
+				days: days,
+				duration: duration,
 				exercise: exercisesTab,
 			}
 		);
@@ -98,7 +98,7 @@ export const getTrainingFromUserByDay = async (day: string) => {
 		const trainings = await databases.listDocuments(
 			appwriteConfig.databaseId,
 			appwriteConfig.trainingCollectionId,
-			[Query.equal("user", currentUser.$id), Query.equal("Days", day)]
+			[Query.equal("user", currentUser.$id), Query.equal("days", day)]
 		);
 
 		return trainings.documents;
@@ -147,9 +147,9 @@ export const updateTraining = async ({
 			appwriteConfig.trainingCollectionId,
 			id,
 			{
-				Name: name,
-				Days: days,
-				Duration: duration,
+				name: name,
+				days: days,
+				duration: duration,
 				exercise: exercises,
 			}
 		);

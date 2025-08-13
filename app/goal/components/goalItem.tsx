@@ -12,7 +12,6 @@ const GoalItem = ({
 	title,
 	type,
 	progress,
-	progressHistory,
 	total,
 	state,
 }: Goal) => {
@@ -23,24 +22,19 @@ const GoalItem = ({
 
 	// Theme configuration
 	const themes = {
-		hold: {
+		push: {
 			border: "border-secondary",
 			text: "text-secondary",
 			color: "rgba(252, 121, 66, 1)",
 		},
-		reps: {
+		pull: {
 			border: "border-secondary",
 			text: "text-secondary",
 			color: "rgba(252, 121, 66, 1)",
 		},
-		// reps: {
-		// 	border: "border-green",
-		// 	text: "text-green",
-		// 	color: "rgba(52, 169, 47, 1)",
-		// },
 	};
 
-	const theme = themes[type] || { border: type, text: type, color: type };
+	const theme = themes[type.name as keyof typeof themes];
 
 	// State labels
 	const stateLabels = {
@@ -82,15 +76,12 @@ const GoalItem = ({
 	const renderProgress = () => {
 		if (state !== "in-progress") return null;
 
-		const unit = type === "hold" ? "s" : "";
-
 		return (
 			<View className='mt-4'>
 				<View className='flex-row justify-between mb-3'>
 					<Text>Progression</Text>
 					<Text>
 						{progress} / {total}
-						{unit}
 					</Text>
 				</View>
 				<Progress.Bar

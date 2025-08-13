@@ -66,7 +66,7 @@ interface Goal {
 	$updatedAt: string;
 	$id?: string;
 	title: string;
-	type: "hold" | "reps";
+	type: any;
 	progress: number;
 	total: number;
 	progressHistory: [];
@@ -75,14 +75,14 @@ interface Goal {
 
 interface GoalState {
 	title: string;
-	type: "hold" | "reps";
+	type: "push" | "pull";
 	total: string;
 	progress: number;
 }
 
 interface createGoalParams {
 	title: string;
-	type: "hold" | "reps";
+	type: "push" | "pull";
 	progress?: number;
 	total: number;
 }
@@ -114,17 +114,17 @@ interface updateTrainingParams {
 interface Training {
 	$id: string;
 	user: string;
-	Name: string;
+	name: string;
 	days?: string[];
-	Duration: number;
+	duration: number;
 }
 
 interface Exercise {
 	$id: string;
-	Name: string;
-	Type: string;
-	Difficulty: string;
-	Image?: string;
+	name: string;
+	type: any;
+	difficulty: string;
+	image?: string;
 }
 
 interface CalendarDay {

@@ -1,11 +1,9 @@
 import { MAX_GOALS } from "@/constants/value";
 import { createGoalParams, updatedGoalParams } from "@/type";
-import {
-  ID,
-  Query
-} from "react-native-appwrite";
+import { ID, Query } from "react-native-appwrite";
 import { appwriteConfig, databases } from "./appwrite";
 import { getCurrentUser } from "./user.appwrite";
+import { getTypeIdByName } from "./type.appwrite";
 
 /**
  * Permet de créer un nouvel objectif
@@ -37,6 +35,8 @@ export const createGoal = async ({
 			return message;
 		}
 
+		const typeId = await getTypeIdByName(type);
+
 		const goal = await databases.createDocument(
 			appwriteConfig.databaseId,
 			appwriteConfig.goalCollectionId,
@@ -45,7 +45,7 @@ export const createGoal = async ({
 				createdAt: new Date().toISOString(),
 				user: currentUser.$id,
 				title,
-				type,
+				type: typeId,
 				progress: progress || 0,
 				total,
 				state: "in-progress",

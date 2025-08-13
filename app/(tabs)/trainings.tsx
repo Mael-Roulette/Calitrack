@@ -21,7 +21,7 @@ const Trainings = () => {
 	const navigation = useNavigation();
 
 	const renderTrainingItem = ({ item }: { item: Training }) => (
-		<TrainingItem id={item.$id} title={item.Name} duration={item.Duration} days={item.days} />
+		<TrainingItem id={item.$id} title={item.name} duration={item.duration} days={item.days} />
 	);
 
 	const handleAddTrainingLink = () => {
@@ -57,7 +57,7 @@ const Trainings = () => {
 				<FlatList
 					data={trainings}
 					renderItem={renderTrainingItem}
-					keyExtractor={(item) => item.$id || item.Name}
+					keyExtractor={(item) => item.$id || item.name}
 					showsVerticalScrollIndicator={false}
 					ListEmptyComponent={
 						<Text className='indicator-text'>
