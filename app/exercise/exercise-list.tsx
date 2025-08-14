@@ -1,8 +1,8 @@
-import { View, Text, SafeAreaView, FlatList } from "react-native";
-import React from "react";
 import useExercicesStore from "@/store/exercises.stores";
-import ExerciseItem from "./components/ExerciseItem";
 import { useRouter } from "expo-router";
+import React from "react";
+import { FlatList, SafeAreaView, View } from "react-native";
+import ExerciseItem from "./components/ExerciseItem";
 
 const ExerciseList = () => {
 	const { exercices } = useExercicesStore();
@@ -23,7 +23,7 @@ const ExerciseList = () => {
 					renderItem={({ item }) => (
 						<ExerciseItem
 							name={item.name}
-							type={item.type}
+							type={item.type.name}
 							difficulty={item.difficulty}
 							onPress={() => goToExerciseDetails(item.$id)}
 						/>
