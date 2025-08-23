@@ -1,6 +1,6 @@
 import CustomButton from "@/components/CustomButton";
 import { useAuthStore, useGoalsStore, useTrainingsStore } from "@/store";
-import { Goal } from "@/type";
+import { Goal } from "@/types";
 import Feather from "@expo/vector-icons/Feather";
 import {  useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";

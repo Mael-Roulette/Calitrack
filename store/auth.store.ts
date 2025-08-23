@@ -1,5 +1,5 @@
-import { getCurrentUser, logout as appwriteLogout } from "@/lib/user.appwrite";
-import { User } from "@/type";
+import { logout as appwriteLogout, getCurrentUser } from "@/lib/user.appwrite";
+import { User } from "@/types";
 import { create } from "zustand";
 
 type AuthState = {

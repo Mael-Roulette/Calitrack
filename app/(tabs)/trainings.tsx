@@ -1,5 +1,5 @@
 import { useTrainingsStore } from "@/store";
-import { Training } from "@/type";
+import { Training } from "@/types";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation, useRouter } from "expo-router";
 import {

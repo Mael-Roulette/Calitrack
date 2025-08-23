@@ -5,7 +5,7 @@ import CustomTags from "@/components/CustomTags";
 import { DAYS_TRANSLATION } from "@/constants/value";
 import { getTrainingById, updateTraining } from "@/lib/training.appwrite";
 import { useTrainingsStore } from "@/store";
-import { createTrainingParams, Exercise } from "@/type";
+import { createTrainingParams, Exercise } from "@/types";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {

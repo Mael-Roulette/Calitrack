@@ -3,8 +3,8 @@ import CustomCalendar from "../calendar/components/CustomCalendar";
 import TrainingItem from "../training/components/TrainingItem";
 import { useEffect, useState } from "react";
 import { getTrainingFromUserByDay } from "@/lib/training.appwrite";
-import { Training } from "@/type";
 import cn from 'clsx';
+import { Training } from "@/types";
 
 const Calendar = () => {
 	const [upcomingTrainings, setUpcomingTrainings] = useState<any[]>([]);

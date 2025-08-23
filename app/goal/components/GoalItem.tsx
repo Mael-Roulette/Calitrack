@@ -1,11 +1,11 @@
+import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import { updateGoal } from "@/lib/goal.appwrite";
+import { useGoalsStore } from "@/store";
+import { Goal } from "@/types";
 import { useState } from "react";
 import { Alert, Modal, Text, TouchableOpacity, View } from "react-native";
 import * as Progress from "react-native-progress";
-import CustomButton from "@/components/CustomButton";
-import { useGoalsStore } from "@/store";
-import { Goal } from "@/type";
 
 const GoalItem = ({
 	$id,

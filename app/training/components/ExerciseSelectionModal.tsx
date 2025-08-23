@@ -2,8 +2,8 @@ import ExerciseItem from "@/app/exercise/components/ExerciseItem";
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import useExercicesStore from "@/store/exercises.stores";
-import { Exercise } from "@/type";
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import { Exercise } from "@/types";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
 	Animated,
 	Dimensions,

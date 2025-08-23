@@ -1,8 +1,8 @@
 import { MAX_TRAININGS } from "@/constants/value";
-import { createTrainingParams, updateTrainingParams } from "@/type";
+import { createTrainingParams, updateTrainingParams } from "@/types";
 import {
-  ID,
-  Query
+	ID,
+	Query
 } from "react-native-appwrite";
 import { appwriteConfig, databases } from "./appwrite";
 import { getCurrentUser } from "./user.appwrite";

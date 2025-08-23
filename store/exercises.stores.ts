@@ -1,5 +1,5 @@
 import { getAllExercises } from "@/lib/exercise.appwrite";
-import { Exercise } from "@/type";
+import { Exercise } from "@/types";
 import { create } from "zustand";
 import useAuthStore from "./auth.store";
 

@@ -1,5 +1,5 @@
 import { useGoalsStore } from "@/store";
-import { Goal } from "@/type";
+import { Goal } from "@/types";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation, useRouter } from "expo-router";

@@ -3,7 +3,7 @@ import GoalItem from "@/app/goal/components/GoalItem";
 import { DAYS_TRANSLATION } from "@/constants/value";
 import { deleteTraining, getTrainingById } from "@/lib/training.appwrite";
 import { useGoalsStore, useTrainingsStore } from "@/store";
-import { Exercise, Goal } from "@/type";
+import { Exercise, Goal } from "@/types";
 import Feather from "@expo/vector-icons/Feather";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
@@ -130,7 +130,7 @@ const Index = () => {
 	const renderExerciseItem = ({ item }: { item: Exercise }) => (
 		<ExerciseItem
 			name={item.name}
-			type={item.type.name}
+			type={item.type}
 			difficulty={item.difficulty}
 			onPress={() => goToExerciseDetails(item.$id)}
 		/>
@@ -149,9 +149,7 @@ const Index = () => {
 
 		const exerciseTypes = new Set(
 			trainingExercises.map((exercise) =>
-				typeof exercise.type.name === "string"
-					? exercise.type.name
-					: exercise.type.name
+				exercise.type
 			)
 		);
 

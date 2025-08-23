@@ -1,15 +1,15 @@
+import { CustomTagsProps, TagOption } from "@/types";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import React, { useEffect, useMemo, useState } from "react";
 import {
-	View,
+	Alert,
+	Keyboard,
+	ScrollView,
 	Text,
 	TextInput,
 	TouchableOpacity,
-	ScrollView,
-	Keyboard,
-	Alert,
+	View,
 } from "react-native";
-import React, { useState, useEffect, useMemo } from "react";
-import { CustomTagsProps, TagOption } from "@/type";
-import AntDesign from "@expo/vector-icons/AntDesign";
 
 const CustomTags = ({
 	label,

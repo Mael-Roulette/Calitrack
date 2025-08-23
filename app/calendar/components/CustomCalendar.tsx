@@ -1,4 +1,4 @@
-import { CalendarDay } from "@/type";
+import { CalendarDay } from "@/types";
 import { useRouter } from "expo-router";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 

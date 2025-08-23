@@ -1,15 +1,15 @@
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import CustomTags from "@/components/CustomTags";
+import { DAYS_TRANSLATION } from "@/constants/value";
 import { createTraining } from "@/lib/training.appwrite";
 import { useTrainingsStore } from "@/store";
-import { createTrainingParams, Exercise } from "@/type";
+import { createTrainingParams, Exercise } from "@/types";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
 import ExerciseItem from "../exercise/components/ExerciseItem";
 import ExerciseSelectionModal from "./components/ExerciseSelectionModal";
-import { DAYS_TRANSLATION } from "@/constants/value";
 
 const AddTraining = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);

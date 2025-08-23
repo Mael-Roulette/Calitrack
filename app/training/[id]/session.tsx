@@ -7,10 +7,10 @@ import {
 	incrementUserTrainings,
 } from "@/lib/training.appwrite";
 import { useAuthStore, useGoalsStore } from "@/store";
-import { Exercise, Goal } from "@/type";
+import { Exercise, Goal } from "@/types";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Text, View, SafeAreaView } from "react-native";
+import { ActivityIndicator, FlatList, SafeAreaView, Text, View } from "react-native";
 
 const Session = () => {
 	const { id } = useLocalSearchParams();

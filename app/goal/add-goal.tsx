@@ -1,12 +1,12 @@
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
+import { createGoal } from "@/lib/goal.appwrite";
 import { useGoalsStore } from "@/store";
-import { GoalState } from "@/type";
+import { GoalState } from "@/types";
 import { Picker } from "@react-native-picker/picker";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
-import { createGoal } from "@/lib/goal.appwrite";
 
 const AddGoal = () => {
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);

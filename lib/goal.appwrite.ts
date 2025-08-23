@@ -1,9 +1,9 @@
 import { MAX_GOALS } from "@/constants/value";
-import { createGoalParams, updatedGoalParams } from "@/type";
+import { createGoalParams, updatedGoalParams } from "@/types";
 import { ID, Query } from "react-native-appwrite";
 import { appwriteConfig, databases } from "./appwrite";
-import { getCurrentUser } from "./user.appwrite";
 import { getTypeIdByName } from "./type.appwrite";
+import { getCurrentUser } from "./user.appwrite";
 
 /**
  * Permet de créer un nouvel objectif

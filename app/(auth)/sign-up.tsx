@@ -45,7 +45,7 @@ const SignUp = () => {
 					<CustomInput
 						placeholder='Entrer votre pseudo'
 						value={form.name}
-						onChangeText={(text) =>
+						onChangeText={(text: string) =>
 							setForm((prev) => ({ ...prev, name: text }))
 						}
 						label='Pseudo'
@@ -53,7 +53,7 @@ const SignUp = () => {
 					<CustomInput
 						placeholder='Entrer votre email'
 						value={form.email}
-						onChangeText={(text) =>
+						onChangeText={(text: string) =>
 							setForm((prev) => ({ ...prev, email: text }))
 						}
 						label='Email'
@@ -62,7 +62,7 @@ const SignUp = () => {
 					<CustomInput
 						placeholder='Entrer votre mot de passe'
 						value={form.password}
-						onChangeText={(text) =>
+						onChangeText={(text: string) =>
 							setForm((prev) => ({ ...prev, password: text }))
 						}
 						label='Password'

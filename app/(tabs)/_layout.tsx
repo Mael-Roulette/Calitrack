@@ -1,7 +1,7 @@
 import CustomHeader from "@/components/CustomHeader";
 import { icons } from "@/constants/icons";
 import useAuthStore from "@/store/auth.store";
-import { TabBarIconProps } from "@/type";
+import { TabBarIconProps } from "@/types";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Redirect, Tabs } from "expo-router";
 import { Image, StatusBar, TouchableOpacity } from "react-native";

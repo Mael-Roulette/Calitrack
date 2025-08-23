@@ -1,4 +1,4 @@
-import { CreateUserParams, SignInParams, User } from "@/type";
+import { CreateUserParams, SignInParams, User } from "@/types";
 import { ID, Query } from "react-native-appwrite";
 import { account, appwriteConfig, avatars, databases } from "./appwrite";
 

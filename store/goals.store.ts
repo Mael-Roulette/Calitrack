@@ -1,5 +1,5 @@
 import { getGoalsFromUser } from "@/lib/goal.appwrite";
-import { Goal } from "@/type";
+import { Goal } from "@/types";
 import { create } from "zustand";
 import useAuthStore from "./auth.store";
 
