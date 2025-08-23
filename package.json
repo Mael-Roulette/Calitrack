@@ -17,7 +17,6 @@
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
     "@sentry/react-native": "~6.14.0",
-    "@shopify/react-native-skia": "v2.0.0-next.4",
     "@stripe/stripe-react-native": "^0.45.0",
     "appwrite": "^18.2.0",
     "clsx": "^2.1.1",
@@ -47,7 +46,6 @@
     "react-native-picker": "^4.3.7",
     "react-native-progress": "^5.0.1",
     "react-native-reanimated": "~3.17.4",
-    "react-native-safe-area-context": "^5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-svg": "^15.11.2",
     "react-native-tag-input": "^0.0.21",
@@ -55,7 +53,6 @@
     "react-native-webview": "13.13.5",
     "react-tag-input": "^6.10.6",
     "tailwindcss": "^3.4.17",
-    "victory-native": "^41.17.4",
     "zustand": "^5.0.6"
   },
   "devDependencies": {
