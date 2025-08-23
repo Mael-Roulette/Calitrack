@@ -1,6 +1,9 @@
-import { Stack } from "expo-router";
+import { HeaderBackButton } from "@react-navigation/elements";
+import { Stack, useRouter } from "expo-router";
 
 export default function TrainingIdLayout() {
+	const router = useRouter();
+
 	return (
 		<Stack
 			screenOptions={{
@@ -16,7 +19,6 @@ export default function TrainingIdLayout() {
 				headerShadowVisible: false,
 			}}
 		>
-			<Stack.Screen name='index' />
 			<Stack.Screen
 				name='edit'
 				options={{
@@ -24,9 +26,29 @@ export default function TrainingIdLayout() {
 				}}
 			/>
 			<Stack.Screen
+				name='index'
+				options={{
+					headerTitle: "Entrainement",
+					headerBackVisible: false,
+					headerLeft: () => (
+						<HeaderBackButton
+							tintColor='#132541'
+							onPress={() => router.back()}
+						/>
+					),
+				}}
+			/>
+			<Stack.Screen
 				name='session'
 				options={{
 					title: "Session d'entrainement",
+					headerBackVisible: false,
+					headerLeft: () => (
+						<HeaderBackButton
+							tintColor='#132541'
+							onPress={() => router.back()}
+						/>
+					),
 				}}
 			/>
 		</Stack>

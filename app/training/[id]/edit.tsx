@@ -47,13 +47,13 @@ const Edit = () => {
 				setTraining(response);
 
 				setForm({
-					name: response.Name,
-					days: response.Days,
-					hours: Math.floor(response.Duration / 60),
-					minutes: response.Duration % 60,
+					name: response.name,
+					days: response.days,
+					hours: Math.floor(response.duration / 60),
+					minutes: response.duration % 60,
 				});
 
-				setSelectedDays(response.Days);
+				setSelectedDays(response.days);
 				setSelectedExercises(response.exercise);
 			} catch (error) {
 				console.error(
@@ -77,7 +77,7 @@ const Edit = () => {
 					className='title text-ellipsis overflow-hidden max-w-60'
 					numberOfLines={1}
 				>
-					Modifier : {training?.Name || "Entrainement"}
+					Modifier : {training?.name || "Entrainement"}
 				</Text>
 			),
 		});
@@ -100,11 +100,6 @@ const Edit = () => {
 
 	/* ----- Fonction d'envoi des modifications ----- */
 	const submit = async (): Promise<void> => {
-		if (!form.name || !form.days) {
-			Alert.alert("Erreur", "Veuillez remplir tous les champs");
-			return;
-		}
-
 		if (form.hours === undefined) {
 			form.hours = 0;
 		}

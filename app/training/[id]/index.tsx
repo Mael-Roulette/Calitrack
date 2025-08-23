@@ -132,8 +132,16 @@ const Index = () => {
 			name={item.name}
 			type={item.type.name}
 			difficulty={item.difficulty}
+			onPress={() => goToExerciseDetails(item.$id)}
 		/>
 	);
+
+	const goToExerciseDetails = (id: string) => {
+		router.push({
+			pathname: "/exercise/[id]",
+			params: { id },
+		});
+	};
 
 	/* ----- Afficher les objectifs liés à l'entrainement ----- */
 	useEffect(() => {
