@@ -4,7 +4,7 @@
 		"slug": "calitrack-ts",
 		"version": "1.0.0",
 		"orientation": "portrait",
-		"icon": "./assets/images/logo-fond.webp",
+		"icon": "./assets/images/logo-fond.png",
 		"scheme": "calitrackts",
 		"userInterfaceStyle": "automatic",
 		"newArchEnabled": true,
@@ -13,7 +13,7 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/logo-fond.webp",
+				"foregroundImage": "./assets/images/logo-fond.png",
 				"backgroundColor": "#FFF9F7"
 			},
 			"edgeToEdgeEnabled": true
@@ -21,14 +21,14 @@
 		"web": {
 			"bundler": "metro",
 			"output": "static",
-			"favicon": "./assets/images/logo-fond.webp"
+			"favicon": "./assets/images/logo-fond.png"
 		},
 		"plugins": [
 			"expo-router",
 			[
 				"expo-splash-screen",
 				{
-					"image": "./assets/images/logo-fond.webp",
+					"image": "./assets/images/logo-fond.png",
 					"imageWidth": 200,
 					"resizeMode": "contain",
 					"backgroundColor": "#FFF9F7",
