@@ -14,3 +14,4 @@ export const DAYS_TRANSLATION = [
   { label: "Dimanche", value: "sunday" },
 ];
 export const APP_VERSION = Constants.expoConfig?.version || "1.0.0";
+export const LEGAL_CONTENT_UPDATED_AT = "14 août 2025";

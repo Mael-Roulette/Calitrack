@@ -53,7 +53,6 @@ const Index = () => {
 							title: "Conditions générales d'utilisation",
 							screen: "about/terms-conditions",
 						},
-						{ title: "Licences", screen: "about/licences" },
 						{ title: "Support", screen: "about/support" },
 					].map((item, index) => (
 						<View

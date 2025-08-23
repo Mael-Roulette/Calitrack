@@ -29,12 +29,6 @@ const AboutLayout = () => {
 				}}
 			/>
 			<Stack.Screen
-				name='licences'
-				options={{
-					title: "Licences",
-				}}
-			/>
-			<Stack.Screen
 				name='privacy-policy'
 				options={{
 					title: "Politique de confidentialité",
