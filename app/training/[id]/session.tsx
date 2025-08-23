@@ -10,8 +10,7 @@ import { useAuthStore, useGoalsStore } from "@/store";
 import { Exercise, Goal } from "@/type";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ActivityIndicator, FlatList, Text, View, SafeAreaView } from "react-native";
 
 const Session = () => {
 	const { id } = useLocalSearchParams();
