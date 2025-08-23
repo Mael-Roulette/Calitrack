@@ -1,7 +1,5 @@
-// constants/premiumPlan.ts
 import { PricingPlans, PricingPlan } from "@/types";
 
-// Configuration centralisée des plans
 export const PRICING_PLANS: PricingPlans = {
 	free: {
 		id: "free",
@@ -69,21 +67,17 @@ export const PRICING_PLANS: PricingPlans = {
 	},
 };
 
-// Utilitaires pour la gestion des plans
 export class PlanManager {
-	// Obtenir les plans visibles triés par ordre
 	static getVisiblePlans(): PricingPlan[] {
 		return Object.values(PRICING_PLANS)
 			.filter((plan) => plan.isVisible !== false)
 			.sort((a, b) => (a.order || 0) - (b.order || 0));
 	}
 
-	// Obtenir un plan par ID
 	static getPlan(planId: string): PricingPlan | undefined {
 		return PRICING_PLANS[planId];
 	}
 
-	// Vérifier si un plan a une fonctionnalité
 	static hasFeature(planId: string, featureKey: string): boolean {
 		const plan = this.getPlan(planId);
 		if (!plan) return false;
@@ -95,11 +89,17 @@ export class PlanManager {
 		return !!featureValue;
 	}
 
-	// Comparer deux plans
-	static comparePlans(
-		planId1: string,
-		planId2: string
-	): {
+	static isFeatureUnlimited(planId: string, featureKey: string): boolean {
+		const plan = this.getPlan(planId);
+		return plan?.features[featureKey] === -1;
+	}
+
+	static getFeatureValue(planId: string, featureKey: string): any {
+		const plan = this.getPlan(planId);
+		return plan?.features[featureKey];
+	}
+
+	static comparePlans(planId1: string, planId2: string): {
 		betterFeatures: string[];
 		worseFeatures: string[];
 		sameFeatures: string[];
@@ -137,16 +137,13 @@ export class PlanManager {
 	}
 
 	private static isFeatureBetter(value1: any, value2: any): boolean {
-		// -1 (illimité) est toujours mieux qu'un nombre positif
 		if (value1 === -1 && typeof value2 === "number" && value2 > 0) return true;
 		if (value2 === -1 && typeof value1 === "number" && value1 > 0) return false;
 
-		// Pour les booléens, true est mieux que false
 		if (typeof value1 === "boolean" && typeof value2 === "boolean") {
 			return value1 && !value2;
 		}
 
-		// Pour les nombres, plus grand est mieux (sauf -1 qui est géré plus haut)
 		if (typeof value1 === "number" && typeof value2 === "number") {
 			return value1 > value2;
 		}
@@ -154,12 +151,30 @@ export class PlanManager {
 		return false;
 	}
 
-	// Ajouter un nouveau plan (utile pour les tests ou l'administration)
+	static canUpgradeTo(fromPlan: string, toPlan: string): boolean {
+		const from = this.getPlan(fromPlan);
+		const to = this.getPlan(toPlan);
+
+		if (!from || !to || fromPlan === toPlan) return false;
+		return to.price > from.price;
+	}
+
+	static formatPrice(plan: PricingPlan): string {
+		if (plan.price === 0) return 'Gratuit';
+
+		const price = plan.price.toFixed(plan.price % 1 === 0 ? 0 : 2);
+		const interval = plan.interval === 'monthly' ? '/mois' :
+						plan.interval === 'yearly' ? '/an' :
+						plan.interval ? `/${plan.interval}` : '';
+
+		return `${price}€${interval}`;
+	}
+
+	// Méthodes administratives
 	static addPlan(plan: PricingPlan): void {
 		PRICING_PLANS[plan.id] = plan;
 	}
 
-	// Modifier un plan existant
 	static updatePlan(planId: string, updates: Partial<PricingPlan>): boolean {
 		if (!PRICING_PLANS[planId]) return false;
 
@@ -174,11 +189,9 @@ export class PlanManager {
 		return true;
 	}
 
-	// Masquer/afficher un plan
 	static togglePlanVisibility(planId: string, isVisible: boolean): boolean {
 		return this.updatePlan(planId, { isVisible });
 	}
 }
 
-// Export par défaut pour compatibilité
 export default PRICING_PLANS;

@@ -11,8 +11,16 @@ export interface PricingPlan {
 		importExportData: boolean;
 		offlineAccess: boolean;
 		earlyAccess: boolean;
+		// Extensions optionnelles pour compatibilité
+		advancedStats?: boolean;
+		prioritySupport?: boolean;
+		[key: string]: any;
 	};
 	highlights: string[];
+	// Extensions pour la gestion
+	badge?: string;
+	order?: number;
+	isVisible?: boolean;
 }
 
 export interface PricingCardProps {
@@ -22,3 +30,5 @@ export interface PricingCardProps {
 	isLoading?: boolean;
 	disabled?: boolean;
 }
+
+export type PricingPlans = Record<string, PricingPlan>;

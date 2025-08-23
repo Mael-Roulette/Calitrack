@@ -1,4 +1,3 @@
-// types/user.ts
 import { Models } from "react-native-appwrite";
 
 export interface User extends Models.Document {
@@ -6,6 +5,7 @@ export interface User extends Models.Document {
 	email: string;
 	avatar: string;
 	completedTrainings?: number;
+	isPremium?: boolean;
 	planId?: string;
 	subscriptionStart?: Date;
 	subscriptionEnd?: Date;
