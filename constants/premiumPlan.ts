@@ -9,17 +9,20 @@ export const PRICING_PLANS = {
 			maxGoals: 4,
 			maxTrainings: 6,
 			importExportData: false,
-			offlineAccess: false,
+			offlineAccess: true,
 			earlyAccess: false,
 		},
-		highlights: ["4 objectifs", "6 entraînements"],
+		highlights: [
+			"Jusqu'à 4 objectifs",
+			"Jusqu'à 6 entraînements"
+		],
 	},
 	premium: {
 		id: "premium",
 		name: "Premium",
 		price: 4.99,
 		currency: "EUR",
-		interval: "monthly",
+		interval: "mensuel",
 		features: {
 			maxGoals: 12,
 			maxTrainings: 20,
@@ -27,6 +30,33 @@ export const PRICING_PLANS = {
 			offlineAccess: true,
 			earlyAccess: true,
 		},
-		highlights: ["12 objectifs", "20 entraînements"],
+		highlights: [
+			"Jusqu'à 12 objectifs",
+			"Jusqu'à 20 entraînements",
+			"Accès anticipé",
+			"Import/export des données"
+		],
 	},
+	premiumPlus: {
+		id: "premiumPlus",
+		name: "Premium Plus",
+		price: 9.99,
+		currency: "EUR",
+		interval: "mensuel",
+		features: {
+			maxGoals: -1, // -1 indicates unlimited
+			maxTrainings: -1, // -1 indicates unlimited
+			importExportData: true,
+			offlineAccess: true,
+			earlyAccess: true,
+			advancedStats: true,
+		},
+		highlights: [
+			"Objectifs illimités",
+			"Entraînements illimités",
+			"Statistiques avancées",
+			"Accès anticipé",
+			"Import/export des données"
+		],
+	}
 };

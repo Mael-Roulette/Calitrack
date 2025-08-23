@@ -6,7 +6,7 @@ import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 const PricingCard: React.FC<PricingCardProps> = ({
 	plan,
 	currentPlan,
-	onSelect,
+	onSelect = () => {},
 	isLoading = false,
 	disabled = false,
 }) => {
@@ -16,7 +16,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
 	const getButtonText = () => {
 		if (isCurrentPlan) return "Plan actuel";
 		if (isFree) return "Continuer gratuitement";
-		return currentPlan === "free" ? "Passer Premium" : "Changer de plan";
+		return currentPlan === "free" ? "Non disponible" : "Changer de plan";
 	};
 
 	const getFeatureIcon = (hasFeature: boolean | number) => {
