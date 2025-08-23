@@ -2,7 +2,6 @@ import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import { signIn } from "@/lib/user.appwrite";
 import { useAuthStore } from "@/store";
-import * as Sentry from "@sentry/react-native";
 import { Link, router } from "expo-router";
 import { useState } from "react";
 import { Alert, Text, View } from "react-native";
@@ -13,6 +12,8 @@ const SignIn = () => {
 	const { fetchAuthenticatedUser } = useAuthStore();
 
 	const submit = async () => {
+		if (isSubmitting) return;
+
 		const { email, password } = form;
 
 		if (!email || !password)
@@ -30,7 +31,6 @@ const SignIn = () => {
 			router.replace("/");
 		} catch (error: any) {
 			Alert.alert("Error", error.message);
-			Sentry.captureEvent(error);
 		} finally {
 			setIsSubmitting(false);
 		}
@@ -38,7 +38,7 @@ const SignIn = () => {
 
 	return (
 		<View className='px-5 py-10'>
-			<View className='gap-8 flex-1'>
+			<View className='gap-8'>
 				<Text className='text-3xl font-calsans text-primary'>Me connecter</Text>
 
 				<View className='gap-6'>

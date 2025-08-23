@@ -36,14 +36,6 @@
 						"backgroundColor": "#132541"
 					}
 				}
-			],
-			[
-				"@sentry/react-native/expo",
-				{
-					"url": "https://sentry.io/",
-					"project": "calitrack",
-					"organization": "roulette-oy"
-				}
 			]
 		],
 		"experiments": {
