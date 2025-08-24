@@ -2,7 +2,8 @@ import {
 	Account,
 	Avatars,
 	Client,
-	Databases
+	Databases,
+	Functions
 } from "react-native-appwrite";
 
 export const appwriteConfig = {
@@ -18,6 +19,7 @@ export const appwriteConfig = {
 		process.env.EXPO_PUBLIC_APPWRITE_EXERCISE_COLLECTION_ID!,
 	typeCollectionId: process.env.EXPO_PUBLIC_APPWRITE_TYPE_COLLECTION_ID!,
 	passwordRedirectUrl: process.env.EXPO_PUBLIC_APPWRITE_PASSWORD_REDIRECT_URL!,
+	deleteAccountFunctionId: process.env.EXPO_PUBLIC_APPWRITE_DELETE_ACCOUNT_FUNCTION_ID!,
 };
 
 export const client = new Client();
@@ -30,3 +32,4 @@ client
 export const account = new Account(client);
 export const databases = new Databases(client);
 export const avatars = new Avatars(client);
+export const functions = new Functions(client);
