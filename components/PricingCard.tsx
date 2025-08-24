@@ -24,11 +24,13 @@ const PricingCard: React.FC<PricingCardProps> = ({
 		}
 
 		if (currentPlan === "free") {
-			return { text: "Passer au premium", disabled: false, style: "upgrade" };
+			return { text: "Indisponible", disabled: false, style: "upgrade" };
+			// return { text: "Passer au premium", disabled: false, style: "upgrade" };
 		}
 
 		if (PlanManager.canUpgradeTo(currentPlan || "free", plan.id)) {
-			return { text: "Passer à ce plan", disabled: false, style: "upgrade" };
+			return { text: "Indisponible", disabled: false, style: "upgrade" };
+			// return { text: "Passer à ce plan", disabled: false, style: "upgrade" };
 		}
 
 		return { text: "Changer de plan", disabled: false, style: "change" };
