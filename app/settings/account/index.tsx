@@ -4,7 +4,7 @@ import { updatePassword, updateUser } from "@/lib/user.appwrite";
 import { useAuthStore } from "@/store";
 import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -77,20 +77,20 @@ const Index = () => {
 	};
 
 	const pickNewAvatar = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsEditing: true,
-      aspect: [3, 3],
-      quality: 1,
-    });
+		let result = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ["images"],
+			allowsEditing: true,
+			aspect: [3, 3],
+			quality: 1,
+		});
 
-    if (!result.canceled) {
-      const newAvatarUri = result.assets[0].uri;
-      setNewAvatar(newAvatarUri);
+		if (!result.canceled) {
+			const newAvatarUri = result.assets[0].uri;
+			setNewAvatar(newAvatarUri);
 
-      handleUpdateUser(newAvatarUri);
-    }
-  };
+			handleUpdateUser(newAvatarUri);
+		}
+	};
 
 	return (
 		<SafeAreaView className='flex-1 px-5 bg-background'>
@@ -164,7 +164,7 @@ const Index = () => {
 						</TouchableOpacity>
 					</View>
 
-					<View className='gap-3'>
+					{/* <View className='gap-3'>
 						<CustomInput
 							label='Mot de passe'
 							onChangeText={() => {}}
@@ -178,6 +178,14 @@ const Index = () => {
 							variant='secondary'
 							onPress={() => handleRecoverPassword()}
 						/>
+					</View> */}
+					<View className="mt-6">
+						<Text className="indicator-text">
+							Dans les prochaines versions, de nouvelles options seront ajoutées
+							à cette page pour vous permettre de modifier votre mot de passe,
+							personnaliser le thème de l&apos;application ou encore choisir la
+							langue de votre interface.
+						</Text>
 					</View>
 				</View>
 			)}
