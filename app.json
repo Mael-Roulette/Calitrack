@@ -36,6 +36,12 @@
 						"backgroundColor": "#132541"
 					}
 				}
+			],
+			[
+				"expo-image-picker",
+				{
+					"photosPermission": "L'application nécessite l'accès à vos photos pour que vous puissiez choisir une image de profil."
+				}
 			]
 		],
 		"experiments": {

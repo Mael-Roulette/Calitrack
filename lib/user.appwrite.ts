@@ -107,6 +107,11 @@ export const updateUser = async (data: Partial<User>) => {
 	}
 };
 
+/**
+ * Permet de réinitialiser le mot de passe
+ * @returns {Promise<{ success: boolean }>} - Si l'email de réinitialisation a été envoyé
+ * @throws {Error} - Si l'email de réinitialisation n'a pas pu être envoyé
+ */
 export const updatePassword = async () => {
 	try {
 		const currentUser = await getCurrentUser();
