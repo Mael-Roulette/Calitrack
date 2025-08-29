@@ -13,7 +13,7 @@ const TabIcon = ({ icon }: TabBarIconProps) => (
 const TabsLayout = () => {
 	const { isAuthenticated, user } = useAuthStore();
 
-	if (!isAuthenticated) return <Redirect href={"/(auth)/sign-in"} />;
+	if (!isAuthenticated) return <Redirect href={"/sign-in"} />;
 	return (
 		<>
 			<StatusBar barStyle='dark-content' />

@@ -13,7 +13,7 @@ import useAuthStore from "@/store/auth.store";
 const AuthLayout = () => {
 	const { isAuthenticated } = useAuthStore();
 
-	if (isAuthenticated) return <Redirect href={'../(tabs)/'} />;
+	if (isAuthenticated) return <Redirect href={'/'} />;
 	const { width } = Dimensions.get("screen");
 	const height = 35;
 

@@ -17,7 +17,7 @@ const Index = () => {
 		await logout();
 		await fetchAuthenticatedUser();
 
-		router.replace("/(auth)/home");
+		router.replace("/home");
 	};
 
 	return (
@@ -35,7 +35,7 @@ const Index = () => {
 							className='flex-row items-center justify-between pb-4 border-b-[1px] border-gray-200'
 						>
 							<Link
-								href={`./settings/${item.screen}`}
+								href={`./${item.screen}`}
 								style={{ paddingHorizontal: 20 }}
 							>
 								<View className='flex-row items-center justify-between w-full'>

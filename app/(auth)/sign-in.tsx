@@ -74,7 +74,7 @@ const SignIn = () => {
 			<View className='mt-6 mb-4'>
 				<Text className='text-center text-primary font-sregular'>
 					Vous n&apos;avez pas encore de compte ?{" "}
-					<Link href={'/(auth)/sign-up'} className='text-secondary'>
+					<Link href={'/sign-up'} className='text-secondary'>
 						S&apos;inscrire
 					</Link>
 				</Text>

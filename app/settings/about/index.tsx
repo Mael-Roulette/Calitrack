@@ -35,7 +35,7 @@ const Index = () => {
 							setIsAuthenticated(false);
 							setUser(null);
 
-							router.replace("/(auth)/home");
+							router.replace("/home");
 
 							Alert.alert(
 								"Compte supprimé",

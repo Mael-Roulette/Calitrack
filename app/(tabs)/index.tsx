@@ -23,7 +23,7 @@ export default function Index() {
 		.toLowerCase();
 
 	if (!user) {
-		router.replace("/(auth)/home");
+		router.replace("/home");
 	}
 
 	// Récupérer le training du jour
