@@ -1,6 +1,12 @@
 import { CreateUserParams, SignInParams, User } from "@/types";
 import { ID, Query } from "react-native-appwrite";
-import { account, appwriteConfig, avatars, databases } from "./appwrite";
+import {
+	account,
+	appwriteConfig,
+	avatars,
+	databases,
+	functions,
+} from "./appwrite";
 
 /**
  * Permet de créer un nouvel utilisateur
@@ -125,6 +131,38 @@ export const updatePassword = async () => {
 		return { success: true };
 	} catch (e) {
 		console.error("Password recovery error:", e);
+	}
+};
+
+/**
+ * Permet à l'utilisateur de supprimer définitivement son compte
+ * @returns {Promise<void>} - Si la suppression a réussi
+ * @throws {Error} - Si la suppression a échoué
+ */
+export const deleteAccount = async () => {
+	try {
+		const currentUser = await getCurrentUser();
+
+		const execution = await functions.createExecution(
+			appwriteConfig.deleteAccountFunctionId,
+			JSON.stringify({ userId: currentUser.$id }),
+			false
+		);
+
+		if (execution.status !== "completed") {
+			throw new Error((execution as any).stderr || "Delete function failed");
+		}
+
+		await databases.deleteDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.userCollectionId,
+			currentUser.$id
+		);
+
+		return { success: true };
+	} catch (e) {
+		console.error("Account deletion error:", e);
+		throw new Error((e as string) || "Failed to delete account");
 	}
 };
 

@@ -1,7 +1,7 @@
 import { useAuthStore } from "@/store";
 import Entypo from "@expo/vector-icons/Entypo";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Link, useRouter } from "expo-router";
+import { Link, router } from "expo-router";
 import {
 	SafeAreaView,
 	ScrollView,
@@ -12,7 +12,6 @@ import {
 
 const Index = () => {
 	const { logout, fetchAuthenticatedUser } = useAuthStore();
-	const router = useRouter();
 
 	const handleLogout = async () => {
 		await logout();

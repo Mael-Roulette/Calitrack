@@ -1,6 +1,10 @@
+import { APP_VERSION } from "@/constants/value";
+import { deleteAccount } from "@/lib/user.appwrite";
+import { useAuthStore } from "@/store";
 import { Ionicons } from "@expo/vector-icons";
 import Entypo from "@expo/vector-icons/Entypo";
-import { Link, useRouter } from "expo-router";
+import { Link, router } from "expo-router";
+import { useState } from "react";
 import {
 	Alert,
 	SafeAreaView,
@@ -9,30 +13,59 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-import { APP_VERSION } from "@/constants/value";
 
 const Index = () => {
-  const router = useRouter();
+	const [isLoading, setIsLoading] = useState(false);
+	const { setIsAuthenticated, setUser } = useAuthStore();
 
 	const handleDeleteAccount = async () => {
 		Alert.alert(
-			"Suppression de compte",
-			"La suppression de votre compte n'est actuellement pas disponible dans l'application. Veuillez contacter le support pour qu'il le supprime.",
+			"Supprimer votre compte",
+			"Cette action est irréversible. Êtes-vous sûr de vouloir supprimer votre compte ?",
 			[
+				{ text: "Annuler", style: "cancel" },
 				{
-					text: "Annuler",
-					style: "cancel",
-				},
-				{
-					text: "Contacter le support",
-					onPress: async () => {
-            router.push("./about/support");
-					},
+					text: "Supprimer",
 					style: "destructive",
+					onPress: async () => {
+						setIsLoading(true);
+						try {
+							await deleteAccount();
+
+							setIsAuthenticated(false);
+							setUser(null);
+
+							router.replace("/(auth)/home");
+
+							Alert.alert(
+								"Compte supprimé",
+								"Votre compte a été supprimé avec succès."
+							);
+						} catch (error) {
+							const errorMessage =
+								error instanceof Error ? error.message : String(error);
+							Alert.alert(
+								"Erreur",
+								"Une erreur est survenue lors de la suppression de votre compte."
+							);
+							console.error("Delete account error:", errorMessage);
+						} finally {
+							setIsLoading(false);
+						}
+					},
 				},
 			]
 		);
 	};
+
+	if ( isLoading ) {
+		return (
+			<SafeAreaView className='bg-background flex-1 justify-center items-center'>
+				<Text className='text-primary text-lg'>Suppression en cours...</Text>
+			</SafeAreaView>
+		)
+	}
+
 
 	return (
 		<SafeAreaView className='bg-background flex-1'>
@@ -75,6 +108,10 @@ const Index = () => {
 					))}
 				</View>
 				<View className='px-5'>
+					<Text className='indicator-text mb-4 mt-8'>
+						La suppression de votre compte est irréversible et entraînera la
+						perte de toutes vos données.
+					</Text>
 					<TouchableOpacity
 						onPress={handleDeleteAccount}
 						className='flex-row items-center py-3'

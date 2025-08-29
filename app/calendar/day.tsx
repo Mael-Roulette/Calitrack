@@ -1,6 +1,6 @@
 import { View, Text, SafeAreaView } from "react-native";
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import { useLocalSearchParams, useNavigation, router } from "expo-router";
 import { getTrainingFromUserByDay } from "@/lib/training.appwrite";
 import TrainingItem from "../training/components/TrainingItem";
 import CustomButton from "@/components/CustomButton";
@@ -8,7 +8,6 @@ import CustomButton from "@/components/CustomButton";
 const Day = () => {
 	const { day, month, year } = useLocalSearchParams();
 	const navigation = useNavigation();
-	const router = useRouter();
 	const [dayTrainings, setDayTrainings] = useState<any[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
 

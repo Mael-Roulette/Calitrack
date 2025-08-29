@@ -2,7 +2,7 @@ import { useGoalsStore } from "@/store";
 import { Goal } from "@/types";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useNavigation, useRouter } from "expo-router";
+import { useNavigation, router } from "expo-router";
 import { useLayoutEffect, useMemo } from "react";
 import {
 	Alert,
@@ -17,7 +17,6 @@ import { MAX_GOALS } from "@/constants/value";
 
 const Goals = () => {
 	const { goals } = useGoalsStore();
-	const router = useRouter();
 	const navigation = useNavigation();
 
 	const handleAddGoalLink = () => {

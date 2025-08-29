@@ -1,11 +1,10 @@
-import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import { updatePassword, updateUser } from "@/lib/user.appwrite";
 import { useAuthStore } from "@/store";
 import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
 import * as ImagePicker from "expo-image-picker";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import {
 	Alert,
@@ -21,7 +20,6 @@ const Index = () => {
 	const [newAvatar, setNewAvatar] = useState<string | undefined>(user?.avatar);
 	const [newPseudo, setNewPseudo] = useState(user?.name || "");
 	const [newMail, setNewMail] = useState(user?.email || "");
-	const router = useRouter();
 
 	const handleUpdateUser = async (
 		newAvatar?: string,
@@ -179,8 +177,8 @@ const Index = () => {
 							onPress={() => handleRecoverPassword()}
 						/>
 					</View> */}
-					<View className="mt-6">
-						<Text className="indicator-text">
+					<View className='mt-6'>
+						<Text className='indicator-text'>
 							Dans les prochaines versions, de nouvelles options seront ajoutées
 							à cette page pour vous permettre de modifier votre mot de passe,
 							personnaliser le thème de l&apos;application ou encore choisir la

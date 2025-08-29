@@ -8,7 +8,7 @@ import {
 } from "@/lib/training.appwrite";
 import { useAuthStore, useGoalsStore } from "@/store";
 import { Exercise, Goal } from "@/types";
-import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import { useLocalSearchParams, useNavigation, router } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { ActivityIndicator, FlatList, SafeAreaView, Text, View } from "react-native";
 
@@ -19,7 +19,6 @@ const Session = () => {
 	const [loading, setLoading] = useState(true);
 	const [trainingExercises, setTrainingExercises] = useState<Exercise[]>([]);
 	const [isFinishing, setIsFinishing] = useState(false);
-	const router = useRouter();
 	const navigation = useNavigation();
 	const { goals } = useGoalsStore();
 	const [relatedGoals, setRelatedGoals] = useState<Goal[]>([]);

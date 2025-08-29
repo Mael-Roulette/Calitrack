@@ -1,8 +1,7 @@
 import { HeaderBackButton } from "@react-navigation/elements";
-import { Stack, useRouter } from "expo-router";
+import { Stack, router } from "expo-router";
 
 export default function TrainingIdLayout() {
-	const router = useRouter();
 
 	return (
 		<Stack

@@ -6,7 +6,7 @@ import { DAYS_TRANSLATION } from "@/constants/value";
 import { getTrainingById, updateTraining } from "@/lib/training.appwrite";
 import { useTrainingsStore } from "@/store";
 import { createTrainingParams, Exercise } from "@/types";
-import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import { useLocalSearchParams, useNavigation, router } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
 	ActivityIndicator,
@@ -22,7 +22,6 @@ const Edit = () => {
 	const { id } = useLocalSearchParams();
 	const [training, setTraining] = useState<any>(null);
 	const [loading, setLoading] = useState(true);
-	const router = useRouter();
 	const navigation = useNavigation();
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 	const [selectedDays, setSelectedDays] = useState<string[]>([]);

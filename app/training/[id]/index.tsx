@@ -5,7 +5,7 @@ import { deleteTraining, getTrainingById } from "@/lib/training.appwrite";
 import { useGoalsStore, useTrainingsStore } from "@/store";
 import { Exercise, Goal } from "@/types";
 import Feather from "@expo/vector-icons/Feather";
-import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import { useLocalSearchParams, useNavigation, router } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
 	ActivityIndicator,
@@ -23,7 +23,6 @@ const Index = () => {
 	const [loading, setLoading] = useState(true);
 	const [trainingExercises, setTrainingExercises] = useState<Exercise[]>([]);
 	const [showMenu, setShowMenu] = useState(false);
-	const router = useRouter();
 	const navigation = useNavigation();
 	const { fetchUserTrainings } = useTrainingsStore();
 	const { goals } = useGoalsStore();

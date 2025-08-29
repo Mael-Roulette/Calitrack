@@ -4,7 +4,7 @@ import { createGoal } from "@/lib/goal.appwrite";
 import { useGoalsStore } from "@/store";
 import { GoalState } from "@/types";
 import { Picker } from "@react-native-picker/picker";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import { useState } from "react";
 import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
 
@@ -18,7 +18,6 @@ const AddGoal = () => {
 		progress: 0,
 	});
 	const { fetchUserGoals } = useGoalsStore();
-	const router = useRouter();
 
 	const submit = async (): Promise<void> => {
 		if (!form.title || !form.type || !form.total) {
