@@ -2,7 +2,7 @@ import CustomButton from "@/components/CustomButton";
 import { useAuthStore, useGoalsStore, useTrainingsStore } from "@/store";
 import { Goal } from "@/types";
 import Feather from "@expo/vector-icons/Feather";
-import {  useRouter } from "expo-router";
+import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { ScrollView, Text, View, SafeAreaView } from "react-native";
 import GoalItem from "../goal/components/GoalItem";
@@ -15,7 +15,6 @@ export default function Index() {
 	const { goals, isLoadingGoals, fetchUserGoals } = useGoalsStore();
 	const { fetchUserTrainings } = useTrainingsStore();
 	const { fetchExercises } = useExercicesStore();
-	const router = useRouter();
 	const [todayTraining, setTodayTraining] = useState<any>([]);
 	const today = new Date()
 		.toLocaleDateString("en-EN", {

@@ -1,7 +1,7 @@
 import { useTrainingsStore } from "@/store";
 import { Training } from "@/types";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useNavigation, useRouter } from "expo-router";
+import { useNavigation, router } from "expo-router";
 import {
 	Alert,
 	FlatList,
@@ -17,7 +17,6 @@ import CustomButton from "@/components/CustomButton";
 
 const Trainings = () => {
 	const { trainings } = useTrainingsStore();
-	const router = useRouter();
 	const navigation = useNavigation();
 
 	const renderTrainingItem = ({ item }: { item: Training }) => (

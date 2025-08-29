@@ -1,5 +1,5 @@
 import { getExericseById } from "@/lib/exercise.appwrite";
-import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import { useLocalSearchParams, useNavigation, router } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
 	ActivityIndicator,
@@ -14,7 +14,6 @@ const ExerciseDetails = () => {
 	const { id } = useLocalSearchParams();
 	const [exercise, setExercise] = useState<any>(null);
 	const [loading, setLoading] = useState(true);
-	const router = useRouter();
 	const navigation = useNavigation();
 
 	useEffect(() => {

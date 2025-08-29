@@ -3,7 +3,7 @@ import { icons } from "@/constants/icons";
 import { useAuthStore, useGoalsStore } from "@/store";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Link, useRouter } from "expo-router";
+import { Link, router } from "expo-router";
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 import GoalStats from "../goal/components/GoalStats";
 import CustomButton from "@/components/CustomButton";
@@ -11,7 +11,6 @@ import CustomButton from "@/components/CustomButton";
 const Profile = () => {
 	const { user, isLoading } = useAuthStore();
 	const { goals } = useGoalsStore();
-	const router = useRouter();
 
 	const handleViewAllStats = () => {
 		router.push("/goal/stats");

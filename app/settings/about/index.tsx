@@ -3,7 +3,7 @@ import { deleteAccount } from "@/lib/user.appwrite";
 import { useAuthStore } from "@/store";
 import { Ionicons } from "@expo/vector-icons";
 import Entypo from "@expo/vector-icons/Entypo";
-import { Link, useRouter } from "expo-router";
+import { Link, router } from "expo-router";
 import { useState } from "react";
 import {
 	Alert,
@@ -15,7 +15,6 @@ import {
 } from "react-native";
 
 const Index = () => {
-	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 	const { setIsAuthenticated, setUser } = useAuthStore();
 

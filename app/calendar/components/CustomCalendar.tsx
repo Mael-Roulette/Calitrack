@@ -1,10 +1,9 @@
 import { CalendarDay } from "@/types";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 
 const CustomCalendar = () => {
 	const currentDate = new Date().toISOString();
-	const router = useRouter();
 
 	LocaleConfig.locales["fr"] = {
 		monthNames: [

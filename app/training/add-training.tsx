@@ -5,7 +5,7 @@ import { DAYS_TRANSLATION } from "@/constants/value";
 import { createTraining } from "@/lib/training.appwrite";
 import { useTrainingsStore } from "@/store";
 import { createTrainingParams, Exercise } from "@/types";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { Alert, SafeAreaView, ScrollView, Text, View } from "react-native";
 import ExerciseItem from "../exercise/components/ExerciseItem";
@@ -23,7 +23,6 @@ const AddTraining = () => {
 		minutes: 0,
 	});
 	const { fetchUserTrainings } = useTrainingsStore();
-	const router = useRouter();
 
 	const openExerciseModal = () => {
 		setIsModalVisible(true);

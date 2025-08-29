@@ -1,12 +1,11 @@
 import useExercicesStore from "@/store/exercises.stores";
-import { useRouter } from "expo-router";
+import { router } from "expo-router";
 import React from "react";
 import { FlatList, SafeAreaView, View } from "react-native";
 import ExerciseItem from "./components/ExerciseItem";
 
 const ExerciseList = () => {
 	const { exercices } = useExercicesStore();
-	const router = useRouter();
 
 	const goToExerciseDetails = (id: string) => {
 		router.push({

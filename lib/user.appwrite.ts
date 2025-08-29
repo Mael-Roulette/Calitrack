@@ -143,10 +143,20 @@ export const deleteAccount = async () => {
 	try {
 		const currentUser = await getCurrentUser();
 
-		await functions.createExecution(
+		const execution = await functions.createExecution(
 			appwriteConfig.deleteAccountFunctionId,
 			JSON.stringify({ userId: currentUser.$id }),
 			false
+		);
+
+		if (execution.status !== "completed") {
+			throw new Error((execution as any).stderr || "Delete function failed");
+		}
+
+		await databases.deleteDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.userCollectionId,
+			currentUser.$id
 		);
 
 		return { success: true };
