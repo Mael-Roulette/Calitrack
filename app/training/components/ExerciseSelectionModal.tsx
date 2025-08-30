@@ -13,6 +13,7 @@ import {
 	Text,
 	TouchableWithoutFeedback,
 	View,
+	FlatList,
 } from "react-native";
 
 const ExerciseSelectionModal = ({
@@ -27,10 +28,11 @@ const ExerciseSelectionModal = ({
 	initialSelectedExercises?: Exercise[];
 }) => {
 	const { exercices } = useExercicesStore();
+	console.log(exercices);
+
 	const [selectedExercises, setSelectedExercises] = useState<Exercise[]>(
 		initialSelectedExercises
 	);
-	const [searchQuery, setSearchQuery] = useState("");
 	const [filteredExercises, setFilteredExercises] =
 		useState<Exercise[]>(exercices);
 
@@ -93,8 +95,6 @@ const ExerciseSelectionModal = ({
 
 	/* ----- Recherche d'exercice ----- */
 	const handleSearch = (text: string) => {
-		setSearchQuery(text);
-
 		if (!text.trim()) {
 			setFilteredExercises(exercices);
 			return;
@@ -103,8 +103,8 @@ const ExerciseSelectionModal = ({
 		const query = text.toLowerCase();
 		const filtered = exercices.filter(
 			(exercise) =>
-				exercise.name.toLowerCase().includes(query) ||
-				exercise.type.name.toLowerCase().includes(query)
+				exercise.name?.toLowerCase().includes(query) ||
+				exercise.type?.name?.toLowerCase().includes(query)
 		);
 
 		setFilteredExercises(filtered);
@@ -190,25 +190,26 @@ const ExerciseSelectionModal = ({
 									label='Rechercher un exercice'
 									placeholder='Ex : Front, planche, ...'
 									onChangeText={handleSearch}
-									customStyles="mb-4"
+									customStyles='mb-4'
 								/>
 
-								<ScrollView
+								<FlatList
 									className='flex-1 mb-4'
+									data={filteredExercises}
 									showsVerticalScrollIndicator={false}
-								>
-									{filteredExercises.map((exercise) => (
+									keyExtractor={(item) => item.$id}
+									renderItem={({ item }) => (
 										<ExerciseItem
-											key={exercise.$id}
-											name={exercise.name}
-											type={exercise.type.name}
-											difficulty={exercise.difficulty}
+											key={item.$id}
+											name={item.name}
+											type={item.type.name}
+											difficulty={item.difficulty}
 											selectable={true}
-											isSelected={isExerciseSelected(exercise.$id)}
-											onPress={() => handleExerciseToggle(exercise)}
+											isSelected={isExerciseSelected(item.$id)}
+											onPress={() => handleExerciseToggle(item)}
 										/>
-									))}
-								</ScrollView>
+									)}
+								/>
 
 								<View className='flex-row gap-3'>
 									<CustomButton
