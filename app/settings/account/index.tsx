@@ -115,7 +115,7 @@ const Index = () => {
 						<TouchableOpacity
 							className='justify-center items-center bg-transparent rounded-md'
 							accessibilityLabel='Modifier la photo de profil'
-							onPress={() => pickNewAvatar()}
+							onPress={pickNewAvatar}
 							disabled={isLoading}
 						>
 							<Text className='text text-base underline'>

@@ -35,7 +35,7 @@ const Index = () => {
 							className='flex-row items-center justify-between pb-4 border-b-[1px] border-gray-200'
 						>
 							<Link
-								href={`./${item.screen}`}
+								href={`./settings/${item.screen}`}
 								style={{ paddingHorizontal: 20 }}
 							>
 								<View className='flex-row items-center justify-between w-full'>
