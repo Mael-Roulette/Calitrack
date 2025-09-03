@@ -12,8 +12,6 @@ export const getAllExercises = async () => {
 			appwriteConfig.exerciseCollectionId
 		);
 
-		// TODO: Load les types des exercices
-
 		return exercises.documents;
 	} catch (e) {
 		throw new Error(e as string);

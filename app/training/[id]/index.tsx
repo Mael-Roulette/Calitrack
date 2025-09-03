@@ -49,7 +49,6 @@ const Index = () => {
 
 	const handleDelete = () => {
 		setShowMenu(false);
-		console.log("Supprimer l'entrainement");
 		deleteTraining(training.$id)
 			.then(() => fetchUserTrainings())
 			.then(() => router.push("/trainings"));

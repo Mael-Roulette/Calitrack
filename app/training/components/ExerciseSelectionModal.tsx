@@ -28,7 +28,6 @@ const ExerciseSelectionModal = ({
 	initialSelectedExercises?: Exercise[];
 }) => {
 	const { exercices } = useExercicesStore();
-	console.log(exercices);
 
 	const [selectedExercises, setSelectedExercises] = useState<Exercise[]>(
 		initialSelectedExercises
@@ -136,6 +135,7 @@ const ExerciseSelectionModal = ({
 	/* ----- Confirmer la sélection ----- */
 	const handleConfirmSelection = useCallback(() => {
 		setTimeout(() => {
+			console.log( selectedExercises );
 			if (onExerciseSelected) {
 				onExerciseSelected(selectedExercises);
 			}

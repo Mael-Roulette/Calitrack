@@ -140,7 +140,7 @@ const AddTraining = () => {
 								<ExerciseItem
 									key={exercise.$id}
 									name={exercise.name}
-									type={exercise.type}
+									type={exercise.type.name}
 									difficulty={exercise.difficulty}
 								/>
 							))}
