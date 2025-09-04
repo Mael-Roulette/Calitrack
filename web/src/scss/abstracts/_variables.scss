@@ -1,0 +1,65 @@
+$font-primary: "CalSans", "Arial", sans-serif;
+$font-secondary: "Jost", "Arial", sans-serif;
+
+$flight: 300;
+$fregular: 400;
+$fmedium: 500;
+$fsemibold: 600;
+$fbold: 700;
+
+/* ----- Import ----- */
+@font-face {
+    font-family: 'CalSans';
+    font-style: normal;
+    font-weight: 400;
+    src: url(./assets/fonts/CalSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    src: url(./assets/fonts/Jost-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    src: url(./assets/fonts/Jost-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 600;
+    src: url(./assets/fonts/Jost-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 700;
+    src: url(./assets/fonts/Jost-Bold.ttf);
+}
+/* -------------------------------------------------- */
+/* ---------- Couleurs ---------- */
+
+$black: #0A0F19;
+$white: #FFFDF0;
+$blue: #293858;
+$yellow: #FCBD23;
+$red: #B74545;
+$green: #4A8E56;
+
+$transition: all .15s ease-out;
+
+/* -------------------------------------------------- */
+/* ---------- Responsive variable ---------- */
+
+$breakpoints: (
+	"sm": 576px,
+	"md": 768px,
+	"lg": 992px,
+	"xl": 1200px,
+);
