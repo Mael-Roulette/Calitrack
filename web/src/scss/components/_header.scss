@@ -5,5 +5,186 @@
 /* -------------------------------------------------- */
 
 .header {
-  background-color: $blue;
+  @include flex-center;
+  justify-content: space-between;
+  padding: 1.5rem 1.6rem;
+  background: $blue;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  // Logo section
+  &__logo {
+    @include flex-center;
+    flex-shrink: 0;
+    z-index: 20;
+
+    a {
+      @include flex-center;
+      text-decoration: none;
+    }
+
+    img {
+      height: 40px;
+      width: auto;
+    }
+  }
+
+  // Navigation section - Mobile first
+  &__nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    background: $blue;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    justify-content: flex-start;
+    padding: 9rem 2rem;
+    z-index: 10;
+
+    &--active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__nav-list {
+    @include flex-center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4rem;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__nav-item {
+    position: relative;
+  }
+
+  &__nav-link {
+    color: $white;
+    text-decoration: none;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+    position: relative;
+
+    &:hover {
+      color: $orange;
+    }
+
+    &--active {
+      color: $orange;
+
+      &::after {
+        display: none;
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: $orange;
+      }
+    }
+  }
+
+  // Buttons section - Cachés par défaut (mobile)
+  &__buttons {
+    @include flex-center;
+    display: none;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  // Burger menu - Visible par défaut (mobile)
+  &__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 20;
+
+    &-line {
+      width: 30px;
+      height: 2px;
+      background: $white;
+      transition: all 0.3s ease;
+      transform-origin: center;
+
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+    }
+
+    &--opened {
+      .header__burger-line {
+        &:nth-child(1) {
+          transform: rotate(45deg) translateY(14px);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-45deg) translateY(-14px);
+        }
+      }
+    }
+  }
+
+  @include responsive("lg") {
+		padding: 1.5rem 10rem;
+
+    &__nav {
+      @include flex-center;
+      position: static;
+      flex: 1;
+      justify-content: center;
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      height: auto;
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+      z-index: auto;
+    }
+
+    &__nav-list {
+      flex-direction: row;
+      align-items: center;
+			justify-content: center;
+    }
+
+    &__nav-link {
+      &--active {
+        &::after {
+          display: block;
+        }
+      }
+    }
+
+    &__buttons {
+      display: flex;
+    }
+
+    &__burger {
+      display: none;
+    }
+  }
 }

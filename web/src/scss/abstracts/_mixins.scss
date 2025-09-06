@@ -10,3 +10,9 @@
 		@error "Le breakpoint `#{$breakpoint}` n'existe pas dans la map `$breakpoints`.";
 	}
 }
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+	justify-content: center;
+}

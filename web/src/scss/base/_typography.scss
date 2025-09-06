@@ -1,5 +1,9 @@
 @use '../abstracts' as *;
 
+* {
+    line-height: 1.2;
+}
+
 /* -------------------------------------------------- */
 /* ---------- Titre ( Heading ) ---------- */
 h1, h2, h3 {
@@ -9,17 +13,14 @@ h1, h2, h3 {
 
 h1 {
     font-size: 3rem;
-    line-height: 3.2rem;
 }
 
 h2 {
     font-size: 2rem;
-    line-height: 2.2rem;
 }
 
 h3 {
     font-size: 1.8rem;
-    line-height: 2rem;
 }
 
 /* -------------------------------------------------- */
@@ -31,7 +32,6 @@ span,
 strong,
 label {
     font-size: 1.6rem;
-    line-height: 2.2rem;
     text-decoration: none;
 }
 
