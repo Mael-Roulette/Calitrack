@@ -1,5 +1,5 @@
 $font-primary: "CalSans", "Arial", sans-serif;
-$font-secondary: "Jost", "Arial", sans-serif;
+$font-secondary: "Sora", "Arial", sans-serif;
 
 $flight: 300;
 $fregular: 400;
@@ -16,41 +16,27 @@ $fbold: 700;
 }
 
 @font-face {
-    font-family: 'Jost';
+    font-family: 'Sora';
     font-style: normal;
     font-weight: 400;
-    src: url(./assets/fonts/Jost-Regular.ttf);
+    src: url(./assets/fonts/Sora-Regular.ttf);
 }
 
 @font-face {
-    font-family: 'Jost';
-    font-style: normal;
-    font-weight: 500;
-    src: url(./assets/fonts/Jost-Medium.ttf);
-}
-
-@font-face {
-    font-family: 'Jost';
+    font-family: 'Sora';
     font-style: normal;
     font-weight: 600;
-    src: url(./assets/fonts/Jost-SemiBold.ttf);
+    src: url(./assets/fonts/Sora-SemiBold.ttf);
 }
 
-@font-face {
-    font-family: 'Jost';
-    font-style: normal;
-    font-weight: 700;
-    src: url(./assets/fonts/Jost-Bold.ttf);
-}
 /* -------------------------------------------------- */
 /* ---------- Couleurs ---------- */
 
-$black: #0A0F19;
-$white: #FFFDF0;
-$blue: #293858;
-$yellow: #FCBD23;
-$red: #B74545;
-$green: #4A8E56;
+$white: #FFF9F7;
+$blue: #132541;
+$orange: #FC7942;
+$light_blue: #4E63D7;
+$green: #34A92F;
 
 $transition: all .15s ease-out;
 
