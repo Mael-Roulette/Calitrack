@@ -71,7 +71,7 @@ export default function Header () {
             <Link
               key={ href }
               href={ href }
-              className="text-sm font-semibold leading-6 text-background hover:text-background/80 focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground rounded-lg px-2 py-1 transition-colors"
+              className="text-sm font-semibold leading-6 text-background hover:text-background/50 focus:outline-none focus:ring-2 focus:ring-background rounded-lg px-2 py-1 transition-colors"
             >
               { label }
             </Link>
@@ -133,7 +133,7 @@ export default function Header () {
                     key={ href }
                     href={ href }
                     onClick={ closeMobileMenu }
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-background hover:bg-background/10 focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground transition-colors"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-background hover:bg-background/10 focus:outline-none focus:ring-2 focus:ring-background transition-colors"
                   >
                     { label }
                   </Link>
