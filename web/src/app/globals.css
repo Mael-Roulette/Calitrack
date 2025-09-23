@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FFF9F7;
+  --foreground: #132541;
+  --secondary: #FC7942;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-secondary: var(--secondary);
+  --font-calsans: var(--font-cal-sans);
+  --font-sora: var(--font-sora);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #132541;
+    --foreground: #FFF9F7;
   }
-}
+} */
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Boutons personnalisés */
+@layer components {
+  /* Bouton principal */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-full;
+    @apply bg-secondary text-foreground;
+    @apply border-2 border-secondary;
+    @apply hover:bg-foreground hover:text-secondary;
+    @apply focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-background;
+    @apply active:bg-secondary/80 active:scale-95;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-secondary disabled:active:scale-100;
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Bouton secondaire */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-full;
+    @apply bg-transparent text-secondary;
+    @apply border-2 border-secondary;
+    @apply hover:bg-secondary hover:text-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-background;
+    @apply active:bg-secondary/20 active:scale-95;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:active:scale-100;
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Variantes de taille */
+  .btn-sm {
+    @apply px-4 py-2 text-xs;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-base;
+  }
+
+  .btn-xl {
+    @apply px-10 py-5 text-lg;
+  }
+
+  /* Bouton pleine largeur */
+  .btn-full {
+    @apply w-full;
+  }
+
+  /* Bouton avec icône */
+  .btn-icon {
+    @apply gap-2;
+  }
+
+  /* Bouton arrondi */
+  .btn-rounded {
+    @apply rounded-full;
+  }
 }
