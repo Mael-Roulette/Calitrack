@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useCallback } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useCallback, useState } from 'react'
 
 // Liens de navigation
 const navigationLinks = [
@@ -30,10 +30,10 @@ export default function Header () {
   const closeMobileMenu = useCallback( () => setMobileMenuOpen( false ), [] )
 
   return (
-    <header className="bg-foreground">
+    <header className="bg-foreground sticky top-0 left-0 w-full shadow-sm">
       <nav
         aria-label="Navigation principale"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8"
       >
         {/* Logo */ }
         <div className="flex lg:flex-1">
