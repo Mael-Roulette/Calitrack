@@ -1,0 +1,27 @@
+[
+  {
+    "id": "pricing",
+    "question": "Calitrack est-il gratuit ?",
+    "answer": "Calitrack propose une version gratuite avec les fonctionnalités de base. Une version premium est disponible avec des analyses avancées et des programmes personnalisés."
+  },
+  {
+    "id": "compatibility",
+    "question": "Sur quelles plateformes Calitrack est-il disponible ?",
+    "answer": "Calitrack est disponible sur iOS, Android et maintenant en version web. Toutes vos données se synchronisent automatiquement entre les plateformes."
+  },
+  {
+    "id": "beginner",
+    "question": "Puis-je utiliser Calitrack si je débute en calisthenics ?",
+    "answer": "Absolument ! Calitrack propose des programmes adaptés aux débutants avec des progressions graduelles et des tutoriels détaillés pour chaque exercice."
+  },
+  {
+    "id": "data-sync",
+    "question": "Mes données sont-elles sauvegardées ?",
+    "answer": "Oui, toutes vos données sont automatiquement sauvegardées dans le cloud et synchronisées entre tous vos appareils en temps réel."
+  },
+  {
+    "id": "offline",
+    "question": "Puis-je utiliser l'application hors ligne ?",
+    "answer": "La plupart des fonctionnalités sont disponibles hors ligne. Vos entraînements seront synchronisés dès que vous retrouverez une connexion internet."
+  }
+]
