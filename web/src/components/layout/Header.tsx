@@ -17,8 +17,8 @@ const navigationLinks = [
 // Configuration du logo
 const LOGO_CONFIG = {
   src: '/images/logo.png',
-  width: 60,
-  height: 60,
+  width: 72,
+  height: 40,
   alt: 'Calitrack'
 } as const;
 
@@ -33,13 +33,13 @@ export default function Header () {
     <header className="bg-foreground sticky top-0 left-0 w-full shadow-sm">
       <nav
         aria-label="Navigation principale"
-        className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8"
+        className="mx-auto container flex items-center justify-between py-6 px-5"
       >
         {/* Logo */ }
         <div className="flex lg:flex-1">
           <Link
             href="/"
-            className="-m-1.5 p-1.5 focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground rounded-lg"
+            className="focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground rounded-lg"
             aria-label="Retour à l'accueil"
           >
             <Image
@@ -48,7 +48,6 @@ export default function Header () {
               height={ LOGO_CONFIG.height }
               alt={ LOGO_CONFIG.alt }
               priority
-              className="h-auto w-auto"
             />
           </Link>
         </div>
@@ -97,12 +96,12 @@ export default function Header () {
         aria-labelledby="mobile-menu-title"
       >
         <div className="fixed inset-0 z-50 bg-black/20" aria-hidden="true" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-foreground px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-foreground px-5 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           {/* En-tête du menu mobile */ }
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="-m-1.5 p-1.5 focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground rounded-lg"
+              className="focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground rounded-lg"
               onClick={ closeMobileMenu }
               aria-label="Retour à l'accueil"
             >
@@ -111,7 +110,6 @@ export default function Header () {
                 width={ LOGO_CONFIG.width }
                 height={ LOGO_CONFIG.height }
                 alt={ LOGO_CONFIG.alt }
-                className="h-auto w-auto"
               />
             </Link>
             <button
