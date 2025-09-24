@@ -37,9 +37,9 @@ export default function Home () {
       </section>
 
       <section>
-        <h2 className="title-section font-calsans mt-8 mb-6 lg:mt-12 lg:mb-10 text-center">Tout ce dont tu as besoin pour <span className="text-secondary">progresser</span></h2>
+        <h2 className="title-section font-calsans mt-8 mb-6 lg:mt-16 lg:mb-10 text-center">Tout ce dont tu as besoin pour <span className="text-secondary">progresser</span></h2>
 
-        <ul className="flex flex-row flex-wrap justify-center gap-x-5 gap-y-4 mb-4">
+        <ul className="flex flex-row flex-wrap justify-center gap-x-5 gap-y-4 mb-8">
           { featuresInfos.map( ( { id, icon, title, description } ) => {
             return (
               <li key={ id }>
@@ -49,11 +49,11 @@ export default function Home () {
           } ) }
         </ul>
 
-        <Link href="/features" className="underline inline-block w-full text-center mb-8">Découvrir toutes les fonctionnalités</Link>
+        <Link href="/features" className="underline inline-block w-full text-center mb-16">Découvrir toutes les fonctionnalités</Link>
       </section>
 
       <section className="bg-secondary/15">
-        <div className="container mx-auto py-8 px-5 lg:px-0 grid lg:grid-cols-[3fr_2fr]">
+        <div className="container mx-auto py-8 lg:py-12 px-5 lg:px-0 grid lg:grid-cols-[3fr_2fr]">
           <div>
             <h2 className="title-section font-calsans mb-2">Des questions ?</h2>
             <p> On a regroupé ici les questions les plus courantes. Mais si tu as encore un doute, n&apos;hésite pas à nous contacter !</p>
@@ -61,6 +61,10 @@ export default function Home () {
               faqs={ calitrackFaqs }
               allowMultipleOpen={ false }
             />
+            <Link href="/contact" className='btn-tertiary mt-6'>Contact-nous !</Link>
+          </div>
+          <div>
+
           </div>
         </div>
       </section>
