@@ -61,7 +61,7 @@ export default function Home () {
         <h1 className="font-calsans text-background pt-16 lg:pt-24 mx-auto max-w-5xl text-center text-3xl lg:text-7xl">Tes objectifs, ta discipline Ton app, <span className="text-secondary">Calitrack</span></h1>
         <p className="text-background mt-8 max-w-3xl mx-auto text-center text-lg lg:text-2xl">Suis tes progrès, planifie tes séances et avance pas à pas vers tes objectifs en calisthenie.</p>
         <div className="mt-5 pb-20 flex justify-center items-center gap-4">
-          <Link href="/contact" aria-label="Télécharger l'application" className="btn-primary">Tester la bêta</Link>
+          <Link href="/contact" aria-label="Télécharger l'application" className="btn-primary">Télécharger l&apos;application</Link>
           <Link href="/features" aria-label="Découvrir les fonctionnalités" className="btn-secondary">En savoir plus</Link>
         </div>
       </section>
@@ -80,7 +80,7 @@ export default function Home () {
           } ) }
         </ul>
 
-        <Link href="/features" className="underline inline-block w-full text-center mb-16">Découvrir toutes les fonctionnalités</Link>
+        <Link href="/features" aria-label="Découvrir toutes les fonctionnalités" className="underline inline-block w-full text-center mb-16">Découvrir toutes les fonctionnalités</Link>
       </section>
 
       {/* Section à propos */ }
@@ -101,8 +101,8 @@ export default function Home () {
             <p className='mb-3'>Le but est de proposer plus qu&apos;une simple appli de suivi : Calitrack a pour objectif de t&apos;accompagner dans tes entraînements et de t&apos;aider à rester motivé. Et ce n&apos;est que le début : de nouvelles fonctionnalités sont en préparation pour les pratiquants comme pour les coachs.</p>
             <p className='font-semibold mb-6'>Ce n&apos;est que le début, l&apos;aventure Calitrack ne fait que commencer.</p>
             <div className='flex flex-wrap gap-4'>
-              <Link href="/about" className='btn-primary'>En savoir plus</Link>
-              <Link href="#" className='btn-secondary'>Télécharger l&apos;application</Link>
+              <Link href="/about"  aria-label="En découvrir plus sur l'application" className='btn-primary'>En savoir plus</Link>
+              <Link href="#" aria-label="Télécharger l'application" className='btn-secondary'>Télécharger l&apos;application</Link>
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@ export default function Home () {
         <Roadmap milestones={ milestones } />
         <div className='mt-8 flex flex-col justify-center items-center gap-4'>
           <p className='font-semibold'>Tu as quelques choses à proposer ? N&apos;hésite pas à nous le partager !</p>
-          <Link href="#" className='btn-secondary'>Nous contacter</Link>
+          <Link href="#" aria-label="Contactez Calitrack" className='btn-secondary'>Nous contacter</Link>
         </div>
       </section>
 
@@ -129,7 +129,7 @@ export default function Home () {
               faqs={ calitrackFaqs }
               allowMultipleOpen={ false }
             />
-            <Link href="/contact" className='btn-tertiary mt-6'>Contact-nous !</Link>
+            <Link href="/contact" aria-label="Contactez Calitrack" className='btn-tertiary mt-6'>Contact-nous !</Link>
           </div>
           <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
             <Image
@@ -147,8 +147,8 @@ export default function Home () {
         <h2 className="title-section font-calsans text-center mb-2 lg:mb-4">Prêt à passer le cap ?</h2>
         <p className='text-center'>N&apos;attends pas plus et télécharge l&apos;application sur les différents stores !</p>
         <div className='flex flex-wrap gap-x-5 gap-y-3 justify-center items-center mt-5'>
-          <Link href="#" className='btn-primary'>Télécharger l&apos;application</Link>
-          <Link href="#" className='btn-secondary'>En savoir plus</Link>
+          <Link href="#" aria-label="Télécharger l'application" className='btn-primary'>Télécharger l&apos;application</Link>
+          <Link href="#" aria-label="En découvrir plus sur l'application" className='btn-secondary'>En savoir plus</Link>
         </div>
       </section>
     </main>
