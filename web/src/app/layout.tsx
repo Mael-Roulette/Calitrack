@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cal_Sans, Sora } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 
 const calSans = Cal_Sans( {
   weight: '400',
@@ -31,6 +32,7 @@ export default function RootLayout ( {
       >
         <Header />
         { children }
+        <Footer />
       </body>
     </html>
   );

@@ -53,31 +53,18 @@ body {
     @apply transition-all duration-300 ease-in-out;
   }
 
-  /* Variantes de taille */
-  .btn-sm {
-    @apply px-4 py-2 text-xs;
-  }
-
-  .btn-lg {
-    @apply px-8 py-4 text-base;
-  }
-
-  .btn-xl {
-    @apply px-10 py-5 text-lg;
-  }
-
   /* Bouton pleine largeur */
   .btn-full {
     @apply w-full;
   }
 
-  /* Bouton avec icône */
-  .btn-icon {
-    @apply gap-2;
+  /* Titre h1 */
+  .title-hero {
+    @apply text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
   }
 
-  /* Bouton arrondi */
-  .btn-rounded {
-    @apply rounded-full;
+  /* Titre section */
+  .title-section {
+    @apply text-3xl md:text-4xl lg:text-5xl;
   }
 }
