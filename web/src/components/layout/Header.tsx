@@ -30,7 +30,7 @@ export default function Header () {
   const closeMobileMenu = useCallback( () => setMobileMenuOpen( false ), [] )
 
   return (
-    <header className="bg-foreground sticky top-0 left-0 w-full shadow-sm">
+    <header className="bg-foreground sticky top-0 left-0 w-full z-5">
       <nav
         aria-label="Navigation principale"
         className="mx-auto container flex items-center justify-between py-6 px-5"

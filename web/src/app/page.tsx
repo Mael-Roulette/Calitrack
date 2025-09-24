@@ -2,6 +2,8 @@ import Faq from '@/components/global/Faq';
 import FeatureCard from "@/components/public/FeaturesCard";
 import Link from "next/link";
 import calitrackFaqs from '@/data/faq.json';
+import Roadmap from '@/components/public/Roadmap';
+import Image from 'next/image';
 
 export default function Home () {
   const featuresInfos = [
@@ -25,9 +27,37 @@ export default function Home () {
     }
   ]
 
+  const milestones = [
+    {
+      id: 1,
+      icon: "trainings.png",
+      title: "Ajout des combos",
+      description: "Implémentation de la création de combo personnalisé dans les entraînements."
+    },
+    {
+      id: 2,
+      icon: "stats.png",
+      title: "Support hors ligne",
+      description: "Ajout de la possibilité d'utiliser l'application sans connexion internet."
+    },
+    {
+      id: 3,
+      icon: "trainings.png",
+      title: "Amélioration des entraînements",
+      description: "Ajout de la création de série d'exercices avec nombre de répétition"
+    },
+    {
+      id: 4,
+      icon: 'goals.png',
+      title: 'Application web',
+      description: 'Création de l\'application web'
+    }
+  ]
+
   return (
     <main>
-      <section className="min-h-screen bg-radial-[at_50%_90%] from-[#4E63D7] to-foreground to-70% px-2">
+      {/* Section hero */ }
+      <section className="min-h-screen bg-radial-[at_50%_90%] from-[#4E63D7] from-5% to-foreground to-70% px-2">
         <h1 className="font-calsans text-background pt-16 lg:pt-24 mx-auto max-w-5xl text-center text-3xl lg:text-7xl">Tes objectifs, ta discipline Ton app, <span className="text-secondary">Calitrack</span></h1>
         <p className="text-background mt-8 max-w-3xl mx-auto text-center text-lg lg:text-2xl">Suis tes progrès, planifie tes séances et avance pas à pas vers tes objectifs en calisthenie.</p>
         <div className="mt-5 pb-20 flex justify-center items-center gap-4">
@@ -36,6 +66,7 @@ export default function Home () {
         </div>
       </section>
 
+      {/* Section features */ }
       <section>
         <h2 className="title-section font-calsans mt-8 mb-6 lg:mt-16 lg:mb-10 text-center">Tout ce dont tu as besoin pour <span className="text-secondary">progresser</span></h2>
 
@@ -52,8 +83,45 @@ export default function Home () {
         <Link href="/features" className="underline inline-block w-full text-center mb-16">Découvrir toutes les fonctionnalités</Link>
       </section>
 
+      {/* Section à propos */ }
       <section className="bg-secondary/15">
-        <div className="container mx-auto py-8 lg:py-12 px-5 lg:px-0 grid lg:grid-cols-[3fr_2fr]">
+        <div className="container mx-auto py-8 lg:py-12 px-5 lg:px-0 grid grid-cols-1 lg:grid-cols-[4fr_5fr] gap-x-10 gap-y-6">
+          <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
+            <Image
+              src={ '/images/mobile.jpg' }
+              alt=''
+              fill={ true }
+              className='h-full w-full object-cover'
+            />
+          </div>
+          <div>
+            <h2 className='title-section font-calsans mb-4'>Progresser n&apos;a jamais été aussi <span className='text-secondary'>simple</span></h2>
+            <p className='mb-3'>Calitrack est né d&apos;une idée simple : rendre l&apos;entraînement en callisthénie <strong>plus simple</strong> et <strong>plus accessible</strong> à tous. Quand on pratique ce sport, on se rend vite compte qu&apos;il est difficile de suivre ses progrès et de rester motivé sur le long terme. J&apos;ai donc voulu créer une appli pensée par un pratiquant, pour les pratiquants.</p>
+            <p className='mb-3'>Avec Calitrack, tu peux <strong>organiser tes entraînements</strong>, <strong>suivre tes objectifs</strong> et voir concrètement tes avancées au fil du temps.</p>
+            <p className='mb-3'>Le but est de proposer plus qu&apos;une simple appli de suivi : Calitrack a pour objectif de t&apos;accompagner dans tes entraînements et de t&apos;aider à rester motivé. Et ce n&apos;est que le début : de nouvelles fonctionnalités sont en préparation pour les pratiquants comme pour les coachs.</p>
+            <p className='font-semibold mb-6'>Ce n&apos;est que le début, l&apos;aventure Calitrack ne fait que commencer.</p>
+            <div className='flex flex-wrap gap-4'>
+              <Link href="/about" className='btn-primary'>En savoir plus</Link>
+              <Link href="#" className='btn-secondary'>Télécharger l&apos;application</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section roadmap */ }
+      <section className="container mx-auto py-8 lg:pt-12 lg:pb-16 px-5 lg:px-0">
+        <h2 className='title-section mb-2 text-center font-calsans'>Ce qui arrive bientôt</h2>
+        <p className='text-center mb-10 text-lg'>Tout comme votre progression en calisthénie, Calitrack avance pas à pas.</p>
+        <Roadmap milestones={ milestones } />
+        <div className='mt-8 flex flex-col justify-center items-center gap-4'>
+          <p className='font-semibold'>Tu as quelques choses à proposer ? N&apos;hésite pas à nous le partager !</p>
+          <Link href="#" className='btn-secondary'>Nous contacter</Link>
+        </div>
+      </section>
+
+      {/* Section FAQ */ }
+      <section className="bg-secondary/15">
+        <div className="container mx-auto py-8 lg:py-12 px-5 lg:px-0 grid lg:grid-cols-[3fr_2fr] gap-y-6 gap-x-12">
           <div>
             <h2 className="title-section font-calsans mb-2">Des questions ?</h2>
             <p> On a regroupé ici les questions les plus courantes. Mais si tu as encore un doute, n&apos;hésite pas à nous contacter !</p>
@@ -63,9 +131,24 @@ export default function Home () {
             />
             <Link href="/contact" className='btn-tertiary mt-6'>Contact-nous !</Link>
           </div>
-          <div>
-
+          <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
+            <Image
+              src={ '/images/mobile.jpg' }
+              alt=''
+              fill={ true }
+              className='h-full w-full object-cover'
+            />
           </div>
+        </div>
+      </section>
+
+      {/* Section téléchargement */ }
+      <section className="container mx-auto py-8 lg:py-12 px-5 lg:px-0">
+        <h2 className="title-section font-calsans text-center mb-2 lg:mb-4">Prêt à passer le cap ?</h2>
+        <p className='text-center'>N&apos;attends pas plus et télécharge l&apos;application sur les différents stores !</p>
+        <div className='flex flex-wrap gap-x-5 gap-y-3 justify-center items-center mt-5'>
+          <Link href="#" className='btn-primary'>Télécharger l&apos;application</Link>
+          <Link href="#" className='btn-secondary'>En savoir plus</Link>
         </div>
       </section>
     </main>
