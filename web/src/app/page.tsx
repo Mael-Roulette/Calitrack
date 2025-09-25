@@ -45,22 +45,16 @@ export default function Home () {
       icon: "trainings.png",
       title: "Amélioration des entraînements",
       description: "Ajout de la création de série d'exercices avec nombre de répétition"
-    },
-    {
-      id: 4,
-      icon: 'goals.png',
-      title: 'Application web',
-      description: 'Création de l\'application web'
     }
   ]
 
   return (
     <main>
       {/* Section hero */ }
-      <section className="min-h-screen bg-radial-[at_50%_90%] from-[#4E63D7] from-5% to-foreground to-70% px-2">
+      <section className="min-h-screen bg-gradient-to-t lg:bg-radial-[at_50%_90%] from-[#4E63D7] from-3% to-foreground to-80% lg:to-70% px-2">
         <h1 className="font-calsans text-background pt-16 lg:pt-24 mx-auto max-w-5xl text-center text-3xl lg:text-7xl">Tes objectifs, ta discipline Ton app, <span className="text-secondary">Calitrack</span></h1>
         <p className="text-background mt-8 max-w-3xl mx-auto text-center text-lg lg:text-2xl">Suis tes progrès, planifie tes séances et avance pas à pas vers tes objectifs en calisthenie.</p>
-        <div className="mt-5 pb-20 flex justify-center items-center gap-4">
+        <div className="mt-5 pb-20 flex flex-wrap justify-center items-center gap-4">
           <Link href="/contact" aria-label="Télécharger l'application" className="btn-primary">Télécharger l&apos;application</Link>
           <Link href="/features" aria-label="Découvrir les fonctionnalités" className="btn-secondary">En savoir plus</Link>
         </div>
@@ -114,8 +108,8 @@ export default function Home () {
         <p className='text-center mb-10 text-lg'>Tout comme votre progression en calisthénie, Calitrack avance pas à pas.</p>
         <Roadmap milestones={ milestones } />
         <div className='mt-8 flex flex-col justify-center items-center gap-4'>
-          <p className='font-semibold'>Tu as quelques choses à proposer ? N&apos;hésite pas à nous le partager !</p>
-          <Link href="#" aria-label="Contactez Calitrack" className='btn-secondary'>Nous contacter</Link>
+          <p className='font-semibold'>Tu as quelques choses à proposer ? N&apos;hésite pas à me le partager !</p>
+          <Link href="#" aria-label="Contactez Calitrack" className='btn-secondary'>Me contacter</Link>
         </div>
       </section>
 
@@ -124,12 +118,12 @@ export default function Home () {
         <div className="container mx-auto py-8 lg:py-12 px-5 lg:px-0 grid lg:grid-cols-[3fr_2fr] gap-y-6 gap-x-12">
           <div>
             <h2 className="title-section font-calsans mb-2">Des questions ?</h2>
-            <p> On a regroupé ici les questions les plus courantes. Mais si tu as encore un doute, n&apos;hésite pas à nous contacter !</p>
+            <p>J&apos;ai regroupé ici les questions les plus courantes. Mais si tu as encore un doute, n&apos;hésite pas à me contacter !</p>
             <Faq
               faqs={ calitrackFaqs }
               allowMultipleOpen={ false }
             />
-            <Link href="/contact" aria-label="Contactez Calitrack" className='btn-tertiary mt-6'>Contact-nous !</Link>
+            <Link href="/contact" aria-label="Contactez Calitrack" className='btn-tertiary mt-6'>Contact-moi !</Link>
           </div>
           <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
             <Image

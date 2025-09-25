@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
-import { Cal_Sans, Sora } from "next/font/google";
+import { Sora } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const calSans = Cal_Sans( {
-  weight: '400',
-  variable: '--font-cal-sans',
-  subsets: [ 'latin' ],
+const calSans = localFont( {
+  src: [
+    {
+      path: "../../public/fonts/cal-sans/CalSans-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-cal-sans",
 } );
 
 const sora = Sora( {
