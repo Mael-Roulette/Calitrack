@@ -1,4 +1,4 @@
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import DynamicBreadcrumb from "@/components/ui/DynamicBreadcrumb";
 
 export default function RootLayout ( {
   children,
@@ -7,7 +7,7 @@ export default function RootLayout ( {
 }> ) {
   return (
     <section className="container mx-auto py-8 lg:pt-12 lg:pb-16 px-5 lg:px-0">
-      <Breadcrumb />
+      <DynamicBreadcrumb />
       { children }
     </section>
   );
