@@ -23,7 +23,7 @@ export default function Footer () {
 
   return (
     <footer>
-      <div className="bg-radial-[at_50%_10%] from-[#4E63D7] to-foreground to-70%">
+      <div className="bg-gradient-to-b lg:bg-radial-[at_50%_10%] from-[#4E63D7] from-1% lg:from-20% to-foreground to-50% lg:to-70%">
         <div className="mx-auto container flex flex-row flex-wrap gap-x-32 gap-y-12 py-14 px-5">
           <div>
             <Link

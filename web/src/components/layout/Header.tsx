@@ -78,14 +78,14 @@ export default function Header () {
         </nav>
 
         {/* Lien de connexion desktop */ }
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
             href="/signin"
             className="btn-primary"
           >
             Se connecter
           </Link>
-        </div>
+        </div> */}
       </nav>
 
       {/* Menu mobile */ }
@@ -137,7 +137,7 @@ export default function Header () {
                   </Link>
                 ) ) }
               </nav>
-              <div className="py-6">
+              {/* <div className="py-6">
                 <Link
                   href="/signin"
                   onClick={ closeMobileMenu }
@@ -145,7 +145,7 @@ export default function Header () {
                 >
                   Se connecter
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </DialogPanel>

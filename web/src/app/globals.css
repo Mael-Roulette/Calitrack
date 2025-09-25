@@ -55,7 +55,7 @@ body {
 
   .btn-tertiary {
     @apply inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded-full;
-    @apply bg-transparent text-foreground;
+    @apply bg-inherit text-foreground;
     @apply border-2 border-foreground;
     @apply hover:bg-foreground hover:text-background;
     @apply focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-offset-2 focus:ring-offset-background;
