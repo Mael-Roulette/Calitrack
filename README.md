@@ -1,9 +1,9 @@
 # Calitrack - Plateforme complète
 
-Ce dépôt contient le code source de l'ensemble de la plateforme Calitrack:
+Ce dépôt contient le code source de l'ensemble de Calitrack:
 
 - **[mobile](./mobile/)**: Application mobile React Native/Expo
-- **[web](./web/)**: Site web
+- **[web](./web/)**: Site web Next.js
 
 ## Structure du projet
 
