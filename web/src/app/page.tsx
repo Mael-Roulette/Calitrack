@@ -39,7 +39,7 @@ export default function Home () {
 
       {/* Section à propos */ }
       <section className="bg-secondary/15">
-        <div className="container mx-auto py-8 lg:py-12 px-5 lg:px-0 grid grid-cols-1 lg:grid-cols-[4fr_5fr] gap-x-10 gap-y-6">
+        <div className="section-wrapper grid grid-cols-1 lg:grid-cols-[4fr_5fr] gap-x-10 gap-y-6">
           <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
             <Image
               src={ '/images/mobile.jpg' }
@@ -63,7 +63,7 @@ export default function Home () {
       </section>
 
       {/* Section roadmap */ }
-      <section className="container mx-auto py-8 lg:pt-12 lg:pb-16 px-5 lg:px-0">
+      <section className="section-wrapper">
         <h2 className='title-section mb-2 text-center font-calsans'>Ce qui arrive bientôt</h2>
         <p className='text-center mb-10 text-lg'>Tout comme votre progression en calisthénie, Calitrack avance pas à pas.</p>
         <Roadmap milestones={ milestones } />
@@ -75,7 +75,7 @@ export default function Home () {
 
       {/* Section FAQ */ }
       <section className="bg-secondary/15">
-        <div className="container mx-auto py-8 lg:py-12 px-5 lg:px-0 grid lg:grid-cols-[3fr_2fr] gap-y-6 gap-x-12">
+        <div className="section-wrapper grid lg:grid-cols-[3fr_2fr] gap-y-6 gap-x-12">
           <div>
             <h2 className="title-section font-calsans mb-2">Des questions ?</h2>
             <p>J&apos;ai regroupé ici les questions les plus courantes. Mais si tu as encore un doute, n&apos;hésite pas à me contacter !</p>
@@ -97,7 +97,7 @@ export default function Home () {
       </section>
 
       {/* Section téléchargement */ }
-      <section className="container mx-auto py-8 lg:py-12 px-5 lg:px-0">
+      <section className="section-wrapper">
         <h2 className="title-section font-calsans text-center mb-2 lg:mb-4">Prêt à passer le cap ?</h2>
         <p className='text-center'>N&apos;attends pas plus et télécharge l&apos;application sur les différents stores !</p>
         <div className='flex flex-wrap gap-x-5 gap-y-3 justify-center items-center mt-5'>

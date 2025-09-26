@@ -70,6 +70,11 @@ body {
     @apply w-full;
   }
 
+  /* Section wrapper */
+  .section-wrapper {
+    @apply container mx-auto py-8 lg:pt-12 lg:pb-16 px-5 lg:px-0;
+  }
+
   /* Titre h1 */
   .title-hero {
     @apply text-4xl md:text-5xl lg:text-6xl xl:text-7xl;
