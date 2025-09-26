@@ -1,53 +1,13 @@
-import Faq from '@/components/global/Faq';
+import Faq from '@/components/public/Faq';
 import FeatureCard from "@/components/public/FeaturesCard";
-import Link from "next/link";
-import calitrackFaqs from '@/data/faq.json';
 import Roadmap from '@/components/public/Roadmap';
+import calitrackFaqs from '@/data/public/faq.json';
+import featuresInfos from "@/data/public/features.json";
+import milestones from "@/data/public/milestones.json";
 import Image from 'next/image';
+import Link from "next/link";
 
 export default function Home () {
-  const featuresInfos = [
-    {
-      id: 1,
-      icon: 'trainings.png',
-      title: 'Entrainement personnalisés',
-      description: 'Crée tes entraînements et planifie ta semaine comme un grand athlète'
-    },
-    {
-      id: 2,
-      icon: 'goals.png',
-      title: 'Objectifs personnalisés',
-      description: 'Fixe-toi tes objectifs et progresse à ton rythme'
-    },
-    {
-      id: 3,
-      icon: 'stats.png',
-      title: 'Suivie de progression',
-      description: 'Visualise tes progrès simplement grâce à des graphiques clairs'
-    }
-  ]
-
-  const milestones = [
-    {
-      id: 1,
-      icon: "trainings.png",
-      title: "Ajout des combos",
-      description: "Implémentation de la création de combo personnalisé dans les entraînements."
-    },
-    {
-      id: 2,
-      icon: "stats.png",
-      title: "Support hors ligne",
-      description: "Ajout de la possibilité d'utiliser l'application sans connexion internet."
-    },
-    {
-      id: 3,
-      icon: "trainings.png",
-      title: "Amélioration des entraînements",
-      description: "Ajout de la création de série d'exercices avec nombre de répétition"
-    }
-  ]
-
   return (
     <main>
       {/* Section hero */ }
@@ -55,7 +15,7 @@ export default function Home () {
         <h1 className="font-calsans text-background pt-16 lg:pt-24 mx-auto max-w-5xl text-center text-3xl lg:text-7xl">Tes objectifs, ta discipline Ton app, <span className="text-secondary">Calitrack</span></h1>
         <p className="text-background mt-8 max-w-3xl mx-auto text-center text-lg lg:text-2xl">Suis tes progrès, planifie tes séances et avance pas à pas vers tes objectifs en calisthenie.</p>
         <div className="mt-5 pb-20 flex flex-wrap justify-center items-center gap-4">
-          <Link href="/contact" aria-label="Télécharger l'application" className="btn-primary">Télécharger l&apos;application</Link>
+          <Link href="/contact" aria-label="Télécharger l'application" className="btn-primary">Tester la bêta</Link>
           <Link href="/features" aria-label="Découvrir les fonctionnalités" className="btn-secondary">En savoir plus</Link>
         </div>
       </section>
@@ -68,7 +28,7 @@ export default function Home () {
           { featuresInfos.map( ( { id, icon, title, description } ) => {
             return (
               <li key={ id }>
-                <FeatureCard icon={ icon } title={ title } description={ description } />
+                <FeatureCard id={ id } icon={ icon } title={ title } description={ description } />
               </li>
             )
           } ) }
@@ -96,7 +56,7 @@ export default function Home () {
             <p className='font-semibold mb-6'>Ce n&apos;est que le début, l&apos;aventure Calitrack ne fait que commencer.</p>
             <div className='flex flex-wrap gap-4'>
               <Link href="/about" aria-label="En découvrir plus sur l'application" className='btn-primary'>En savoir plus</Link>
-              <Link href="#" aria-label="Télécharger l'application" className='btn-secondary'>Télécharger l&apos;application</Link>
+              <Link href="/contact" aria-label="Télécharger l'application" className='btn-secondary'>Tester la bêta</Link>
             </div>
           </div>
         </div>
@@ -109,7 +69,7 @@ export default function Home () {
         <Roadmap milestones={ milestones } />
         <div className='mt-8 flex flex-col justify-center items-center gap-4'>
           <p className='font-semibold'>Tu as quelques choses à proposer ? N&apos;hésite pas à me le partager !</p>
-          <Link href="#" aria-label="Contactez Calitrack" className='btn-secondary'>Me contacter</Link>
+          <Link href="/contact" aria-label="Contactez Calitrack" className='btn-secondary'>Me contacter</Link>
         </div>
       </section>
 
@@ -141,8 +101,8 @@ export default function Home () {
         <h2 className="title-section font-calsans text-center mb-2 lg:mb-4">Prêt à passer le cap ?</h2>
         <p className='text-center'>N&apos;attends pas plus et télécharge l&apos;application sur les différents stores !</p>
         <div className='flex flex-wrap gap-x-5 gap-y-3 justify-center items-center mt-5'>
-          <Link href="#" aria-label="Télécharger l'application" className='btn-primary'>Télécharger l&apos;application</Link>
-          <Link href="#" aria-label="En découvrir plus sur l'application" className='btn-secondary'>En savoir plus</Link>
+          <Link href="/contact" aria-label="Télécharger l'application" className='btn-primary'>Tester la bêta</Link>
+          <Link href="/features" aria-label="En découvrir plus sur l'application" className='btn-secondary'>En savoir plus</Link>
         </div>
       </section>
     </main>

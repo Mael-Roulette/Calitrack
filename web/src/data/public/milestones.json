@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "icon": "trainings.png",
+    "title": "Ajout des combos",
+    "description": "Implémentation de la création de combo personnalisé dans les entraînements."
+  },
+  {
+    "id": 2,
+    "icon": "stats.png",
+    "title": "Support hors ligne",
+    "description": "Ajout de la possibilité d'utiliser l'application sans connexion internet."
+  },
+  {
+    "id": 3,
+    "icon": "trainings.png",
+    "title": "Amélioration des entraînements",
+    "description": "Ajout de la création de série d'exercices avec nombre de répétition"
+  }
+]

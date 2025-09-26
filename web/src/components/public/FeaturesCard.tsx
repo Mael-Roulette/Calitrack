@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { Feature } from "@/types";
 
-export default function FeatureCard ( { icon, title, description }: { icon: string, title: string, description: string } ) {
+export default function FeatureCard ( { icon, title, description }: Feature ) {
   return (
     <div className="bg-secondary/20 p-5 rounded-md max-w-xs h-full flex flex-col justify-start items-center">
       <div className="rounded-full p-4 bg-background mb-2">

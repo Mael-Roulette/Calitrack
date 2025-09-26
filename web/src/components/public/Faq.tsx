@@ -1,20 +1,8 @@
 'use client'
 
-import React, { useState, useCallback } from 'react'
+import { FaqData, FaqProps } from '@/types'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-
-// Types
-interface FaqData {
-  id?: string | number
-  question: string
-  answer: string
-}
-
-interface FaqProps {
-  faqs: FaqData[]
-  className?: string
-  allowMultipleOpen?: boolean
-}
+import React, { useCallback, useState } from 'react'
 
 // Composant FAQ Item
 const FaqItem: React.FC<{

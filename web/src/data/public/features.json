@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "icon": "trainings.png",
+    "title": "Entrainement personnalisés",
+    "description": "Crée tes entraînements et planifie ta semaine comme un grand athlète"
+  },
+  {
+    "id": 2,
+    "icon": "goals.png",
+    "title": "Objectifs personnalisés",
+    "description": "Fixe-toi tes objectifs et progresse à ton rythme"
+  },
+  {
+    "id": 3,
+    "icon": "stats.png",
+    "title": "Suivi de progression",
+    "description": "Visualise tes progrès simplement grâce à des graphiques clairs"
+  }
+]

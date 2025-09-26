@@ -1,13 +1,7 @@
 import Image from "next/image"
+import { Milestone } from "@/types"
 
-interface milestoneData {
-  id?: string | number
-  icon: string
-  title: string
-  description: string
-}
-
-const RoadmapItem = ( { icon, title, description }: { icon: string, title: string, description: string } ) => {
+const RoadmapItem = ( { icon, title, description }: Milestone ) => {
   return (
     <li className="relative w-full mb-6 sm:mb-0" >
       <div className="flex items-center">
@@ -15,8 +9,8 @@ const RoadmapItem = ( { icon, title, description }: { icon: string, title: strin
           <Image
             src={ `/icons/${icon}` }
             alt={ title }
-            width={35}
-            height={35}
+            width={ 35 }
+            height={ 35 }
           />
         </div>
         <div className="w-full bg-secondary h-0.5"></div>
@@ -29,12 +23,13 @@ const RoadmapItem = ( { icon, title, description }: { icon: string, title: strin
   )
 }
 
-export default function Roadmap ( { milestones }: { milestones: milestoneData[] } ) {
+export default function Roadmap ( { milestones }: { milestones: Milestone[] } ) {
   return (
     <ol className=" w-full items-start gap-8 sm:flex">
       { milestones.map( ( milestone, index ) => (
         <RoadmapItem
           key={ milestone.id || index }
+          id={ milestone.id }
           icon={ milestone.icon }
           title={ milestone.title }
           description={ milestone.description }
