@@ -95,7 +95,7 @@ export default function Home () {
             <p className='mb-3'>Le but est de proposer plus qu&apos;une simple appli de suivi : Calitrack a pour objectif de t&apos;accompagner dans tes entraînements et de t&apos;aider à rester motivé. Et ce n&apos;est que le début : de nouvelles fonctionnalités sont en préparation pour les pratiquants comme pour les coachs.</p>
             <p className='font-semibold mb-6'>Ce n&apos;est que le début, l&apos;aventure Calitrack ne fait que commencer.</p>
             <div className='flex flex-wrap gap-4'>
-              <Link href="/about"  aria-label="En découvrir plus sur l'application" className='btn-primary'>En savoir plus</Link>
+              <Link href="/about" aria-label="En découvrir plus sur l'application" className='btn-primary'>En savoir plus</Link>
               <Link href="#" aria-label="Télécharger l'application" className='btn-secondary'>Télécharger l&apos;application</Link>
             </div>
           </div>
@@ -146,6 +146,5 @@ export default function Home () {
         </div>
       </section>
     </main>
-
   );
 }

@@ -15,10 +15,14 @@
     "@tailwindplus/elements": "^1.0.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "i18next": "^25.5.2",
+    "i18next-resources-to-backend": "^1.2.1",
     "lucide-react": "^0.544.0",
     "next": "15.5.3",
+    "next-i18n-router": "^5.5.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-i18next": "^16.0.0",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
