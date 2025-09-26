@@ -10,7 +10,7 @@ import { useCallback, useState } from 'react'
 const navigationLinks = [
   { href: '/about', label: 'À propos' },
   { href: '/features', label: 'Fonctionnalités' },
-  { href: '/pricing', label: 'Tarifs' },
+  // { href: '/pricing', label: 'Tarifs' },
   { href: '/contact', label: 'Contact' }
 ] as const;
 
