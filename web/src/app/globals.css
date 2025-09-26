@@ -77,7 +77,7 @@ body {
 
   /* Section wrapper */
   .section-wrapper {
-    @apply container mx-auto py-8 lg:pt-10 lg:pb-12 px-5 lg:px-0;
+    @apply container mx-auto py-8 max-w-7xl lg:pt-10 lg:pb-12 px-5 lg:px-0;
   }
 
   /* ************************** */
