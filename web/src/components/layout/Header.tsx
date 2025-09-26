@@ -39,7 +39,7 @@ export default function Header () {
         <div className="flex lg:flex-1">
           <Link
             href="/"
-            className="focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground rounded-lg"
+            className="rounded-lg"
             aria-label="Retour à l'accueil"
           >
             <Image
@@ -57,7 +57,7 @@ export default function Header () {
           <button
             type="button"
             onClick={ openMobileMenu }
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-background hover:text-background/80 focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground transition-colors"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-background hover:text-background/80 transition-colors"
             aria-label="Ouvrir le menu de navigation"
           >
             <Bars3Icon aria-hidden="true" className="h-10 w-10" />
@@ -70,7 +70,7 @@ export default function Header () {
             <Link
               key={ href }
               href={ href }
-              className="text-sm font-semibold leading-6 text-background hover:text-background/50 focus:outline-none focus:ring-2 focus:ring-background rounded-lg px-2 py-1 transition-colors"
+              className="text-sm font-semibold leading-6 text-background hover:text-background/50 rounded-lg px-2 py-1 transition-colors"
             >
               { label }
             </Link>
@@ -101,7 +101,7 @@ export default function Header () {
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground rounded-lg"
+              className="rounded-lg"
               onClick={ closeMobileMenu }
               aria-label="Retour à l'accueil"
             >
@@ -115,7 +115,7 @@ export default function Header () {
             <button
               type="button"
               onClick={ closeMobileMenu }
-              className="-m-2.5 rounded-md p-2.5 text-background hover:text-background/80 focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground transition-colors"
+              className="-m-2.5 rounded-md p-2.5 text-background hover:text-background/80 transition-colors"
               aria-label="Fermer le menu de navigation"
             >
               <XMarkIcon aria-hidden="true" className="h-10 w-10" />
@@ -131,7 +131,7 @@ export default function Header () {
                     key={ href }
                     href={ href }
                     onClick={ closeMobileMenu }
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-background hover:bg-background/10 focus:outline-none focus:ring-2 focus:ring-background transition-colors"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-background hover:bg-background/10 transition-colors"
                   >
                     { label }
                   </Link>

@@ -26,7 +26,7 @@ export default function Footer () {
           <div>
             <Link
               href="/"
-              className="focus:outline-none focus:ring-2 focus:ring-background focus:ring-offset-2 focus:ring-offset-foreground rounded-lg inline-block mb-4"
+              className="rounded-lg inline-block mb-4"
               aria-label="Retour à l'accueil"
             >
               <Image
@@ -47,7 +47,7 @@ export default function Footer () {
                   <li key={ href }>
                     <Link
                       href={ href }
-                      className="text-background hover:text-background/50 focus:outline-none focus:ring-2 focus:ring-background rounded-lg px-2 py-1 transition-colors"
+                      className="text-background hover:text-background/50 rounded-lg px-2 py-1 transition-colors"
                     >
                       { label }
                     </Link>
@@ -64,7 +64,7 @@ export default function Footer () {
                   <li key={ href }>
                     <Link
                       href={ href }
-                      className="hover:text-background/50 focus:outline-none focus:ring-2 focus:ring-background rounded-lg px-2 py-1 transition-colors"
+                      className="hover:text-background/50 rounded-lg px-2 py-1 transition-colors"
                     >
                       { label }
                     </Link>

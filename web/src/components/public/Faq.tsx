@@ -15,7 +15,7 @@ const FaqItem: React.FC<{
     <div className="border-b border-foreground/30 py-3">
       <button
         onClick={ onToggle }
-        className="flex items-center justify-between w-full text-left group hover:text-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-secondary rounded-lg"
+        className="flex items-center justify-between w-full text-left group hover:text-secondary transition-colors rounded-lg"
         aria-expanded={ isOpen }
       >
         <span className="title-card px-4 py-2 font-semibold">
