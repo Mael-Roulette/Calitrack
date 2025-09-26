@@ -12,7 +12,7 @@ export default function Home () {
     <main>
       {/* Section hero */ }
       <section className="min-h-screen bg-gradient-to-t lg:bg-radial-[at_50%_90%] from-[#4E63D7] from-3% to-foreground to-80% lg:to-70% px-2">
-        <h1 className="font-calsans text-background pt-16 lg:pt-24 mx-auto max-w-5xl text-center text-3xl lg:text-7xl">Tes objectifs, ta discipline Ton app, <span className="text-secondary">Calitrack</span></h1>
+        <h1 className="font-calsans text-background pt-16 lg:pt-24 mx-auto max-w-5xl text-center text-3xl lg:text-7xl">Tes objectifs, ta discipline Ton app, <span>Calitrack</span></h1>
         <p className="text-background mt-8 max-w-3xl mx-auto text-center text-lg lg:text-xl">Suis tes progrès, planifie tes séances et avance pas à pas vers tes objectifs en calisthenie.</p>
         <div className="mt-5 pb-20 flex flex-wrap justify-center items-center gap-4">
           <Link href="/contact" aria-label="Télécharger l'application" className="btn-primary">Tester la bêta</Link>
@@ -22,7 +22,7 @@ export default function Home () {
 
       {/* Section features */ }
       <section>
-        <h2 className="title-section font-calsans mt-8 mb-6 lg:mt-16 lg:mb-10 text-center">Tout ce dont tu as besoin pour <span className="text-secondary">progresser</span></h2>
+        <h2 className="title-section font-calsans mt-8 mb-6 lg:mt-16 lg:mb-10 text-center">Tout ce dont tu as besoin pour <span>progresser</span></h2>
 
         <ul className="flex flex-row flex-wrap justify-center gap-x-5 gap-y-4 mb-8">
           { featuresInfos.map( ( { id, icon, title, description } ) => {
@@ -38,7 +38,7 @@ export default function Home () {
       </section>
 
       {/* Section à propos */ }
-      <section className="bg-secondary/15">
+      <section className="bg-secondary/12">
         <div className="section-wrapper grid grid-cols-1 lg:grid-cols-[4fr_5fr] gap-x-10 gap-y-6">
           <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
             <Image
@@ -49,7 +49,7 @@ export default function Home () {
             />
           </div>
           <div>
-            <h2 className='title-section font-calsans mb-4'>Progresser n&apos;a jamais été aussi <span className='text-secondary'>simple</span></h2>
+            <h2 className='title-section font-calsans mb-4'>Progresser n&apos;a jamais été aussi <span>simple</span></h2>
             <p className='mb-3'>Calitrack est né d&apos;une idée simple : rendre l&apos;entraînement en calisthenics <strong>plus simple</strong> et <strong>plus accessible</strong> à tous. Quand on pratique ce sport, on se rend vite compte qu&apos;il est difficile de suivre ses progrès et de rester motivé sur le long terme. J&apos;ai donc voulu créer une appli pensée par un pratiquant, pour les pratiquants.</p>
             <p className='mb-3'>Avec Calitrack, tu peux <strong>organiser tes entraînements</strong>, <strong>suivre tes objectifs</strong> et voir concrètement tes avancées au fil du temps.</p>
             <p className='mb-3'>Le but est de proposer plus qu&apos;une simple appli de suivi : Calitrack a pour objectif de t&apos;accompagner dans tes entraînements et de t&apos;aider à rester motivé. Et ce n&apos;est que le début : de nouvelles fonctionnalités sont en préparation pour les pratiquants comme pour les coachs.</p>
@@ -74,7 +74,7 @@ export default function Home () {
       </section>
 
       {/* Section FAQ */ }
-      <section className="bg-secondary/15">
+      <section className="bg-secondary/12">
         <div className="section-wrapper grid lg:grid-cols-[3fr_2fr] gap-y-6 gap-x-12">
           <div>
             <h2 className="title-section font-calsans mb-2">Des questions ?</h2>
@@ -99,7 +99,7 @@ export default function Home () {
       {/* Section téléchargement */ }
       <section className="section-wrapper">
         <h2 className="title-section font-calsans text-center mb-2 lg:mb-4">Prêt à passer le cap ?</h2>
-        <p className='text-center'>N&apos;attends pas plus et télécharge l&apos;application sur les différents stores !</p>
+        <p className='text-center'>N&apos;attends pas plus et essaye la bêta !</p>
         <div className='flex flex-wrap gap-x-5 gap-y-3 justify-center items-center mt-5'>
           <Link href="/contact" aria-label="Télécharger l'application" className='btn-primary'>Tester la bêta</Link>
           <Link href="/features" aria-label="En découvrir plus sur l'application" className='btn-secondary'>En savoir plus</Link>

@@ -3,6 +3,7 @@
 
 :root {
   --secondary: #FC7942;
+  --light-blue: #4E63D7;
   --background: #FFF9F7;
   --foreground: #132541;
 }
@@ -11,6 +12,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-secondary: var(--secondary);
+  --color-light-blue: var(--light-blue);
   --font-calsans: var(--font-cal-sans);
   --font-sora: var(--font-sora);
 }
@@ -21,6 +23,12 @@
     --foreground: #FFF9F7;
   }
 } */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+
+}
 
 body {
   background: var(--background);
@@ -72,7 +80,17 @@ body {
 
   /* Section wrapper */
   .section-wrapper {
-    @apply container mx-auto py-8 lg:pt-12 lg:pb-16 px-5 lg:px-0;
+    @apply container mx-auto py-8 lg:pt-10 lg:pb-12 px-5 lg:px-0;
+  }
+
+  /* ************************** */
+  /* ********* Titre ********** */
+  /* ************************** */
+
+  h1 > span,
+  h2 > span,
+  h3 > span {
+    @apply text-secondary;
   }
 
   /* Titre h1 */
@@ -83,5 +101,10 @@ body {
   /* Titre section */
   .title-section {
     @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  /* Titre sous section */
+  .title-subsection {
+    @apply text-xl md:text-2xl lg:text-3xl;
   }
 }

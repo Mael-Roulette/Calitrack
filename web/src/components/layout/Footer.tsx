@@ -9,16 +9,14 @@ export default function Footer () {
     { href: '/', label: 'Accueil' },
     { href: '/about', label: 'À propos' },
     { href: '/features', label: 'Fonctionnalités' },
-    { href: '/pricing', label: 'Tarifs' },
-    { href: '/roadmap', label: 'Roadmap' },
-    { href: '/contact', label: 'Contact' }
   ] as const;
 
   // Liens légaux
   const legalLinks = [
     { href: '/legal-notices', label: 'Mentions légales' },
     { href: '/privacy-policy', label: 'Politique de confidentialité' },
-    { href: '/support', label: 'Support' }
+    // { href: '/roadmap', label: 'Roadmap' },
+    { href: '/contact', label: 'Contact' }
   ] as const;
 
   return (
