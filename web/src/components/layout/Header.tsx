@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useCallback, useState } from 'react'
+import { usePathname } from "next/navigation";
 
 // Liens de navigation
 const navigationLinks = [
@@ -23,11 +24,12 @@ const LOGO_CONFIG = {
 } as const;
 
 export default function Header () {
-  const [ mobileMenuOpen, setMobileMenuOpen ] = useState( false )
+  const [ mobileMenuOpen, setMobileMenuOpen ] = useState( false );
+  const pathname = usePathname();
 
   // Mémoisation des handlers pour éviter les re-renders
-  const openMobileMenu = useCallback( () => setMobileMenuOpen( true ), [] )
-  const closeMobileMenu = useCallback( () => setMobileMenuOpen( false ), [] )
+  const openMobileMenu = useCallback( () => setMobileMenuOpen( true ), [] );
+  const closeMobileMenu = useCallback( () => setMobileMenuOpen( false ), [] );
 
   return (
     <header className="bg-foreground sticky top-0 left-0 w-full z-5">
@@ -70,7 +72,7 @@ export default function Header () {
             <Link
               key={ href }
               href={ href }
-              className="text-sm font-semibold leading-6 text-background hover:text-background/50 rounded-lg px-2 py-1 transition-colors"
+              className={ `text-sm font-semibold leading-6 text-background hover:text-background/50 rounded-lg px-2 py-1 transition-colors ${pathname === href ? 'text-secondary' : ''}` }
             >
               { label }
             </Link>
@@ -131,7 +133,7 @@ export default function Header () {
                     key={ href }
                     href={ href }
                     onClick={ closeMobileMenu }
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-background hover:bg-background/10 transition-colors"
+                    className={ `-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-background hover:bg-background/10 transition-colors ${pathname === href ? 'text-secondary' : ''}` }
                   >
                     { label }
                   </Link>

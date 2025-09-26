@@ -1,9 +1,12 @@
-'use-client'
+'use client'
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer () {
+  const pathname = usePathname();
+
   // Liens rapides
   const quickLinks = [
     { href: '/', label: 'Accueil' },
@@ -21,7 +24,7 @@ export default function Footer () {
 
   return (
     <footer>
-      <div className="bg-gradient-to-b lg:bg-radial-[at_50%_10%] from-[#4E63D7] from-1% lg:from-20% to-foreground to-50% lg:to-70%">
+      <div className="bg-gradient-to-b lg:bg-radial-[at_50%_-50%] from-[#4E63D7] from-1% lg:from-10% to-foreground to-50% lg:to-70%">
         <div className="mx-auto container flex flex-row flex-wrap gap-x-32 gap-y-12 py-14 px-5">
           <div>
             <Link
@@ -47,7 +50,7 @@ export default function Footer () {
                   <li key={ href }>
                     <Link
                       href={ href }
-                      className="text-background hover:text-background/50 rounded-lg px-2 py-1 transition-colors"
+                      className={ `hover:text-background/50 rounded-lg px-2 py-1 transition-colors  ${pathname === href ? 'text-secondary' : ''}` }
                     >
                       { label }
                     </Link>
@@ -64,7 +67,7 @@ export default function Footer () {
                   <li key={ href }>
                     <Link
                       href={ href }
-                      className="hover:text-background/50 rounded-lg px-2 py-1 transition-colors"
+                      className={ `hover:text-background/50 rounded-lg px-2 py-1 transition-colors  ${pathname === href ? 'text-secondary' : ''}` }
                     >
                       { label }
                     </Link>
