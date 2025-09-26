@@ -34,7 +34,9 @@ export default function Home () {
           } ) }
         </ul>
 
-        <Link href="/features" aria-label="Découvrir toutes les fonctionnalités" className="underline inline-block w-full text-center mb-16">Découvrir toutes les fonctionnalités</Link>
+        <div className='flex justify-center items-center'>
+          <Link href="/features" aria-label="Découvrir toutes les fonctionnalités" className="underline text-center mb-16">Découvrir toutes les fonctionnalités</Link>
+        </div>
       </section>
 
       {/* Section à propos */ }
