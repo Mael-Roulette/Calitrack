@@ -19,6 +19,12 @@ export default function Contact () {
         </div>
       </section>
 
+      {/* section test beta */ }
+      <section className="section-wrapper">
+        <h2 className="title-section font-calsans">Tu veux tester la bêta de Calitrack ?</h2>
+        <p>Si tu as envie de faire partie de l&apos;aventure et de tester cette application avant tout le monde, envoie moi un message sur insta ou par mail et je te donnerais accès à l&apos;application. Mais attention, les places sont limitées alors n&apos;attend pas trop !</p>
+      </section>
+
       {/* section faq */ }
       <section className="section-wrapper" id="faq">
         <h2 className="title-section font-calsans">Besoin d&apos;une réponse rapidement ?</h2>

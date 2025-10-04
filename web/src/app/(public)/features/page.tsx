@@ -15,7 +15,7 @@ export default function Features () {
 
       {/* Présentation entrainements personnalisés */ }
       <section className="section-wrapper grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-x-10 gap-y-6">
-        <div>
+        <div className="order-2 lg:order-1">
           <h2 className="title-section font-calsans mb-4">Entraînements <span>personnalisés</span></h2>
           <p className="mb-2">Ici, c&apos;est toi qui décides de la façon dont tu veux t&apos;entraîner. Tu construis tes séances comme tu l&apos;entends, en fonction de ton niveau, de tes envies et de tes objectifs.</p>
           <ul className="list-disc list-inside mb-4 pl-4">
@@ -25,10 +25,10 @@ export default function Features () {
           </ul>
           <p>Ton entraînement devient vraiment personnel : tu adaptes l&apos;application à ta manière de progresser, pas l&apos;inverse.</p>
         </div>
-        <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
+        <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden order-1 lg:order-2'>
           <Image
-            src={ '/images/mobile.jpg' }
-            alt=''
+            src={ '/images/trainings_mockup.jpg' }
+            alt='Des entraînements personnalisés'
             fill={ true }
             className='h-full w-full object-cover'
           />
@@ -39,8 +39,8 @@ export default function Features () {
       <section className="section-wrapper mb-8 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-x-10 gap-y-6">
         <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
           <Image
-            src={ '/images/mobile.jpg' }
-            alt=''
+            src={ '/images/goals_mockup.jpg' }
+            alt='Des objectifs personnalisés'
             fill={ true }
             className='h-full w-full object-cover'
           />

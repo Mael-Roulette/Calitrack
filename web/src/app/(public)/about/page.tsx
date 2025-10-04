@@ -13,16 +13,16 @@ export default function About () {
       </section>
 
       {/* Explication du projet */ }
-      <section className="section-wrapper mb-8 grid grid-cols-1 lg:grid-cols-[5fr_4fr] gap-x-10 gap-y-6">
-        <div>
+      <section className="section-wrapper mb-8 grid items-center grid-cols-1 lg:grid-cols-[5fr_4fr] gap-x-10 gap-y-6">
+        <div className="h-fit">
           <h2 className="title-section font-calsans mb-2">Pourquoi cette application ?</h2>
           <p>Quand j&apos;ai commencé la calisthenics, je me suis rapidement heurté à un problème : c&apos;est vraiment compliqué de suivre son évolution. On commence tous motivé à atteindre des figures comme le <strong>front lever</strong> ou la <strong>planche</strong> mais on finit aussi par stagner ou faire des progrès tellement lentement qu&apos;on en finit découragé. Moi le premier j&apos;ai connu cette frustration et après avoir essayé plusieurs choses (des tableurs excels, un carnet d&apos;entraînements, ...) où j&apos;ai toujours fini par perdre le fil, j&apos;ai eu l&apos;idée de <strong>Calitrack</strong>.</p>
           <p>L&apos;application est pensé pour donner à chaque pratiquant un outil simple pour <strong className="text-secondary">visualiser tes efforts, tes progrès et tes objectifs</strong>. Calitrack existe pour que tu puisses regarder en arrière et voir concrètement ton évolution, peu importe ton niveau de départ. Parce qu&apos;au fond, ce qui motive, ce n&apos;est pas seulement l&apos;entraînement du jour, mais la certitude que chaque séance t&apos;amène un peu plus loin.</p>
         </div>
-        <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
+        <div className='h-64 lg:h-full w-full lg:min-h-[400px] relative rounded-lg overflow-hidden '>
           <Image
-            src={ '/images/mobile.jpg' }
-            alt=''
+            src={ '/images/general_mockup.jpg' }
+            alt='Une application pensé pour la calisthenics'
             fill={ true }
             className='h-full w-full object-cover'
           />
@@ -39,16 +39,16 @@ export default function About () {
       </section>
 
       {/* Le futur de l'application */ }
-      <section className="section-wrapper mb-8 grid grid-cols-1 lg:grid-cols-[5fr_4fr] gap-x-10 gap-y-6">
+      <section className="section-wrapper mb-8 grid items-center grid-cols-1 lg:grid-cols-[5fr_4fr] gap-x-10 gap-y-6">
         <div>
           <h2 className="title-section font-calsans mb-2">Qu&apos;est ce que le <span>futur</span> nous réserve ?</h2>
           <p>Calitrack en est seulement à ses premiers pas et elle continuera de grandir. L&apos;application intégrera bientôt des outils pour créer des entraînements personnalisés avec une logique plus poussée, afin que chaque séance corresponde exactement à tes besoins et objectifs. Tu pourras <strong>créer tes propres combos</strong>, créer des séries d&apos;exercices ou encore choisir un nombre de répétition. Mais l&apos;application n&apos;évolue pas toute seul, elle a besoin de vos retours et idées afin de vous proposez une application qui vous correspond.</p>
           <p>À plus long terme, Calitrack a aussi pour vocation <strong>d&apos;accompagner les coachs</strong>. Une version leur permettra de gérer facilement leurs athlètes, de suivre leurs progrès et de proposer des programmes adaptés. L&apos;idée est d&apos;alléger leur quotidien pour qu&apos;ils puissent se concentrer sur l&apos;essentiel : faire progresser leurs élèves.</p>
         </div>
-        <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
+        <div className='h-64 lg:h-full w-full lg:min-h-[350px] relative rounded-lg overflow-hidden '>
           <Image
-            src={ '/images/mobile.jpg' }
-            alt=''
+            src={ '/images/general_mockup-2.jpg' }
+            alt='Une application voué à évoluer'
             fill={ true }
             className='h-full w-full object-cover'
           />
