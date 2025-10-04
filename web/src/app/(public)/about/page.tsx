@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "À propos de Calitrack - L'application de calisthenics pensée pour tous",
+  description: "Découvre l'histoire de Calitrack, une application créée par un passionné de calisthenics pour aider débutants et confirmés à progresser, suivre leurs entraînements et rester motivés."
+};
 
 export default function About () {
   return (

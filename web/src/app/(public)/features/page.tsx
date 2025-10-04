@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Fonctionnalités de Calitrack - Suivi d'entraînements et objectifs personnalisés",
+  description: "Explore toutes les fonctionnalités de Calitrack : crée tes entraînements, fixe tes objectifs personnalisés, suis tes statistiques et reste motivé grâce aux outils pensés pour toi.",
+};
 
 export default function Features () {
   return (
