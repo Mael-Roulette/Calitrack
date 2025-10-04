@@ -11,7 +11,7 @@ export default function Contact () {
       <section className="bg-secondary/12">
         <div className="section-wrapper flex flex-col items-center">
           <h1 className="title-hero font-calsans mb-4 text-center">Parlons-en !</h1>
-          <p className="text-center max-w-4/5 mx-auto mb-4">Un problème, une idée, une suggestion ? Peu importe, je lis tous vos messages, alors n&apos;hésite pas à m&apos;écrire ! Avant ça, tu peux aussi jeter un œil à notre FAQ, elle contient peut-être déjà la réponse que tu cherches.</p>
+          <p className="text-center lg:max-w-4/5 mx-auto mb-4">Un problème, une idée, une suggestion ? Peu importe, je lis tous vos messages, alors n&apos;hésite pas à m&apos;écrire ! Avant ça, tu peux aussi jeter un œil à notre FAQ, elle contient peut-être déjà la réponse que tu cherches.</p>
           <div className="flex flex-wrap gap-5">
             <Link href="#faq" className="btn-primary">Voir la FAQ</Link>
             <Link href="#contact" className="btn-secondary">Me contacter</Link>

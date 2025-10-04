@@ -8,7 +8,7 @@ export default function About () {
       <section className="bg-secondary/12">
         <div className="section-wrapper">
           <h1 className="title-hero font-calsans mb-4 text-center">À propos de <span>Calitrack</span></h1>
-          <p className="text-center max-w-2/3 mx-auto">Calitrack est une application pensée pour tous ceux qui veulent progresser en calisthenics, du débutant au pratiquant confirmé. Simple, claire et motivante, elle t&apos;accompagne dans tes entraînements et te permet de suivre tes progrès pas à pas.</p>
+          <p className="text-center lg:max-w-2/3 mx-auto">Calitrack est une application pensée pour tous ceux qui veulent progresser en calisthenics, du débutant au pratiquant confirmé. Simple, claire et motivante, elle t&apos;accompagne dans tes entraînements et te permet de suivre tes progrès pas à pas.</p>
         </div>
       </section>
 
@@ -31,7 +31,7 @@ export default function About () {
 
       {/* Le but de l'application */ }
       <section className="bg-light-blue/10">
-        <div className="section-wrapper mb-8 max-w-3/5 mx-auto">
+        <div className="section-wrapper mb-8 lg:max-w-3/5 mx-auto">
           <h2 className="title-section font-calsans mb-2">C&apos;est quoi son but ?</h2>
           <p>L&apos;ambition de Calitrack est de devenir bien plus qu&apos;un carnet numérique. L&apos;idée n&apos;est pas seulement de noter des entraînements, mais de proposer un véritable compagnon au quotidien. L&apos;application est là pour t&apos;aider à <strong>organiser tes séances</strong>, à <strong>fixer des objectifs</strong> et à construire une progression logique dans le temps.</p>
           <p>Que tu sois débutant et que tu découvres à peine les bases, ou pratiquant confirmé l&apos;application est faite pour toi. Elle propose des progressions d&apos;exercices pour tout niveau. L&apos;objectif final est simple : rendre l&apos;entraînement plus clair, plus motivant, et t&apos;aider à transformer ton travail en résultats visibles. Parce qu&apos;au fond, progresser en calisthenics, c&apos;est une histoire de patience mais aussi de plaisir à chaque étape.</p>
