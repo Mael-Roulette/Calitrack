@@ -97,8 +97,8 @@ export default function Home () {
           </div>
           <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
             <Image
-              src={ '/images/trainings_goals_mockup.jpg' }
-              alt='Entraînements & objectifs'
+              src={ '/images/general_mockup-3.jpg' }
+              alt='Calitrack, une application dédiée à la calisthenics'
               fill={ true }
               className='h-full w-full object-cover'
             />
