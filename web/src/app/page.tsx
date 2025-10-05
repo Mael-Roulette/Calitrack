@@ -4,9 +4,16 @@ import Roadmap from '@/components/public/Roadmap';
 import calitrackFaqs from '@/data/public/faq.json';
 import featuresInfos from "@/data/public/features.json";
 import milestones from "@/data/public/milestones.json";
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from "next/link";
 import { FaChevronDown } from 'react-icons/fa6';
+
+export const metadata: Metadata = {
+  title: "Calitrack - L'application qui t'accompagne en calisthenics",
+  description: "Une question sur Calitrack ? Un retour ou une suggestion ? Contacte-moi facilement par mail ou via instagram, je serais ravis d'échanger avec toi.",
+};
+
 
 export default function Home () {
   return (

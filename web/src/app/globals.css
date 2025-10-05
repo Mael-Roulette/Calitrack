@@ -77,7 +77,7 @@ body {
 
   /* Section wrapper */
   .section-wrapper {
-    @apply mx-auto max-w-7xl py-5 lg:py-8 px-5 lg:px-0;
+    @apply mx-auto max-w-3xl lg:max-w-5xl xl:max-w-7xl py-5 lg:py-8 px-5 lg:px-0;
   }
 
   /* ************************** */
