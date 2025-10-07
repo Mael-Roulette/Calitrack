@@ -21,6 +21,24 @@ const sora = Sora( {
   subsets: [ "latin" ],
 } );
 
+export const metadata: Metadata = {
+  metadataBase: new URL( 'https://calitrack.appwrite.network' ),
+  title: {
+    default: "Calitrack - L'application qui t'accompagne en calisthenics",
+    template: "%s | Calitrack"
+  },
+  description: "Calitrack est l'application mobile qui te permet de suivre ta progression en calisthenics.",
+  openGraph: {
+    type: 'website',
+    locale: 'fr_FR',
+    url: 'https://calitrack.appwrite.network',
+    siteName: 'Calitrack',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+};
+
 export default function RootLayout ( {
   children,
 }: Readonly<{
