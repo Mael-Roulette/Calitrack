@@ -4,3 +4,4 @@ export * from "./ui";
 export * from "./goal";
 export * from "./training";
 export * from "./pricing";
+export * from "./combo";

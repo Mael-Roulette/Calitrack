@@ -20,6 +20,7 @@ export const appwriteConfig = {
 	typeCollectionId: process.env.EXPO_PUBLIC_APPWRITE_TYPE_COLLECTION_ID!,
 	passwordRedirectUrl: process.env.EXPO_PUBLIC_APPWRITE_PASSWORD_REDIRECT_URL!,
 	deleteAccountFunctionId: process.env.EXPO_PUBLIC_APPWRITE_DELETE_ACCOUNT_FUNCTION_ID!,
+	comboCollectionId: process.env.EXPO_PUBLIC_APPWRITE_COMBO_COLLECTION_ID!,
 };
 
 export const client = new Client();
