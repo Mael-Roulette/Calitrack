@@ -35,7 +35,7 @@ const Support = () => {
 					<Text
 						className='text-primary font-sregular underline mb-2'
 						onPress={ () => {
-							Linking.openURL( "https://calitrack.mael-roulette.fr" );
+							Linking.openURL( "https://calitrack.appwrite.network" );
 						} }
 					>
 						Site officiel
