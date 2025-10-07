@@ -21,13 +21,6 @@ const sora = Sora( {
   subsets: [ "latin" ],
 } );
 
-export const metadata: Metadata = {
-  robots: {
-    index: false,
-    follow: true,
-  },
-};
-
 export default function RootLayout ( {
   children,
 }: Readonly<{
