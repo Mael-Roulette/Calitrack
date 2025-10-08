@@ -14,7 +14,7 @@ export default function Features () {
       <section className="bg-secondary/12">
         <div className="section-wrapper flex flex-col items-center">
           <h1 className="title-hero font-calsans mb-4 text-center">Nos <span>fonctionnalités</span></h1>
-          <p className="text-center lg:max-w-2/3 mx-auto mb-4">Les fonctionnalités présentes posent les bases, mais Calitrack en est qu&apos;à c&apos;est début. Si jamais tu as des propositions à me faire n&apos;hésite pas à me les partager&nbsp;!</p>
+          <p className="text-center lg:max-w-2/3 mx-auto mb-4">Les fonctionnalités présentes posent les bases, mais Calitrack n&apos;est qu&apos;à c&apos;est début. Si jamais tu as des propositions à me faire n&apos;hésite pas à me les partager&nbsp;!</p>
           <Link href="/contact" aria-label="Contactez Calitrack" className='btn-secondary'>Me contacter</Link>
         </div>
       </section>
