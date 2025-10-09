@@ -7,7 +7,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Contact calitrack - L'application qui t'accompagne en calisthenics",
-  description: "Calitrack est l'application mobile qui te permet de suivre ta progression en te fixant des objectifs et en créant tes propres entraînements.",
+  description: "Une question sur Calitrack ? Un retour ou une suggestion ? Contacte-moi facilement par mail ou via instagram, je serais ravis d'échanger avec toi.",
 };
 
 export default function Contact () {
