@@ -27,7 +27,7 @@ export default function About () {
         </div>
         <div className='h-64 lg:h-full w-full lg:min-h-[400px] relative rounded-lg overflow-hidden '>
           <Image
-            src={ '/images/general_mockup.jpg' }
+            src={ '/images/general_mockup.webp' }
             alt='Une application pensé pour la calisthenics'
             fill={ true }
             className='h-full w-full object-cover'
@@ -53,7 +53,7 @@ export default function About () {
         </div>
         <div className='h-64 lg:h-full w-full lg:min-h-[350px] relative rounded-lg overflow-hidden '>
           <Image
-            src={ '/images/general_mockup-2.jpg' }
+            src={ '/images/general_mockup-2.webp' }
             alt='Une application voué à évoluer'
             fill={ true }
             className='h-full w-full object-cover'

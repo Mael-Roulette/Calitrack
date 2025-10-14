@@ -59,7 +59,7 @@ export default function Home () {
         <div className="section-wrapper grid grid-cols-1 lg:grid-cols-[4fr_5fr] gap-x-10 gap-y-6">
           <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
             <Image
-              src={ '/images/home_mockup.jpg' }
+              src={ '/images/home_mockup.webp' }
               alt='Page d&apos;acceuil de l&apos;application Calitrack'
               fill={ true }
               className='h-full w-full object-cover'
@@ -104,7 +104,7 @@ export default function Home () {
           </div>
           <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
             <Image
-              src={ '/images/general_mockup-3.jpg' }
+              src={ '/images/general_mockup-3.webp' }
               alt='Calitrack, une application dédiée à la calisthenics'
               fill={ true }
               className='h-full w-full object-cover'

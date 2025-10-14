@@ -33,7 +33,7 @@ export default function Features () {
         </div>
         <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden order-1 lg:order-2'>
           <Image
-            src={ '/images/trainings_mockup.jpg' }
+            src={ '/images/trainings_mockup.webp' }
             alt='Des entraînements personnalisés'
             fill={ true }
             className='h-full w-full object-cover'
@@ -45,7 +45,7 @@ export default function Features () {
       <section className="section-wrapper mb-8 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-x-10 gap-y-6">
         <div className='h-64 lg:h-full w-full relative rounded-lg overflow-hidden '>
           <Image
-            src={ '/images/goals_mockup.jpg' }
+            src={ '/images/goals_mockup.webp' }
             alt='Des objectifs personnalisés'
             fill={ true }
             className='h-full w-full object-cover'
