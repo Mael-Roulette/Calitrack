@@ -5,6 +5,28 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Fonctionnalités de Calitrack - Suivi d'entraînements et objectifs personnalisés",
   description: "Explore toutes les fonctionnalités de Calitrack : crée tes entraînements, fixe tes objectifs personnalisés, suis tes statistiques et reste motivé grâce aux outils pensés pour toi.",
+  keywords: [ "fonctionnalités calitrack", "entraînement personnalisé calisthenics", "suivi progression street workout", "objectifs calisthenics", "calendrier entraînement", "statistiques entraînement", "planification séances", "suivi performances calisthenics", "application suivi sportif", "carnet entraînement digital" ],
+  openGraph: {
+    title: "Fonctionnalités Calitrack - Entraînements & Objectifs personnalisés",
+    description: "Crée tes entraînements sur mesure, fixe tes objectifs et suis ta progression en calisthenics avec des statistiques détaillées.",
+    type: "website",
+    locale: "fr_FR",
+    url: "https://calitrack.appwrite.network/features",
+    siteName: "Calitrack",
+    images: [
+      {
+        url: "/images/og-features.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Fonctionnalités de Calitrack - Entraînements et objectifs personnalisés",
+      }
+    ],
+  },
+  alternates: {
+    canonical: "https://calitrack.appwrite.network/features",
+  },
+  authors: [ { name: "Calitrack" } ],
+  category: "Sports & Fitness",
 };
 
 export default function Features () {

@@ -4,7 +4,29 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "À propos de Calitrack - L'application de calisthenics pensée pour tous",
-  description: "Découvre l'histoire de Calitrack, une application créée par un passionné de calisthenics pour aider débutants et confirmés à progresser, suivre leurs entraînements et rester motivés."
+  description: "Découvre l'histoire de Calitrack, une application créée par un passionné de calisthenics pour aider débutants et confirmés à progresser, suivre leurs entraînements et rester motivés.",
+  keywords: [ "calitrack", "application calisthenics", "street workout app", "suivi progression calisthenics", "entraînement calisthenics", "front lever", "planche calisthenics", "carnet entraînement", "coach calisthenics" ],
+  openGraph: {
+    title: "À propos de Calitrack - L'application de calisthenics pensée pour tous",
+    description: "Une application créée par un passionné de calisthenics pour t'aider à progresser, du débutant au confirmé.",
+    type: "website",
+    locale: "fr_FR",
+    url: "https://calitrack.appwrite.network/about",
+    siteName: "Calitrack",
+    images: [
+      {
+        url: "/images/og-about.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Calitrack - Ton application de calisthenics",
+      }
+    ],
+  },
+  alternates: {
+    canonical: "https://calitrack.appwrite.network/about",
+  },
+  authors: [ { name: "Calitrack" } ],
+  category: "Sports & Fitness",
 };
 
 export default function About () {

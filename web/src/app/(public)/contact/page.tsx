@@ -8,6 +8,28 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact calitrack - L'application qui t'accompagne en calisthenics",
   description: "Une question sur Calitrack ? Un retour ou une suggestion ? Contacte-moi facilement par mail ou via instagram, je serais ravis d'échanger avec toi.",
+  keywords: [ "contact calitrack", "support calitrack", "test bêta calitrack", "suggestion application calisthenics", "aide calitrack", "inscription bêta", "feedback calitrack", "questions calitrack", "email calitrack", "instagram calitrack" ],
+  openGraph: {
+    title: "Contact Calitrack - Pose tes questions ou teste la bêta",
+    description: "Contacte-moi pour toute question, suggestion ou pour tester la bêta de Calitrack en avant-première. Places limitées !",
+    type: "website",
+    locale: "fr_FR",
+    url: "https://calitrack.appwrite.network/contact",
+    siteName: "Calitrack",
+    images: [
+      {
+        url: "/images/og-contact.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Contacte Calitrack - Support et test bêta",
+      }
+    ],
+  },
+  alternates: {
+    canonical: "https://calitrack.appwrite.network/contact",
+  },
+  authors: [ { name: "Calitrack" } ],
+  category: "Sports & Fitness",
 };
 
 export default function Contact () {
