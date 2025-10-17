@@ -53,6 +53,7 @@ export default function About () {
             alt='Une application pensé pour la calisthenics'
             fill={ true }
             className='h-full w-full object-cover'
+            sizes="100%"
           />
         </div>
       </section>
@@ -79,6 +80,7 @@ export default function About () {
             alt='Une application voué à évoluer'
             fill={ true }
             className='h-full w-full object-cover'
+            sizes="100%"
           />
         </div>
 

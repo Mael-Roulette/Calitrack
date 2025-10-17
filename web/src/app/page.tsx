@@ -81,6 +81,7 @@ export default function Home () {
               alt='Page d&apos;acceuil de l&apos;application Calitrack'
               fill={ true }
               className='h-full w-full object-cover'
+              sizes='100%'
             />
           </div>
           <div>
@@ -126,6 +127,7 @@ export default function Home () {
               alt='Calitrack, une application dédiée à la calisthenics'
               fill={ true }
               className='h-full w-full object-cover'
+              sizes='100%'
             />
           </div>
         </div>

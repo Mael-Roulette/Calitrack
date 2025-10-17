@@ -59,6 +59,7 @@ export default function Features () {
             alt='Des entraînements personnalisés'
             fill={ true }
             className='h-full w-full object-cover'
+            sizes="100%"
           />
         </div>
       </section>
@@ -71,6 +72,7 @@ export default function Features () {
             alt='Des objectifs personnalisés'
             fill={ true }
             className='h-full w-full object-cover'
+            sizes="100%"
           />
         </div>
         <div>
