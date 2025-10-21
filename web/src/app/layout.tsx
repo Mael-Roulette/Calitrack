@@ -14,11 +14,16 @@ const calSans = localFont( {
     },
   ],
   variable: "--font-cal-sans",
+  display: 'swap',
+  adjustFontFallback: 'Arial',
+  preload: false
 } );
 
 const sora = Sora( {
   variable: '--font-sora',
   subsets: [ "latin" ],
+  display: 'swap',
+  preload: false
 } );
 
 export const metadata: Metadata = {
@@ -48,9 +53,9 @@ export default function RootLayout ( {
   children: React.ReactNode;
 }> ) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-scroll-behavior="smooth">
       <body
-        className={ `${calSans.variable} ${sora.variable} antialiased` }
+        className={ `${calSans.variable} ${sora.variable} font-sora antialiased` }
       >
         <Header />
         { children }
