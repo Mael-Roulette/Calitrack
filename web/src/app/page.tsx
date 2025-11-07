@@ -41,7 +41,7 @@ export default function Home () {
         <h1 className="font-calsans text-background pt-16 lg:pt-24 mx-auto max-w-5xl text-center text-3xl lg:text-7xl">Tes objectifs, ta discipline Ton app, <span>Calitrack</span></h1>
         <p className="text-background mt-8 max-w-3xl mx-auto text-center text-lg lg:text-xl">Suis tes progrès, planifie tes séances et avance pas à pas vers tes objectifs en calisthenie.</p>
         <div className="mt-5 pb-20 flex flex-wrap justify-center items-center gap-4">
-          <Link href="/contact" aria-label="Télécharger l'application" className="btn-primary">Tester la bêta</Link>
+          <Link href="https://forms.gle/vBnbwfF6Rv28xgtL8" aria-label="Télécharger l'application" className="btn-primary">Tester la bêta</Link>
           <Link href="/features" aria-label="Découvrir les fonctionnalités" className="btn-secondary">En savoir plus</Link>
         </div>
 
@@ -92,7 +92,7 @@ export default function Home () {
             <p className='font-semibold mb-6'>Ce n&apos;est que le début, l&apos;aventure Calitrack ne fait que commencer.</p>
             <div className='flex flex-wrap gap-4'>
               <Link href="/about" aria-label="En découvrir plus sur l'application" className='btn-primary'>En savoir plus</Link>
-              <Link href="/contact" aria-label="Télécharger l'application" className='btn-secondary'>Tester la bêta</Link>
+              <Link href="https://forms.gle/vBnbwfF6Rv28xgtL8" aria-label="Télécharger l'application" className='btn-secondary'>Tester la bêta</Link>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function Home () {
         <h2 className="title-section font-calsans text-center mb-2 lg:mb-4">Prêt à passer le cap ?</h2>
         <p className='text-center'>N&apos;attends pas plus et essaye la bêta !</p>
         <div className='flex flex-wrap gap-x-5 gap-y-3 justify-center items-center mt-5'>
-          <Link href="/contact" aria-label="Télécharger l'application" className='btn-primary'>Tester la bêta</Link>
+          <Link href="https://forms.gle/vBnbwfF6Rv28xgtL8" aria-label="Télécharger l'application" className='btn-primary'>Tester la bêta</Link>
           <Link href="/features" aria-label="En découvrir plus sur l'application" className='btn-secondary'>En savoir plus</Link>
         </div>
       </section>
