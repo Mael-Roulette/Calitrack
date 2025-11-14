@@ -1,88 +1,81 @@
-import CustomButton from "@/components/CustomButton";
-import CustomInput from "@/components/CustomInput";
-import CustomTags from "@/components/CustomTags";
-import { DAYS_TRANSLATION } from "@/constants/value";
+import { createSeries } from "@/lib/series.appwrite";
 import { createTraining } from "@/lib/training.appwrite";
 import { useTrainingsStore } from "@/store";
-import { createTrainingParams, Exercise, Training } from "@/types";
+import { createTrainingParams, Training } from "@/types";
+import { SeriesParams } from "@/types/series";
 import { router } from "expo-router";
 import React, { useState } from "react";
-import { Alert, ScrollView, Text, View } from "react-native";
-
-import ExerciseItem from "../exercise/components/ExerciseItem";
-import ExerciseSelectionModal from "../exercise/components/ExerciseSelectionModal";
+import { Alert, View } from "react-native";
+import TrainingForm, { MixSeriesType } from "./components/TrainingForm";
 
 const AddTraining = () => {
 	const [ isSubmitting, setIsSubmitting ] = useState<boolean>( false );
-	const [ selectedDays, setSelectedDays ] = useState<string[]>( [] );
-	const [ isModalVisible, setIsModalVisible ] = useState<boolean>( false );
-	const [ selectedExercises, setSelectedExercises ] = useState<Exercise[]>( [] );
-	const [ form, setForm ] = useState<Partial<createTrainingParams>>( {
-		name: "",
-		days: [],
-		hours: 0,
-		minutes: 0,
-	} );
+
+	// Fonction store
 	const { addTrainingStore } = useTrainingsStore();
 
-	const openExerciseModal = () => {
-		setIsModalVisible( true );
-	};
-
-	const closeExerciseModal = () => {
-		setIsModalVisible( false );
-	};
-
-	const handleExerciseSelection = ( exercises: Exercise[] ) => {
-		setSelectedExercises( exercises );
-		setIsModalVisible( false );
-	};
-
-	const submit = async (): Promise<void> => {
-		if ( !form.name || !form.days ) {
-			Alert.alert( "Erreur", "Veuillez remplir tous les champs" );
+	// Envoie du formulaire pour la création de l'entraînement
+	const submit = async ( { form, seriesList }: { form: Partial<createTrainingParams>, seriesList: MixSeriesType[] } ): Promise<void> => {
+		// Vérification des champs obligatoires
+		if ( !form.name || !form.days || form.days.length === 0 ) {
+			Alert.alert( "Erreur", "Veuillez remplir tous les champs obligatoires" );
 			return;
 		}
 
-		if ( form.hours === undefined ) {
-			form.hours = 0;
-		}
-
-		if ( form.minutes === undefined ) {
-			form.minutes = 0;
-		}
-
-		const totalDuration = form.hours * 60 + form.minutes;
-
-		// Extraire uniquement les IDs des exercices
-		const exerciseIds = selectedExercises.map( exercise => exercise.$id );
-
+		// Récupération des données du formulaire
 		const trainingData: createTrainingParams = {
 			name: form.name,
 			days: form.days,
-			duration: totalDuration,
-			exercises: exerciseIds,
+			duration: form.duration!,
 		};
 
 		try {
 			setIsSubmitting( true );
+			// Création et récupération de l'entraînement
 			const response = await createTraining( trainingData );
 			const training = response.training as any as Training;
 
-			if ( training ) {
-				const newTraining: Training = {
-					$id: training.$id,
-					user: training.user,
-					name: training.name,
-					days: training.days,
-					duration: training.duration,
-					exercise: selectedExercises,
-				};
-				addTrainingStore( newTraining );
+			// Création des séries (s'ajoute automatiquement dans les entrainements)
+			let newSeriesList: SeriesParams[] = [];
+			if ( seriesList.length > 0 ) {
+				for ( let i = 0; i < seriesList.length; i++ ) {
+					const series = seriesList[ i ];
+
+					// Extraction de l'exerciseId selon le type de série
+					const exerciseId = typeof series.exercise === 'string'
+						? series.exercise
+						: series.exercise.$id;
+
+					const seriesResponse = await createSeries( {
+						exercise: exerciseId,
+						targetValue: series.targetValue,
+						sets: series.sets,
+						restTime: series.restTime,
+						note: series.note,
+						training: training.$id, // Ajout de l'id de l'entrainement
+						order: i + 1, // Ajout de l'ordre
+					} );
+
+					// Ajout des séries dans le store
+					const newSeries = seriesResponse.series as any as SeriesParams;
+					newSeriesList.push( newSeries );
+				}
 			}
+
+			// Ajout du training dans le store
+			const newTraining: Training = {
+				$id: training.$id,
+				user: training.user,
+				name: training.name,
+				days: training.days,
+				duration: training.duration,
+				series: newSeriesList
+			};
+			addTrainingStore( newTraining );
+
 			router.push( "/trainings" );
 		} catch ( err ) {
-			console.error( err );
+			console.error( "Erreur lors de la création de l'entraînement:", err );
 			Alert.alert( "Erreur", "Échec de l'ajout. Réessayez." );
 		} finally {
 			setIsSubmitting( false );
@@ -90,97 +83,11 @@ const AddTraining = () => {
 	};
 
 	return (
-		<View className='flex-1 bg-background min-h-full px-5'>
-			<ScrollView className='flex-1'>
-				<View className='flex-col gap-5'>
-					<CustomInput
-						label="Nom de l'entraînement"
-						value={ form.name }
-						placeholder='Ex : Planche + combo'
-						onChangeText={ ( t: string ) => setForm( ( p ) => ( { ...p, name: t } ) ) }
-					/>
-
-					<View className='flex-row w-full gap-3'>
-						<View className='flex-1'>
-							<CustomInput
-								label='Heure'
-								value={ form.hours !== 0 ? String( form.hours ) : '' }
-								placeholder='1'
-								onChangeText={ ( t: string ) =>
-									setForm( ( p ) => ( { ...p, hours: parseInt( t ) || 0 } ) )
-								}
-								keyboardType='numeric'
-							/>
-						</View>
-						<View className='flex-1'>
-							<CustomInput
-								label='Minutes'
-								value={ form.minutes !== 0 ? String( form.minutes ) : '' }
-								placeholder='30'
-								onChangeText={ ( t: string ) =>
-									setForm( ( p ) => ( { ...p, minutes: parseInt( t ) || 0 } ) )
-								}
-								keyboardType='numeric'
-							/>
-						</View>
-					</View>
-
-					<CustomTags
-						label='Jours de disponibilité'
-						placeholder="Sélectionnez vos jours d'entraînement..."
-						suggestions={ DAYS_TRANSLATION }
-						value={ selectedDays }
-						onChangeText={ ( days ) => {
-							setSelectedDays( days );
-							setForm( ( prev ) => ( { ...prev, days } ) );
-						} }
-						maxTags={ 7 }
-						allowCustomTags={ false }
-					/>
-
-					{ selectedExercises.length > 0 && (
-						<View className='mb-4'>
-							<Text className='text-primary font-calsans text-lg mb-1'>
-								Exercices sélectionnés ({ selectedExercises.length })
-							</Text>
-							{ selectedExercises.length > 4 && (
-								<Text className='indicator-text mt-2 mb-4'>
-									Avoir trop d&apos;exercices dans son entraînement n&apos;est
-									pas forcément une bonne chose
-								</Text>
-							) }
-
-							{ selectedExercises.map( ( exercise ) => (
-								<ExerciseItem
-									key={ exercise.$id }
-									image={ exercise.image }
-									name={ exercise.name }
-									difficulty={ exercise.difficulty }
-								/>
-							) ) }
-						</View>
-					) }
-				</View>
-
-				<CustomButton
-					title={ `${selectedExercises.length > 0 ? "Modifier les" : "Ajouter des"} exercices${selectedExercises.length > 0 ? ` (${selectedExercises.length})` : ""}` }
-					variant='secondary'
-					onPress={ openExerciseModal }
-				/>
-			</ScrollView>
-
-			<CustomButton
-				title="Créer l'entraînement"
-				onPress={ submit }
-				isLoading={ isSubmitting }
-				customStyles='mt-5 mb-10'
-			/>
-
-			<ExerciseSelectionModal
-				isVisible={ isModalVisible }
-				onClose={ closeExerciseModal }
-				onExerciseSelected={ handleExerciseSelection }
-				initialSelectedExercises={ selectedExercises }
+		<View className="flex-1 bg-background min-h-full px-5">
+			<TrainingForm
+				onSubmit={ submit }
+				submitButtonText="Créer l'entraînement"
+				isSubmitting={ isSubmitting }
 			/>
 		</View>
 	);

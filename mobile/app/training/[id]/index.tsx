@@ -1,8 +1,7 @@
-import ExerciseItem from "@/app/exercise/components/ExerciseItem";
 import { DAYS_TRANSLATION } from "@/constants/value";
 import { deleteTraining, getTrainingById } from "@/lib/training.appwrite";
 import { useTrainingsStore } from "@/store";
-import { Exercise } from "@/types";
+import { SeriesParams } from "@/types/series";
 import Feather from "@expo/vector-icons/Feather";
 import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useEffect, useLayoutEffect, useState } from "react";
@@ -15,48 +14,83 @@ import {
 	TouchableOpacity,
 	View
 } from "react-native";
+import SeriesItem from "../components/SeriesItem";
+import { Training } from "@/types";
+import Entypo from '@expo/vector-icons/Entypo';
 
 
 const Index = () => {
 	const { id } = useLocalSearchParams();
 	const [ training, setTraining ] = useState<any>( null );
 	const [ loading, setLoading ] = useState( true );
-	const [ trainingExercises, setTrainingExercises ] = useState<Exercise[]>( [] );
+	const [ trainingSeries, setTrainingSeries ] = useState<SeriesParams[]>( [] );
 	const [ showMenu, setShowMenu ] = useState( false );
 	const navigation = useNavigation();
-	const { deleteTrainingStore } = useTrainingsStore();
+	const { deleteTrainingStore, getById, addTrainingStore } = useTrainingsStore();
 
+	// Chargement de l'entrainement
 	useEffect( () => {
-		const fetchTraining = async () => {
-			setLoading( true );
+		const load = async () => {
+			const cached = getById( id as string );
+
+			if ( cached ) {
+				setTraining( cached );
+				setLoading( false );
+				return;
+			}
+
+			// Fallback API si pas encore chargé
 			try {
-				const response = await getTrainingById( id as string );
-				setTraining( response );
-			} catch ( error ) {
-				console.error(
-					"Erreur lors de la récupération de l'entraînement",
-					error
-				);
+				setLoading( true );
+				const training = await getTrainingById( id as string ) as any as Training;
+				setTraining( training );
+
+				// mise dans le store
+				addTrainingStore( training );
+
+			} catch {
 				router.push( "/trainings" );
 			} finally {
 				setLoading( false );
 			}
 		};
-		fetchTraining();
-	}, [ id ] );
 
-	const handleDelete = () => {
-		setShowMenu( false );
-		deleteTraining( training.$id )
-			.then( () => deleteTrainingStore( training.$id ) )
-			.then( () => router.push( "/trainings" ) );
+		load();
+	}, [ addTrainingStore, getById, id ] );
+
+	// Triage des série dans l'ordre
+	useEffect( () => {
+		if ( training && training.series ) {
+			setTrainingSeries(
+				training.series.sort(
+					( a: SeriesParams, b: SeriesParams ) => a.order - b.order
+				)
+			);
+		}
+	}, [ training ] );
+
+	// Gère le lancement du séance
+	const handleStart = () => {
+		setShowMenu( false )
+		router.push( `/training/${id}/session` );
 	};
 
+	// Gère l'édition de l'entrainement
 	const handleEdit = () => {
 		setShowMenu( false );
 		router.push( `/training/${id}/edit` );
 	};
 
+	// Gère la supression de l'entrainement
+	const handleDelete = () => {
+		setShowMenu( false );
+		deleteTraining( training.$id )
+			.then( () => deleteTrainingStore( training.$id ) )
+			.then( () => router.push( "/(tabs)/trainings" ) );
+	};
+
+
+	// Header
 	useLayoutEffect( () => {
 		navigation.setOptions( {
 			headerTitle: () => (
@@ -88,7 +122,17 @@ const Index = () => {
 								activeOpacity={ 1 }
 								onPress={ () => setShowMenu( false ) }
 							>
-								<View className='absolute top-16 right-5 bg-background rounded-md shadow-lg elevation-md min-w-40'>
+								<View className='absolute top-16 right-14 bg-background rounded-md shadow-lg elevation-md min-w-40'>
+									<TouchableOpacity
+										onPress={ handleStart }
+										className='flex-row items-center px-4 py-3 border-b border-gray-200'
+									>
+										<Entypo name="controller-play" size={ 18 } color="#132541" />
+										<Text className='ml-3 text-base font-sregular text-primary'>
+											Lancer la séance
+										</Text>
+									</TouchableOpacity>
+
 									<TouchableOpacity
 										onPress={ handleEdit }
 										className='flex-row items-center px-4 py-3 border-b border-gray-200'
@@ -118,27 +162,23 @@ const Index = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [ navigation, training, id, router, showMenu ] );
 
-	useEffect( () => {
-		if ( training && training.exercise ) {
-			setTrainingExercises( training.exercise );
-		}
-	}, [ training ] );
 
-	const renderExerciseItem = ( { item }: { item: Exercise } ) => (
-		<ExerciseItem
-			image={ item.image }
-			name={ item.name }
-			difficulty={ item.difficulty }
-			onPress={ () => goToExerciseDetails( item.$id ) }
+	// Temps de l'entrainement formaté
+	const durationSeconds = training?.duration ?? 0;
+	const hours = Math.floor( durationSeconds / 3600 );
+	const minutes = Math.floor( ( durationSeconds % 3600 ) / 60 );
+
+	const formattedDuration = hours > 0
+		? `${hours}h${minutes > 0 ? minutes : ""}`
+		: `${minutes} min`;
+
+
+	// Render item pour une série
+	const renderSeriesItem = ( { item }: { item: SeriesParams } ) => (
+		<SeriesItem
+			seriesData={ item }
 		/>
 	);
-
-	const goToExerciseDetails = ( id: string ) => {
-		router.push( {
-			pathname: "/exercise/[id]",
-			params: { id },
-		} );
-	};
 
 	return (
 		<ScrollView className='bg-background min-h-full' contentContainerStyle={ { paddingBottom: 20 } }>
@@ -150,10 +190,7 @@ const Index = () => {
 			) : (
 				<View className="px-5">
 					<Text className='text-lg font-sregular text-primary mb-2'>
-						Durée:{ " " }
-						{ training?.duration < 60
-							? `${training?.duration} minutes`
-							: `${Math.floor( ( training?.duration ?? 0 ) / 60 )}h${( training?.duration ?? 0 ) % 60 === 0 ? "" : ( training?.duration ?? 0 ) % 60}` }
+						Durée: { formattedDuration }
 					</Text>
 					{ training.days.length > 0 && (
 						<ScrollView
@@ -172,13 +209,13 @@ const Index = () => {
 						</ScrollView>
 					) }
 					<FlatList
-						data={ trainingExercises }
-						renderItem={ renderExerciseItem }
-						keyExtractor={ ( item ) => item.name }
+						data={ trainingSeries }
+						renderItem={ renderSeriesItem }
+						keyExtractor={ ( item ) => item.$id }
 						showsVerticalScrollIndicator={ true }
 						scrollEnabled={ false }
 						ListEmptyComponent={
-							<Text className='indicator-text'>Aucun exercice</Text>
+							<Text className='indicator-text'>Aucune série</Text>
 						}
 					/>
 				</View>

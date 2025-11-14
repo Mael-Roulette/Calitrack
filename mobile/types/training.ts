@@ -1,18 +1,20 @@
+import { SeriesParams } from "./series";
+
 export interface createTrainingParams {
-	name: string;
-	days?: string[];
-	duration: number;
-	exercises?: string[]; // IDs des exercices
-	hours?: number;
-	minutes?: number;
+	name: Training[ 'name' ];
+	days?: Training[ 'days' ];
+	duration: Training[ 'duration' ];
+	series?: string[];
 }
 
-export interface updateTrainingParams {
+export interface UpdateSeriesParams {
 	id: string;
-	name?: string;
-	days?: string[];
-	duration?: number;
-	exercises?: string[]; // IDs des exercices
+	exercise?: string;
+	targetValue?: SeriesParams[ 'targetValue' ];
+	sets?: SeriesParams[ 'sets' ];
+	restTime?: SeriesParams[ 'restTime' ];
+	note?: SeriesParams[ 'note' ];
+	order?: SeriesParams[ 'order' ];
 }
 
 export interface Training {
@@ -22,6 +24,7 @@ export interface Training {
 	days?: string[];
 	duration: number;
 	exercise?: Exercise[];
+	series?: SeriesParams[];
 }
 
 export interface Exercise {
