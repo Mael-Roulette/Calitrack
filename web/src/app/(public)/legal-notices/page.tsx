@@ -1,3 +1,17 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Mentions légales - Calitrack",
+  description: "Mentions légales de Calitrack, application de suivi d'entraînement en calisthenics.",
+  alternates: {
+    canonical: "https://calitrack.fr/legal-notices",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
+
 export default function PrivacyPolicy () {
   return (
     <main className="section-wrapper">

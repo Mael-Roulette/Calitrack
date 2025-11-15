@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { headers } from "next/headers";
 
 const calSans = localFont( {
   src: [
@@ -26,26 +27,41 @@ const sora = Sora( {
   preload: false
 } );
 
-export const metadata: Metadata = {
-  metadataBase: new URL( 'https://calitrack.fr' ),
-  title: {
-    default: "Calitrack - L'application qui t'accompagne en calisthenics",
-    template: "%s | Calitrack"
-  },
-  description: "Calitrack est l'application mobile qui te permet de suivre ta progression en calisthenics.",
-  openGraph: {
-    type: 'website',
-    locale: 'fr_FR',
-    url: 'https://calitrack.fr',
-    siteName: 'Calitrack',
-  },
-  twitter: {
-    card: 'summary_large_image',
-  },
-  other: {
-    "google-site-verification": 'Qf-N36OqyxeAxY-sdn7gJKQeeP1YZ_kQkXXIeUbWsnA',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const host = headersList.get('host') || '';
+
+  // Détecter si on est sur l'ancien domaine
+  const isOldDomain = host.includes('appwrite.network');
+
+  return {
+    metadataBase: new URL('https://calitrack.fr'),
+    title: {
+      default: "Calitrack - L'application qui t'accompagne en calisthenics",
+      template: "%s | Calitrack"
+    },
+    description: "Calitrack est l'application mobile qui te permet de suivre ta progression en calisthenics.",
+    robots: isOldDomain ? {
+      index: false,
+      follow: false,
+    } : {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      type: 'website',
+      locale: 'fr_FR',
+      url: 'https://calitrack.fr',
+      siteName: 'Calitrack',
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
+    other: {
+      "google-site-verification": 'Qf-N36OqyxeAxY-sdn7gJKQeeP1YZ_kQkXXIeUbWsnA',
+    },
+  };
+}
 
 export default function RootLayout ( {
   children,

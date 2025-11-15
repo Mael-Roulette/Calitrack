@@ -1,3 +1,17 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Politique de confidentialité - Calitrack",
+  description: "Politique de confidentialité de Calitrack, découvrez comment nous protégeons vos données.",
+  alternates: {
+    canonical: "https://calitrack.fr/privacy-policy",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
+
 export default function PrivacyPolicy () {
   return (
     <main className="section-wrapper">
