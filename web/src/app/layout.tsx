@@ -27,7 +27,7 @@ const sora = Sora( {
 } );
 
 export const metadata: Metadata = {
-  metadataBase: new URL( 'https://calitrack.appwrite.network' ),
+  metadataBase: new URL( 'https://calitrack.fr' ),
   title: {
     default: "Calitrack - L'application qui t'accompagne en calisthenics",
     template: "%s | Calitrack"
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://calitrack.appwrite.network',
+    url: 'https://calitrack.fr',
     siteName: 'Calitrack',
   },
   twitter: {

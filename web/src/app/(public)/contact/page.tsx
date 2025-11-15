@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: "Contacte-moi pour toute question, suggestion ou pour tester la bêta de Calitrack en avant-première. Places limitées !",
     type: "website",
     locale: "fr_FR",
-    url: "https://calitrack.appwrite.network/contact",
+    url: "https://calitrack.fr/contact",
     siteName: "Calitrack",
     images: [
       {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://calitrack.appwrite.network/contact",
+    canonical: "https://calitrack.fr/contact",
   },
   authors: [ { name: "Calitrack" } ],
   category: "Sports & Fitness",

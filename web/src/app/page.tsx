@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     description: "Suis ta progression en calisthenics",
   },
   alternates: {
-    canonical: 'https://calitrack.appwrite.network'
+    canonical: 'https://calitrack.fr'
   },
   authors: [ { name: "Calitrack" } ],
   category: "Sports & Fitness",

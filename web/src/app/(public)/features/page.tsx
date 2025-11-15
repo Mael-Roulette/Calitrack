@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: "Crée tes entraînements sur mesure, fixe tes objectifs et suis ta progression en calisthenics avec des statistiques détaillées.",
     type: "website",
     locale: "fr_FR",
-    url: "https://calitrack.appwrite.network/features",
+    url: "https://calitrack.fr/features",
     siteName: "Calitrack",
     images: [
       {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://calitrack.appwrite.network/features",
+    canonical: "https://calitrack.fr/features",
   },
   authors: [ { name: "Calitrack" } ],
   category: "Sports & Fitness",

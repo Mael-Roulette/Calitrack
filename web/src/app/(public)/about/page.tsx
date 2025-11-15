@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: "Une application créée par un passionné de calisthenics pour t'aider à progresser, du débutant au confirmé.",
     type: "website",
     locale: "fr_FR",
-    url: "https://calitrack.appwrite.network/about",
+    url: "https://calitrack.fr/about",
     siteName: "Calitrack",
     images: [
       {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: "https://calitrack.appwrite.network/about",
+    canonical: "https://calitrack.fr/about",
   },
   authors: [ { name: "Calitrack" } ],
   category: "Sports & Fitness",
