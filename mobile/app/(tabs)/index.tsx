@@ -3,15 +3,16 @@ import { DAYS_EN, DAYS_FR } from "@/constants/value";
 import { useAuthStore, useGoalsStore, useTrainingsStore } from "@/store";
 import useExercicesStore from "@/store/exercises.stores";
 import { Goal, Training } from "@/types";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import cn from 'clsx';
 import { router } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { Modal, ScrollView, Text, View } from "react-native";
+import CustomCalendar from "../calendar/components/CustomCalendar";
 import GoalItem from "../goal/components/GoalItem";
 import TrainingItem from "../training/components/TrainingItem";
-import CustomCalendar from "../calendar/components/CustomCalendar";
-import cn from 'clsx';
 
 const FIRST_LAUNCH_KEY = '@first_launch_done';
 const getDayInEnglish = ( date: Date ) => DAYS_EN[ date.getDay() ];
@@ -55,7 +56,12 @@ export default function Index () {
 		setShowWelcomeModal( false );
 	};
 
-		const upcomingTrainings = useMemo( () => {
+	// Navigation vers la page des objectifs
+	const handleGoalNav = () => {
+		router.push( '/(tabs)/goals' )
+	}
+
+	const upcomingTrainings = useMemo( () => {
 		const result = [];
 		const currentDate = new Date();
 
@@ -123,55 +129,7 @@ export default function Index () {
 					</Modal>
 
 					<View>
-						<CustomCalendar />
-						<View className='mt-10'>
-							{ isLoadingTrainings ? (
-								<Text className='indicator-text'>Chargement des entraînements...</Text>
-							) : (
-								upcomingTrainings.map( ( item: any, index: number ) => {
-									const isFirstDay = index === 0;
-									const formattedDate = isFirstDay ? "Entraînement du jour" : formatDate( item.date );
-
-									return (
-										<View
-											key={ `${item.date.getTime()}-${index}` }
-											className={ index > 0 ? "mt-5" : "" }
-										>
-											<Text className={ cn( 'text-primary font-calsans mb-3', isFirstDay ? 'text-2xl' : 'text-xl' ) }>
-												{ formattedDate }
-											</Text>
-											{ item.trainings.length > 0 ? (
-												<>
-													{ item.trainings.map(
-														( training: Training, trainingIndex: number ) => (
-															<View
-																key={ `${item.date.getTime()}-${training.$id}-${trainingIndex}` }
-																className={ trainingIndex > 0 ? "mt-3" : "" }
-															>
-																<TrainingItem
-																	id={ training.$id }
-																	title={ training.name }
-																	duration={ training.duration }
-																	isTrainingDay={ isFirstDay }
-																/>
-															</View>
-														)
-													) }
-												</>
-											) : (
-												<Text className='indicator-text mb-3'>
-													Aucun entraînement prévu.
-												</Text>
-											) }
-										</View>
-									);
-								} )
-							) }
-						</View>
-					</View>
-
-					<View>
-						<View className='flex-row gap-2 items-center mt-8 mb-4'>
+						<View className='flex-row gap-2 items-center mb-4'>
 							<Feather name='target' size={ 24 } color='#FC7942' />
 							<Text className='text-2xl font-calsans text-primary'>
 								Mes objectifs en cours
@@ -197,12 +155,88 @@ export default function Index () {
 									/>
 								) ) }
 								{ progressGoals.length === 0 && (
-									<Text className='indicator-text'>
-										Aucun objectif en cours.
-									</Text>
+									<>
+										<Text className='indicator-text mb-4'>
+											Aucun objectif en cours.
+										</Text>
+										<CustomButton
+											title="Ajouter un objectif"
+											onPress={ handleGoalNav }
+										/>
+									</>
 								) }
 							</View>
 						) }
+					</View>
+
+					<View className="mt-8">
+						{ isLoadingTrainings ? (
+							<Text className='indicator-text'>Chargement des entraînements...</Text>
+						) : (
+							upcomingTrainings.map( ( item: any, index: number ) => {
+								const isFirstDay = index === 0;
+								const formattedDate = isFirstDay ? "Entraînement du jour" : formatDate( item.date );
+
+								return (
+									<View
+										key={ `${item.date.getTime()}-${index}` }
+										className={ index > 0 ? "mt-5" : "" }
+									>
+										<View className="flex-row items-center gap-4 mb-3">
+											{ isFirstDay &&
+												<MaterialCommunityIcons name="calendar-badge" size={ 24 } color="#FC7942" />
+											}
+											<Text className={ cn( 'text-primary font-calsans', isFirstDay ? 'text-2xl' : 'text-xl' ) }>
+
+												{ formattedDate }
+											</Text>
+										</View>
+
+										{ item.trainings.length > 0 ? (
+											<>
+												{ item.trainings.map(
+													( training: Training, trainingIndex: number ) => (
+														<View
+															key={ `${item.date.getTime()}-${training.$id}-${trainingIndex}` }
+															className={ trainingIndex > 0 ? "mt-3" : "" }
+														>
+															<TrainingItem
+																id={ training.$id }
+																title={ training.name }
+																duration={ training.duration }
+																isTrainingDay={ isFirstDay }
+															/>
+														</View>
+													)
+												) }
+											</>
+										) : (
+											<View>
+												<Text className='indicator-text mb-3'>
+													Aucun entraînement prévu.
+												</Text>
+
+												{ isFirstDay &&
+													<CustomButton
+														title="Ajouter un entraînement"
+														onPress={ handleGoalNav }
+														variant="secondary"
+													/>
+												}
+											</View>
+										) }
+									</View>
+								);
+							} )
+						) }
+					</View>
+
+					<View className="mb-5">
+						<View className='flex-row gap-2 items-center mt-8'>
+							<MaterialCommunityIcons name="calendar-multiselect-outline" size={ 24 } color="#FC7942" />
+							<Text className='text-2xl font-calsans text-primary'>Mon calendrier</Text>
+						</View>
+						<CustomCalendar />
 					</View>
 				</ScrollView>
 			) }
