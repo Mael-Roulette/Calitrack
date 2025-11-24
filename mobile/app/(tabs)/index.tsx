@@ -1,9 +1,8 @@
 import CustomButton from "@/components/CustomButton";
-import { DAYS_EN } from "@/constants/value";
-import { getTrainingFromUserByDay } from "@/lib/training.appwrite";
+import { DAYS_EN, DAYS_FR } from "@/constants/value";
 import { useAuthStore, useGoalsStore, useTrainingsStore } from "@/store";
 import useExercicesStore from "@/store/exercises.stores";
-import { Goal } from "@/types";
+import { Goal, Training } from "@/types";
 import Feather from "@expo/vector-icons/Feather";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from "expo-router";
@@ -11,16 +10,19 @@ import { useEffect, useMemo, useState } from "react";
 import { Modal, ScrollView, Text, View } from "react-native";
 import GoalItem from "../goal/components/GoalItem";
 import TrainingItem from "../training/components/TrainingItem";
+import CustomCalendar from "../calendar/components/CustomCalendar";
+import cn from 'clsx';
 
 const FIRST_LAUNCH_KEY = '@first_launch_done';
+const getDayInEnglish = ( date: Date ) => DAYS_EN[ date.getDay() ];
+const formatDate = ( date: Date ) => DAYS_FR[ date.getDay() ];
 
 export default function Index () {
 	const [ showWelcomeModal, setShowWelcomeModal ] = useState( false );
 	const { user, isLoading } = useAuthStore();
 	const { goals, isLoadingGoals, fetchUserGoals } = useGoalsStore();
-	const { fetchUserTrainings } = useTrainingsStore();
+	const { fetchUserTrainings, trainings, isLoadingTrainings } = useTrainingsStore();
 	const { fetchExercises } = useExercicesStore();
-	const [ todayTraining, setTodayTraining ] = useState<any>( [] );
 
 	useEffect( () => {
 		if ( !isLoading && !user ) {
@@ -53,28 +55,29 @@ export default function Index () {
 		setShowWelcomeModal( false );
 	};
 
-	// Date du jour
+		const upcomingTrainings = useMemo( () => {
+		const result = [];
+		const currentDate = new Date();
 
-	const currentDate = DAYS_EN[ new Date().getDay() ];
-	// Récupérer le training du jour
-	useEffect( () => {
-		const fetchTodayTraining = async () => {
-			try {
-				const training = await getTrainingFromUserByDay( currentDate );
-				if ( training.length > 0 ) {
-					setTodayTraining( training[ 0 ] );
-				}
-			} catch ( error ) {
-				console.error( "Erreur lors de la récupération de l'entraînement du jour :", error );
-			}
-		};
+		for ( let i = 0; i <= 2; i++ ) {
+			const nextDate = new Date();
+			nextDate.setDate( currentDate.getDate() + i );
 
-		fetchTodayTraining();
-	}, [ currentDate ] );
+			const dayName = getDayInEnglish( nextDate );
 
-	const goToCalendar = () => {
-		router.push( "/calendar" );
-	};
+			// Filtrer les trainings pour ce jour
+			const dayTrainings = trainings.filter( ( training: Training ) =>
+				training.days?.includes( dayName )
+			);
+
+			result.push( {
+				date: nextDate,
+				trainings: dayTrainings,
+			} );
+		}
+
+		return result;
+	}, [ trainings ] );
 
 	useEffect( () => {
 		fetchUserGoals();
@@ -118,29 +121,53 @@ export default function Index () {
 							</View>
 						</View>
 					</Modal>
-					<View>
-						<Text className='text-2xl text-primary font-calsans mb-3'>
-							Entraînement du jour
-						</Text>
-						{ todayTraining !== null && todayTraining.$id ? (
-							<TrainingItem
-								id={ todayTraining.$id }
-								title={ todayTraining.name }
-								duration={ todayTraining.duration }
-								isTrainingDay={ true }
-							/>
-						) : (
-							<Text className='indicator-text'>
-								Aucun entraînement prévu pour aujourd&apos;hui.
-							</Text>
-						) }
 
-						<CustomButton
-							title='Voir mon planning'
-							variant='secondary'
-							customStyles='mt-5'
-							onPress={ goToCalendar }
-						/>
+					<View>
+						<CustomCalendar />
+						<View className='mt-10'>
+							{ isLoadingTrainings ? (
+								<Text className='indicator-text'>Chargement des entraînements...</Text>
+							) : (
+								upcomingTrainings.map( ( item: any, index: number ) => {
+									const isFirstDay = index === 0;
+									const formattedDate = isFirstDay ? "Entraînement du jour" : formatDate( item.date );
+
+									return (
+										<View
+											key={ `${item.date.getTime()}-${index}` }
+											className={ index > 0 ? "mt-5" : "" }
+										>
+											<Text className={ cn( 'text-primary font-calsans mb-3', isFirstDay ? 'text-2xl' : 'text-xl' ) }>
+												{ formattedDate }
+											</Text>
+											{ item.trainings.length > 0 ? (
+												<>
+													{ item.trainings.map(
+														( training: Training, trainingIndex: number ) => (
+															<View
+																key={ `${item.date.getTime()}-${training.$id}-${trainingIndex}` }
+																className={ trainingIndex > 0 ? "mt-3" : "" }
+															>
+																<TrainingItem
+																	id={ training.$id }
+																	title={ training.name }
+																	duration={ training.duration }
+																	isTrainingDay={ isFirstDay }
+																/>
+															</View>
+														)
+													) }
+												</>
+											) : (
+												<Text className='indicator-text mb-3'>
+													Aucun entraînement prévu.
+												</Text>
+											) }
+										</View>
+									);
+								} )
+							) }
+						</View>
 					</View>
 
 					<View>

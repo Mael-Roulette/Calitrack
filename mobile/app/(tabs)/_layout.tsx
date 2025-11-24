@@ -122,7 +122,7 @@ const TabsLayout = () => {
 						),
 					} }
 				/>
-				<Tabs.Screen
+				{/* <Tabs.Screen
 					name='calendar'
 					options={ {
 						title: "Calendrier",
@@ -131,7 +131,7 @@ const TabsLayout = () => {
 							<TabIcon icon={ focused ? icons.calendar_focus : icons.calendar } />
 						),
 					} }
-				/>
+				/> */}
 				<Tabs.Screen
 					name='profile'
 					options={ {
