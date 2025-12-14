@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://calitrack.fr'
-  const lastModified = new Date('2025-10-07T09:49:05+00:00')
+  const lastModified = new Date('2025-12-07T09:49:05+00:00')
 
   return [
     {
