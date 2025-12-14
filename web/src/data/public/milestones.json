@@ -7,14 +7,14 @@
   },
   {
     "id": 2,
-    "icon": "stats.png",
-    "title": "Support hors ligne",
-    "description": "Ajout de la possibilité d'utiliser l'application sans connexion internet."
+    "icon": "history.png",
+    "title": "Historique des entraînements",
+    "description": "Ajout d'un historique permettant de consulter et suivre les entraînements passés."
   },
   {
     "id": 3,
-    "icon": "trainings.png",
-    "title": "Amélioration des entraînements",
-    "description": "Ajout de la création de série d'exercices avec nombre de répétition"
+    "icon": "session.png",
+    "title": "Sessions améliorées",
+    "description": "Ajout du suivi des séries et intégration d'un timer pour rendre les sessions plus complètes."
   }
 ]
