@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import { login, register, logout, getCurrentUser } from "@/lib/authentification";
+import { useRouter } from "next/navigation";
+import { login, register, getCurrentUser } from "@/lib/authentification";
 
 interface User {
   $id: string;
@@ -9,6 +10,7 @@ interface User {
 }
 
 const LoginPage = () => {
+  const router = useRouter();
   const [ loggedInUser, setLoggedInUser ] = useState<User | null>( null );
   const [ email, setEmail ] = useState<string>( "" );
   const [ password, setPassword ] = useState<string>( "" );
@@ -16,10 +18,17 @@ const LoginPage = () => {
   const [ isLoading, setIsLoading ] = useState<boolean>( false );
   const [ error, setError ] = useState<string>( "" );
 
-  // Vérifier si l'utilisateur est déjà connecter
+  // Vérifier si l'utilisateur est déjà connecté
   useEffect( () => {
     checkUser();
   }, [] );
+
+  // Rediriger vers le dashboard si connecté
+  useEffect( () => {
+    if ( loggedInUser ) {
+      router.push( '/dashboard' );
+    }
+  }, [ loggedInUser, router ] );
 
   const checkUser = async () => {
     const user = await getCurrentUser();
@@ -64,40 +73,6 @@ const LoginPage = () => {
       setIsLoading( false );
     }
   };
-
-  const handleLogout = async () => {
-    setIsLoading( true );
-    try {
-      await logout();
-      setLoggedInUser( null );
-    } catch ( err ) {
-      setError( "Logout failed. Please try again." );
-      console.error( err );
-    } finally {
-      setIsLoading( false );
-    }
-  };
-
-  if ( loggedInUser ) {
-    return (
-      <div className="p-6 max-w-md mx-auto">
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-2xl font-bold mb-4">Welcome!</h2>
-          <p className="text-gray-700 mb-4">
-            Logged in as <span className="font-semibold">{ loggedInUser.name }</span>
-          </p>
-          <button
-            type="button"
-            onClick={ handleLogout }
-            disabled={ isLoading }
-            className="w-full bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            { isLoading ? "Logging out..." : "Logout" }
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="p-6 max-w-md mx-auto">

@@ -20,7 +20,7 @@ export const register = async ( email: string, password: string, name: string ) 
 };
 
 export const logout = async () => {
-  await account.deleteSession( "current" );
+  await account.deleteSession( { sessionId: "current" } );
 };
 
 export const getCurrentUser = async () => {
