@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
 import localFont from "next/font/local";
-import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { headers } from "next/headers";
+import "./globals.css";
 
 const calSans = localFont( {
   src: [
@@ -73,9 +71,7 @@ export default function RootLayout ( {
       <body
         className={ `${calSans.variable} ${sora.variable} font-sora antialiased` }
       >
-        <Header />
         { children }
-        <Footer />
       </body>
     </html>
   );
