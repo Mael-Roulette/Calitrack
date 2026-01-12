@@ -26,7 +26,7 @@ const LoginPage = () => {
   // Rediriger vers le dashboard si connecté
   useEffect( () => {
     if ( loggedInUser ) {
-      router.push( '/dashboard' );
+      router.push( '/coach/dashboard' );
     }
   }, [ loggedInUser, router ] );
 
