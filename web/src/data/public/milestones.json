@@ -15,6 +15,6 @@
     "id": 3,
     "icon": "session.png",
     "title": "Sessions améliorées",
-    "description": "Ajout du suivi des séries et intégration d'un timer pour rendre les sessions plus complètes."
+    "description": "Ajout de ses performances lors d'une session d'entraînement."
   }
 ]
